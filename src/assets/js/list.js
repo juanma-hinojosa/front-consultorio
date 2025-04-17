@@ -1,0 +1,64 @@
+const especialidades = [
+    {
+        "title": "Medicina general",
+        "subtitle": "Atención primaria que abarca el diagnóstico, tratamiento y prevención de diversas enfermedades en adultos y niños, enfocándose en la salud integral del paciente.",
+        "description": "La medicina general es la puerta de entrada al sistema de salud y una de las especialidades más amplias y fundamentales. Se encarga de brindar atención médica primaria y continua a personas de todas las edades, sexos y condiciones. Los médicos generales diagnostican y tratan una gran variedad de patologías comunes, tanto agudas como crónicas, y tienen un rol clave en la prevención de enfermedades, el control de factores de riesgo y la promoción de hábitos saludables. Además, son responsables de derivar a especialistas cuando la situación lo requiere. Esta disciplina no solo se enfoca en el tratamiento de síntomas, sino que considera al paciente en su contexto biopsicosocial, con el objetivo de mejorar su calidad de vida y mantener una relación médico-paciente cercana y duradera.",
+        "image": "https://magnetosur.com/wp-content/uploads/2021/11/Que-diferencias-existen-entre-la-medicina-general-y-la-medicina-interna.jpg"
+    },
+    {
+        "title": "Medicina integral",
+        "subtitle": "Enfoque que considera al paciente en su totalidad, integrando aspectos físicos, emocionales y sociales para promover su bienestar general.",
+        "description": "La medicina integral aborda la salud del paciente desde una perspectiva holística, considerando al ser humano como una unidad donde interactúan cuerpo, mente y entorno. No se limita únicamente a la curación de enfermedades, sino que busca promover el bienestar general mediante un enfoque que incluye aspectos físicos, emocionales, sociales y espirituales. Esta disciplina integra conocimientos de la medicina convencional con prácticas complementarias o alternativas, según el caso, adaptándose a las necesidades individuales del paciente. La medicina integral enfatiza la participación activa del paciente en su propio proceso de sanación, fomentando estilos de vida saludables, la prevención de enfermedades y el equilibrio general del organismo. Es especialmente útil en el manejo de enfermedades crónicas, trastornos emocionales y procesos de recuperación complejos.",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHxp-lxvu7Y5uQYgEnggcYdjN-Hvzq4GYr2w&s"
+    },
+    {
+        "title": "Traumatología general",
+        "subtitle": "Especialidad que se ocupa del diagnóstico y tratamiento de lesiones y enfermedades del sistema musculoesquelético, incluyendo huesos, articulaciones y tejidos blandos.",
+        "description": "La traumatología general es la especialidad médica que se dedica al estudio, diagnóstico, tratamiento y rehabilitación de lesiones del aparato locomotor. Esto incluye huesos, articulaciones, ligamentos, tendones y músculos. Es fundamental tanto en situaciones de emergencia —como fracturas, luxaciones o esguinces— como en enfermedades degenerativas o crónicas del sistema musculoesquelético, tales como la artrosis, hernias de disco o lesiones deportivas. Los traumatólogos utilizan diversas herramientas diagnósticas, desde radiografías hasta resonancias magnéticas, y aplican tratamientos conservadores (reposo, fisioterapia, medicamentos) o quirúrgicos (osteosíntesis, prótesis, artroscopias), según la gravedad del caso. Esta especialidad no solo alivia el dolor y mejora la funcionalidad, sino que también trabaja en la prevención de futuras lesiones mediante educación postural y programas de fortalecimiento muscular.",
+        "image": "https://riberasalud.com/hospital-de-molina/wp-content/uploads/2019/10/mitos-traumatologia.jpg"
+    },
+    {
+        "title": "Pediatría",
+        "subtitle": "Área de la medicina que se centra en la atención médica de bebés, niños y adolescentes, abarcando desde el nacimiento hasta la adolescencia.",
+        "description": "La pediatría es la rama de la medicina que se especializa en el cuidado integral de bebés, niños y adolescentes, desde el nacimiento hasta los 18 años. Su campo de acción incluye el seguimiento del crecimiento y desarrollo infantil, la prevención de enfermedades, la administración de vacunas, el tratamiento de patologías agudas y crónicas, y la detección temprana de posibles trastornos físicos, cognitivos o emocionales. El pediatra también cumple un rol fundamental en el acompañamiento de los padres y cuidadores, orientando sobre temas como alimentación, sueño, higiene, conducta y escolaridad. Esta especialidad no solo se enfoca en curar enfermedades, sino en garantizar un desarrollo saludable, favoreciendo el bienestar físico y emocional de los más pequeños en todas las etapas de su vida.",
+        "image": "https://drapatriciasaintamand.com/wp-content/uploads/2021/05/sobre-Pediatria.jpg"
+    },
+    {
+        "title": "Fonoaudiología neurolingüística",
+        "subtitle": "Disciplina que estudia y trata las alteraciones del lenguaje y la comunicación relacionadas con el sistema nervioso, abarcando desde dificultades en el habla hasta trastornos neurológicos complejos.",
+        "description": "La fonoaudiología neurolingüística es una disciplina que combina conocimientos de la fonoaudiología tradicional con fundamentos de la neurología y la lingüística, enfocándose en el diagnóstico y tratamiento de trastornos del lenguaje, habla, voz, audición y comunicación que están relacionados con disfunciones del sistema nervioso. Esto incluye afasias, disartrias, apraxias, trastornos del espectro autista, entre otros. Los profesionales trabajan con pacientes de todas las edades, desde niños con dificultades del desarrollo del lenguaje, hasta adultos que han sufrido accidentes cerebrovasculares o enfermedades neurodegenerativas como Parkinson o Alzheimer. A través de evaluaciones específicas y programas de intervención personalizados, se busca mejorar la funcionalidad comunicativa del individuo y su integración social, educativa y laboral.",
+        "image": "https://images.unsplash.com/photo-1632054229795-4097870879b4?q=80&w=1309&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+        "title": "Psicopedagogía",
+        "subtitle": "Campo que analiza los procesos de aprendizaje y las dificultades asociadas, ofreciendo estrategias para mejorar el rendimiento académico y el desarrollo personal del individuo.",
+        "description": "La psicopedagogía es una disciplina que se sitúa en la intersección entre la psicología y la educación. Su objetivo principal es comprender los procesos de aprendizaje, detectar sus dificultades y diseñar estrategias para superarlas. Los psicopedagogos trabajan tanto en contextos escolares como clínicos, evaluando el funcionamiento cognitivo, emocional y social de los estudiantes para identificar obstáculos que interfieran en su rendimiento académico o desarrollo personal. Abordan problemáticas como dislexia, déficit de atención, problemas de memoria, comprensión lectora, ansiedad escolar, entre otros. Además, colaboran con docentes y familias para construir entornos educativos inclusivos, personalizados y eficaces. La intervención psicopedagógica es clave para fomentar la autoestima, el pensamiento autónomo y el potencial de aprendizaje de cada individuo.",
+        "image": "https://www.ucongreso.edu.ar/wp-content/uploads/2018/01/psicopedagogia-carrera-uhe.jpg"
+    },
+    {
+        "title": "Terapia ocupacional",
+        "subtitle": "Intervención que ayuda a personas con limitaciones físicas o mentales a realizar actividades cotidianas, mejorando su autonomía y calidad de vida.",
+        "description": "La terapia ocupacional es una profesión del área de la salud que tiene como finalidad ayudar a las personas a recuperar, desarrollar o mantener habilidades necesarias para llevar a cabo actividades cotidianas, tales como vestirse, alimentarse, estudiar o trabajar. Se dirige a individuos de todas las edades que enfrentan desafíos físicos, mentales o sensoriales, ya sea por discapacidad, enfermedad, accidente o envejecimiento. Los terapeutas ocupacionales realizan evaluaciones funcionales y diseñan planes de intervención personalizados que pueden incluir ejercicios, adaptaciones en el entorno, uso de ayudas técnicas y entrenamiento en actividades de la vida diaria. Esta especialidad promueve la independencia, mejora la calidad de vida y favorece la inclusión social de las personas, respetando su ritmo y capacidades.",
+        "image": "https://ortoprono.es/wp-content/uploads/2022/04/ortopedia-terapia-ocupacional.jpg"
+    },
+    {
+        "title": "Psicología",
+        "subtitle": "Ciencia que estudia el comportamiento y los procesos mentales, ofreciendo apoyo en áreas como salud mental, desarrollo personal y resolución de conflictos.",
+        "description": "La psicología es la ciencia que estudia los procesos mentales, las emociones y el comportamiento humano. Su aplicación clínica se centra en la comprensión profunda de la persona, identificando patrones de pensamiento, conductas, traumas, emociones y relaciones interpersonales que pueden estar generando malestar o dificultando el desarrollo personal. Los psicólogos clínicos trabajan con personas que atraviesan situaciones de ansiedad, depresión, estrés, duelo, problemas de pareja, trastornos alimentarios, adicciones y muchos otros conflictos emocionales. A través de diferentes enfoques terapéuticos (como la terapia cognitivo-conductual, psicoanálisis, terapia humanista, entre otros), buscan ofrecer un espacio de escucha activa, contención y cambio. La psicología también se ocupa de la promoción del bienestar, la salud mental y la prevención de trastornos en todos los ámbitos de la vida.",
+        "image": "https://www.terapify.com/blog/wp-content/uploads/2024/04/psicologo-clinico.png"
+    },
+    {
+        "title": "Estimulación temprana",
+        "subtitle": "Conjunto de actividades dirigidas a niños pequeños para promover su desarrollo físico, emocional y cognitivo durante los primeros años de vida.",
+        "description": "La estimulación temprana es un conjunto de técnicas, actividades y ejercicios diseñados para potenciar el desarrollo integral de los niños desde el nacimiento hasta los seis años, especialmente durante los primeros tres años de vida, que son fundamentales por su alta plasticidad neuronal. Esta intervención puede ser preventiva, para favorecer el desarrollo óptimo, o terapéutica, en casos donde existen factores de riesgo o retrasos en áreas como la motricidad, lenguaje, socialización o cognición. Profesionales de diferentes disciplinas (psicólogos, fonoaudiólogos, kinesiólogos, terapeutas ocupacionales) trabajan en conjunto con las familias para crear ambientes estimulantes, afectivos y seguros que potencien las capacidades del niño, respetando su individualidad y ritmo de crecimiento. La estimulación temprana es clave para mejorar las oportunidades de aprendizaje y adaptación futura.",
+        "image": "https://www.psicoactiva.com/wp-content/uploads/2024/05/estimulacion-temprana.jpg"
+    },
+    {
+        "title": "Gastroenterología infantil",
+        "subtitle": "Rama de la pediatría que se enfoca en el diagnóstico y tratamiento de trastornos gastrointestinales en niños, incluyendo problemas como reflujo, alergias alimentarias y enfermedades hepáticas.",
+        "description": "La gastroenterología infantil es una subespecialidad de la pediatría que se enfoca en el diagnóstico, tratamiento y seguimiento de enfermedades del aparato digestivo en niños y adolescentes. Esto incluye patologías del esófago, estómago, intestinos, hígado, vesícula biliar y páncreas. Entre los problemas más frecuentes se encuentran el reflujo gastroesofágico, intolerancias y alergias alimentarias, constipación, enfermedad celíaca, diarreas crónicas y enfermedades hepáticas congénitas. El gastroenterólogo infantil realiza estudios diagnósticos específicos, como endoscopías o análisis funcionales, y trabaja en estrecha colaboración con nutricionistas, pediatras y otros especialistas. Su objetivo es aliviar síntomas, prevenir complicaciones y garantizar una nutrición adecuada para el crecimiento y desarrollo del niño. La atención temprana y personalizada es clave en esta especialidad, ya que muchas de estas condiciones pueden impactar significativamente en la calidad de vida del menor.",
+        "image": "https://clinica25demayo.com.ar/wp-content/uploads/especialidad-gastroenterologia-infantil.jpg"
+    }
+];
+
+export default especialidades;

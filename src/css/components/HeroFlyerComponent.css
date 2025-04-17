@@ -1,0 +1,79 @@
+.hero-flyer {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.hero-flyer-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.hero-flyer::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* opacidad del overlay */
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.hero-flyer-text {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    padding: 1rem 2rem;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+.hero-flyer-text h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.hero-flyer-text p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+@media screen and (max-width: 768px) {
+    .hero-flyer-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-flyer-text p {
+        font-size: 1rem;
+    }
+
+    .hero-flyer {
+        height: 40vh;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

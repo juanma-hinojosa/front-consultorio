@@ -1,0 +1,115 @@
+.edit-blog {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .edit-blog h2 {
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    /* text-align: center; */
+    font-weight: bold;
+    color: #111;
+  }
+  
+  .edit-blog form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  
+  .edit-blog label {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+  
+  .edit-blog input[type="text"],
+  .edit-blog textarea,
+  .edit-blog input[type="file"] {
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    resize: vertical;
+  }
+  
+  .edit-blog textarea {
+    min-height: 100px;
+  }
+  
+  .edit-blog img {
+    max-width: 200px;
+    margin: 0.5rem 0;
+    border-radius: 8px;
+  }
+  
+  .edit-blog button {
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .edit-blog button[type="submit"] {
+    background-color: #218838;
+    color: white;
+  }
+  
+  .edit-blog button[type="submit"]:hover {
+    background-color: #1c7430;
+  }
+  
+  .edit-blog button[type="button"] {
+    background-color: #f8f9fa;
+    color: #218838;
+    border: 2px solid #218838;
+  }
+  
+  .edit-blog button[type="button"]:hover {
+    background-color: #e6f4ea;
+  }
+  
+  .return-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    /* margin-top: 2rem; */
+    transition: background 0.2s;
+  }
+  
+  .return-link:hover {
+    background-color: #d2d2d2;
+  }
+  
+  @media (max-width: 600px) {
+    .edit-blog {
+      padding: 1rem;
+    }
+  
+    .edit-blog h2 {
+      font-size: 1.5rem;
+    }
+  
+    .edit-blog button {
+      font-size: 0.95rem;
+      padding: 0.6rem 1rem;
+    }
+  }
+  

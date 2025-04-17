@@ -1,0 +1,49 @@
+.flyer-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.flyer-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    text-align: center;
+}
+
+.flyer-content img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.flyer-content h3 {
+    margin-top: 10px;
+    font-size: 1.5em;
+}
+
+.flyer-content p {
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+.flyer-content button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.flyer-content button:hover {
+    background: #0056b3;
+}

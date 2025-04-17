@@ -1,0 +1,85 @@
+.blog-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    flex-wrap: wrap;
+}
+
+.blog-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+}
+
+.blog-item.even {
+    background-color: #f9f9f9;
+}
+
+.blog-item.odd {
+    background-color: #ffffff;
+}
+
+.blog-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.blog-item .info {
+    flex: 1;
+    min-width: 180px;
+}
+
+.blog-item .info h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.blog-item .info p {
+    margin: 2px 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.blog-item .actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.blog-item .actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    padding: 4px;
+}
+
+.blog-item .actions button:hover {
+    transform: scale(1.1);
+}
+
+.blog-item .actions .edit-icon {
+    color: #2ecc71;
+}
+
+.blog-item .actions .delete-icon {
+    color: #e74c3c;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .blog-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .blog-item .actions {
+        margin-top: 0.5rem;
+    }
+}

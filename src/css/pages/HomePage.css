@@ -1,0 +1,90 @@
+/* src/pages/HomePage.css */
+.home-blogs-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  
+  .home-blogs-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    margin-top: 1.5rem;
+  }
+    
+  .see-all-btn-container {
+    margin-top: 2rem;
+  }
+  
+  .btn-see-all {
+    background-color: #1ead4e;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-see-all:hover {
+    background-color: #00b362;
+  }
+  
+
+
+  .homepage-services {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  .homepage-services h2 {
+    /* text-align: center; */
+    margin-bottom: 2rem;
+  }
+  
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .see-more {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  .see-more button {
+    text-decoration: none;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 1rem;
+    background-color: #1ead4e;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .see-more button:hover {
+    background-color: #00b362;
+  }
+  
+  
+  /* Responsive para tablets y desktop */
+  @media (min-width: 768px) {
+    .home-blogs-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .home-blogs-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  

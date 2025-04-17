@@ -1,0 +1,21 @@
+.map-fullwidth-container {
+    width: 100%;
+    height: 50vh;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .map-fullwidth-container iframe {
+    border: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  
+  /* Responsive: ajustar altura en pantallas chicas */
+  @media (max-width: 768px) {
+    .map-fullwidth-container {
+      height: 300px;
+    }
+  }
+  

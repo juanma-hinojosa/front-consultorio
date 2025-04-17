@@ -1,0 +1,117 @@
+.service-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease-in-out;
+  flex-wrap: wrap;
+}
+
+.service-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.service-card>.service-img-wrapper {
+  flex-shrink: 0;
+}
+
+.service-card>.service-img-wrapper>.service-avatar {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #eee;
+}
+
+.service-card>.service-info {
+  flex: 1;
+  min-width: 220px;
+}
+
+.service-card>.service-info>.service-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.service-card>.service-info>.service-subtitle {
+  font-size: 0.95rem;
+  color: #777;
+  margin: 4px 0 12px;
+}
+
+.service-card>.service-info>.service-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.service-card>.service-info>.service-links>.link-read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #2e7d32;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.service-card>.service-info>.service-links>.link-read-more:hover {
+  color: #1b5e20;
+}
+
+.service-card>.service-info>.service-links>.btn-whatsapp {
+  background-color: #2e7d32;
+  color: #fff;
+  padding: 0.45rem 1.2rem;
+  border-radius: 999px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.service-card>.service-info>.service-links>.btn-whatsapp:hover {
+  background-color: #1b5e20;
+}
+@media (max-width: 600px) {
+  .service-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .service-card>.service-img-wrapper>.service-avatar {
+    width: 70px;
+    height: 70px;
+  }
+
+  .service-card>.service-info {
+    min-width: 100%;
+  }
+
+  .service-card>.service-info>.service-title {
+    font-size: 1.1rem;
+  }
+
+  .service-card>.service-info>.service-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .service-card>.service-info>.service-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .service-card>.service-info>.service-links>.btn-whatsapp,
+  .service-card>.service-info>.service-links>.link-read-more {
+    width: 100%;
+    justify-content: center;
+  }
+}

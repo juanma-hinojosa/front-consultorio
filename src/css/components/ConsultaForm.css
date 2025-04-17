@@ -1,0 +1,88 @@
+.consulta-section {
+  background-image: url('../../../public/d_alimentacion_nutricion_salud_bienestar_anahuac_online_thumb_1200w.jpg');
+  /* Reemplazá esta ruta */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* min-height: 100vh; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.consulta-section>.consulta-overlay {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 2rem;
+}
+
+.consulta-section>.consulta-overlay >.consulta-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  /* ✅ Centrado horizontal */
+}
+
+.consulta-section>.consulta-overlay >.consulta-content>.consulta-form {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.consulta-section>.consulta-overlay >.consulta-content>.consulta-form h2 {
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.consulta-form input,
+.consulta-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.consulta-form textarea {
+  height: 120px;
+  resize: none;
+  /* no redimensionable */
+}
+
+.consulta-section>.consulta-overlay >.consulta-content>.consulta-form>.consulta-form button {
+  width: 100%;
+  /* 🔥 Hace que el botón ocupe todo el ancho */
+  background-color: #2a8a60;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .consulta-section {
+    background: #e0f2f1;
+  }
+
+  .consulta-overlay {
+    background-color: transparent;
+    padding: 1rem;
+  }
+
+  .consulta-content {
+    justify-content: center;
+  }
+
+  .consulta-form {
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,122 @@
+/* BlogCreatePage.css */
+
+.blog-create-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.blog-create-container h2 {
+  margin-top: 100px;
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.return-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.return-link:hover {
+  text-decoration: underline;
+}
+
+.message {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.blog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.blog-form input[type="text"],
+.blog-form textarea,
+.blog-form input[type="file"] {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.blog-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.blog-form label {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.extra-section {
+  margin-top: 20px;
+}
+
+.extra-section h4 {
+  margin-bottom: 10px;
+}
+
+.extra-item {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.extra-section button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #e0f7ec;
+  color: #007f5f;
+  padding: 10px 16px;
+  border: 1px solid #007f5f;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.extra-section button:hover {
+  background-color: #c6f0df;
+}
+
+.submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #207b3f;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+  align-self: flex-start;
+}
+
+.submit-btn:hover {
+  background-color: #1b6b36;
+}
+
+@media (max-width: 768px) {
+  .blog-create-container {
+    padding: 0 16px;
+  }
+
+  .submit-btn,
+  .extra-section button {
+    width: 100%;
+    justify-content: center;
+  }
+}

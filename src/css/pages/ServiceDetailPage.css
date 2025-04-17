@@ -1,0 +1,140 @@
+/* Reset básico y buenas prácticas */
+.service-detail-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+/* Imagen destacada */
+.service-detail-image {
+    width: 100%;
+    max-height: 50vh;
+    /* max-width: 50vh; */
+    /* border-radius: 12px; */
+    object-fit: fill;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.service-detail-image > img {
+    width: 100%;
+    height: auto;
+}
+
+/* Título principal */
+.service-detail-page >h1 {
+    font-size: 2.5rem;
+    color: #2c7a35;
+    margin-bottom: 0.5rem;
+}
+
+/* Subtítulo */
+.service-detail-page> h3 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+/* Botón de WhatsApp */
+.service-detail-page>.btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    background-color: #25d366;
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    margin-bottom: 2rem;
+    transition: background-color 0.3s ease;
+    gap: 0.5rem;
+}
+
+.service-detail-page>.btn-whatsapp:hover {
+    background-color: #1ebc57;
+}
+
+/* Texto descriptivo */
+.service-detail-page p {
+    line-height: 1.8;
+    font-size: 1rem;
+    color: #444;
+    margin-top: 1rem;
+}
+
+.related-services {
+    margin-top: 60px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+  
+  .related-services h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+  
+  .related-services-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .related-service-card {
+    width: 250px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+  }
+  
+  .related-service-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .related-service-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+  }
+  
+  .related-service-card h4 {
+    padding: 10px;
+    font-size: 18px;
+  }
+  
+  .btn-ver-mas {
+    display: inline-block;
+    margin: 10px 0 15px;
+    padding: 8px 16px;
+    background-color: #218c74;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-ver-mas:hover {
+    background-color: #1e735f;
+  }
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .service-detail-page h1 {
+        font-size: 2rem;
+    }
+
+    .service-detail-page h3 {
+        font-size: 1rem;
+    }
+
+    .service-detail-page>.btn-whatsapp {
+        width: 100%;
+        justify-content: center;
+    }
+}
