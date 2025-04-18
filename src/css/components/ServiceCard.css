@@ -65,6 +65,8 @@
 }
 
 .service-card>.service-info>.service-links>.btn-whatsapp {
+  display: flex;
+  align-items: center;
   background-color: #2e7d32;
   color: #fff;
   padding: 0.45rem 1.2rem;

@@ -13,14 +13,22 @@ const HeroSection = (props) => {
       </video>
       <div className="hero-content">
         <p className="subheading">
-          <span>(</span>
+          <span style={{
+            color: "#c0ad64",
+            fontWeight: "bolder"
+          }}>(</span>
           Consultorio medico integral San Marcos
-          <span>)</span>
+          <span style={{
+            color: "#c0ad64",
+            fontWeight: "bolder"
+          }}>)</span>
         </p>
         <h1>Un equipo enfocado<br />en tu salud y<br />bienestar.</h1>
         <div className="hero-buttons">
-          <Link to="/services">
-            <Icon icon="material-symbols:medical-services" />Servicios        </Link>
+          <Link to={`/${props.path}`} >
+            {props.name}
+            {/* <Icon icon="material-symbols:medical-services" />{props.name} */}
+          </Link>
 
           <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
             <Icon icon="ic:outline-whatsapp" />

@@ -9,6 +9,8 @@ function ServicesPage() {
     return (<>
         <HeroSection
             video={Services}
+            name="Cuidados"
+            path="blog"
         />
         <CallToAction />
         <section className="services-container">

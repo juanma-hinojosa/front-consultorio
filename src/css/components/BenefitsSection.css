@@ -33,14 +33,22 @@
     line-height: 1.6;
 }
 
-.benefits-text button {
-    margin-top: 20px;
-    background-color: #a3c9aa;
+.benefits-text .boton-beneficios {
+    margin-top: 10px;
+    text-decoration: none;
+    background-color: #87a08b;
     color: white;
+    /* color: #c0ad64; */
     border: none;
     padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
+    transition: .3s;
+}
+
+.benefits-text .boton-beneficios:hover {
+    background-color: #72a87c;
+    /* color: #c0ad64; */
 }
 
 .benefits-images {

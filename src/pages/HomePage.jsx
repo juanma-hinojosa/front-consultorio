@@ -11,9 +11,11 @@ import ServiceCard from '../components/ServiceCard';
 import especialidades from '../assets/js/list';
 import ConsultaForm from '../components/consultaFormComponent';
 import BlogCard from '../components/BlogCardComponent';
+import BlogCardSkeleton from '../components/BlogCardSkeleton';
 
 function HomePage() {
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState([])
   const featured = especialidades.slice(0, 4);
 
   useEffect(() => {
@@ -26,6 +28,8 @@ function HomePage() {
         setBlogs(latestThree);
       } catch (err) {
         console.error('Error al obtener blogs:', err);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -35,10 +39,12 @@ function HomePage() {
     <>
       <HeroSection
         video={Home}
+        name="Especialidades"
+        path="services"
       />
       <FlyerPopup />
 
-      <section className="home-blogs-section">
+      {/* <section className="home-blogs-section">
         <h2>Últimas Publicaciones</h2>
         <div className="home-blogs-grid">
           {blogs.map((blog) => (
@@ -48,13 +54,28 @@ function HomePage() {
         <div className="see-all-btn-container">
           <Link to="/blog" className="btn-see-all">Ver todos los blogs</Link>
         </div>
+      </section> */}
+      <section className="home-blogs-section">
+        <h2>Últimas Publicaciones</h2>
+        <div className="home-blogs-grid">
+          {loading
+            ? [1, 2, 3].map((i) => <BlogCardSkeleton key={i} />)
+            : blogs.map((blog) => <BlogCard key={blog._id} blog={blog} />)}
+        </div>
+        {!loading && (
+          <div className="see-all-btn-container">
+            <Link to="/blog" className="btn-see-all">Ver todos los blogs</Link>
+          </div>
+        )}
       </section>
+
+
       <CallToAction />
       <section className="homepage-services">
         <h2>Especialidades Destacadas</h2>
         <div className="services-grid">
           {featured.map((service) => (
-            <ServiceCard key={service._id} service={service}/>
+            <ServiceCard key={service._id} service={service} />
           ))}
         </div>
         <div className="see-more">

@@ -1,14 +1,18 @@
 import "../css/components/CallToAction.css";
 import React from "react";
 import doctorImage from "/salud.jpg"; // Ruta al archivo de imagen (colocala en public o src/assets)
+import { Icon } from "@iconify/react/dist/iconify.js";
 
-
+Icon
 const CallToAction = () => {
   const items = [
     "Servicio que se da",
     "Servicio que se da",
     "Servicio que se da",
   ];
+
+  const message = `Hola, quisiera solicitar un turno para un checkeo general.`;
+  const whatsappLink = `https://wa.me/5491127706352?text=${encodeURIComponent(message)}`;
 
   return (
     <section className="cta-section">
@@ -40,7 +44,14 @@ const CallToAction = () => {
             ))}
           </ul>
 
-          <button className="cta-button">Solicitar Turno</button>
+          <a className="cta-button" href={whatsappLink} target="_blank" rel="noopener noreferrer">
+            <Icon icon="ic:baseline-whatsapp"
+              style={{
+                marginRight: "5px", fontSize: "20px"
+              }}
+            />Solicitar Turno
+          </a>
+
         </div>
       </div>
     </section>

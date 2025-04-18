@@ -25,13 +25,15 @@ const ServiceCard = ({ service }) => {
           <Link to={`/services/${slug}`} className="link-read-more">
             Leer más <Icon icon="eva:diagonal-arrow-right-up-outline" />
           </Link>
-         <a
+          <a
             href={whatsappLink}
             className="btn-whatsapp"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Icon icon="ic:baseline-whatsapp" />
+            <Icon icon="ic:baseline-whatsapp" style={{
+              marginRight: "5px", fontSize:"20px"
+            }} />
             Solicitar Turno
           </a>
         </div>

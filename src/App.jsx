@@ -17,6 +17,7 @@ import ScrollToTop from './components/ScrollToTop';
 import Footer from './components/Footer';
 import ServiceDetailPage from './pages/ServicesDetailPage';
 import { ToastContainer } from 'react-toastify';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
 
@@ -64,7 +65,7 @@ function App() {
           <Route path="/admin/flyer/edit/:id" element={<PrivateRoute>
             <EditFlyerPage />
           </PrivateRoute>} />
-
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <Footer />
         <ToastContainer />

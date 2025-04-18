@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/components/BenefitsSection.css';
+import { Link } from 'react-router-dom';
 
 const BenefitsSection = () => {
   return (
@@ -16,8 +17,16 @@ const BenefitsSection = () => {
             adaptada a tus necesidades. Es una inversión en salud, prevención y calidad de vida, con profesionales
             comprometidos en brindarte el mejor servicio..
           </p>
-          <button>Contactanos</button>
+          <div style={{
+            marginTop: "20px"
+          }}>
+            <Link to="/services" className='boton-beneficios'
+            >
+              Especialidades
+            </Link>
+          </div>
         </div>
+
         <div className="benefits-images">
           <img
             src="https://images.unsplash.com/photo-1607746882042-944635dfe10e" // reemplazá por tu imagen real

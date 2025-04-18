@@ -101,3 +101,68 @@
     margin: 0.5rem 0;
   }
 }
+
+.footer-link-skeleton {
+  width: 80%;
+  height: 14px;
+  background-color: #2a2a2a;
+  border-radius: 4px;
+  margin: 0.4rem 0;
+  animation: footerShimmer 1.6s infinite linear;
+  background-image: linear-gradient(
+    to right,
+    #2a2a2a 0%,
+    #3a3a3a 20%,
+    #2a2a2a 40%,
+    #2a2a2a 100%
+  );
+  background-size: 1000px 100%;
+}
+
+@keyframes footerShimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+
+.footer-banner-developers {
+  background-color: #0f0f0f;
+  color: #f0f0f0;
+  padding: 12px 20px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-banner-developers a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #52d79f;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer-banner-developers a:hover {
+  color: #7fffd4;
+}
+
+.stake-logo {
+  width: 22px;
+  height: auto;
+  filter: brightness(1.2);
+  transition: transform 0.2s ease;
+}
+
+.footer-banner-developers a:hover .stake-logo {
+  transform: scale(1.1);
+}

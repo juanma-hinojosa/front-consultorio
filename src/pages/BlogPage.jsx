@@ -76,7 +76,10 @@ const BlogPage = () => {
       {flyerData ? (
         <HeroFlyerComponent flyer={flyerData} />
       ) : (
-        <HeroSection video={Blog} />
+        <HeroSection video={Blog} 
+        name="Especialidades"
+        path="services"
+        />
       )}
 
 
