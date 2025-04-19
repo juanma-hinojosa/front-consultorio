@@ -35,12 +35,16 @@
 
 .footer-socials a {
   color: #d4c28d;
+  color: #e8ce81;
+
   font-size: 1.5rem;
-  transition: color 0.3s;
+  transition:  0.3s;
 }
 
 .footer-socials a:hover {
-  color: #2a8a60;
+  color: #f9d66e;
+  font-size: 1.7rem;
+
 }
 
 /* Links */

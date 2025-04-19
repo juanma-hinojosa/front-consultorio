@@ -34,30 +34,35 @@ const ServiceDetailPage = () => {
                     width: "100%"    // opcional
                 }}
             >
-                {/* <img src={image} alt={title} className="service-detail-image" /> */}
             </div>
             <section className="service-detail-page">
 
 
-                <h1>{title}</h1>
-                <h3>{subtitle}</h3>
+                <h1 data-aos="zoom-in"
+                data-aos-duration="500"
+                >{title}</h1>
+                <h3 
+                data-aos="zoom-in"
+                data-aos-duration="500">{subtitle}</h3>
                 <a
                     href={whatsappLink}
                     className="btn-whatsapp"
                     target="_blank"
                     rel="noopener noreferrer"
+                    data-aos="fade-up"
+                    data-aos-duration="500"
                 >
                     <Icon icon="ic:baseline-whatsapp" />
                     Solicitar Turno
                 </a>
-                <p>{description}</p>
+                <p data-aos="zoom-in" >{description}</p>
             </section>
 
             <section className="related-services">
                 <h2>También te puede interesar</h2>
                 <div className="related-services-grid">
                     {otherServices.map((item) => (
-                        <div key={item.title} className="related-service-card">
+                        <div key={item.title} className="related-service-card" >
                             <img src={item.image} alt={item.title} />
                             <h4>{item.title}</h4>
                             <Link to={`/services/${slugify(item.title)}`} className="btn-ver-mas">

@@ -31,19 +31,43 @@
 
 .flyer-content p {
     font-size: 1em;
-    margin-top: 10px;
+    margin: 10px 0;
 }
 
 .flyer-content button {
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 10px 20px;
-    background: #007bff;
+    background: #baa418;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: .3s;
+    font-size: 1.1rem;
+
 }
 
 .flyer-content button:hover {
-    background: #0056b3;
+    background: #cfb71a;
+}
+
+.button-flyer-wpp {
+    margin: auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 10px 0;
+    border: 2px solid #19cf40;
+    border-radius: 5px;
+    color: #19cf40;
+    font-size: 1.1rem;
+    transition: .3s;
+}
+
+.button-flyer-wpp:hover {
+    border: 2px solid #19cf40;
+    border-radius: 5px;
+    color: #19cf40;
+    background-color: rgb(31, 30, 30);
 }

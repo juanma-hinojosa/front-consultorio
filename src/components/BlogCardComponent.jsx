@@ -8,7 +8,7 @@ const BlogCard = ({ blog }) => {
 
 
   return (
-    <div className="blog-card">
+    <div className="blog-card" data-aos="fade-up">
      <img src={mainImageUrl} alt={title} className="blog-card-image" />
       <div className="blog-card-content" style={{textAlign: "center"}}>
         <h3 className="blog-card-title">{blog.title}</h3>

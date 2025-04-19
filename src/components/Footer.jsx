@@ -60,35 +60,6 @@ const Footer = () => {
               ))}
             </div>
 
-            {/* <div>
-            <h4>Blogs</h4>
-            {latestBlogs.map((blog) => (
-              <Link
-                key={blog._id}
-                to={`/blog/${slugify(blog.title)}?id=${blog._id}`}
-              >
-                {blog.title}
-              </Link>
-            ))}
-          </div> */}
-
-            {/* <div>
-            <h4>Blogs</h4>
-            {loading
-              ? [1, 2, 3, 4].map((i) => (
-                <div className="footer-link-skeleton" key={i}></div>
-              ))
-              : latestBlogs.map((blog) => (
-                <Link
-                  key={blog._id}
-                  to={`/blog/${slugify(blog.title)}?id=${blog._id}`}
-                >
-                  {blog.title}
-                </Link>
-              ))}
-          </div> */}
-
-
             <div>
               <h4>Páginas</h4>
               <Link to="/">Inicio</Link>
@@ -100,18 +71,18 @@ const Footer = () => {
             <div>
               <h4>Aviso legales importante</h4>
               <p>Terminos y condiciones</p>
-              <a href="#">Politica de privacidad</a>
-              <a href="#">Aviso legal</a>
+              <p>Politica de privacidad</p>
+              <p>Aviso legal</p>
               {/* <Link to="/blog">Blog</Link> */}
             </div>
 
 
             <div>
-              <h4>informacion de contacto</h4>
-              <a href="#">Rivera 146, Villa Madero</a>
-              <a href="#">+54 1127706352</a>
-              <a href="#">Lun - Sab 8:00 a 18:00.</a>
-              <a href="#">consultorio@sanmarcos.com</a>
+              <h4>Informacion de contacto</h4>
+              <p>Rivera 146, Villa Madero</p>
+              <p>+54 1127706352</p>
+              <p>Lun - Sab 8:00 a 18:00.</p>
+              <p>consultorio@sanmarcos.com</p>
               {/* <Link to="/blog">Blog</Link> */}
             </div>
           </div>

@@ -18,7 +18,7 @@ const CallToAction = () => {
     <section className="cta-section">
       <div className="cta-container">
         <div className="cta-image">
-          <img src={doctorImage} alt="Doctor con paciente" />
+          <img data-aos="zoom-in" src={doctorImage} alt="Doctor con paciente" />
         </div>
         <div className="cta-content">
           <h2>
@@ -37,14 +37,15 @@ const CallToAction = () => {
               <li
                 className="cta-list-item"
                 key={index}
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
+                // style={{ animationDelay: `${index * 0.2}s` }}
+
+                data-aos="fade-left">
                 <span className="check-icon">✓</span> {item}
               </li>
             ))}
           </ul>
 
-          <a className="cta-button" href={whatsappLink} target="_blank" rel="noopener noreferrer">
+          <a data-aos="fade-up" className="cta-button" href={whatsappLink} target="_blank" rel="noopener noreferrer">
             <Icon icon="ic:baseline-whatsapp"
               style={{
                 marginRight: "5px", fontSize: "20px"

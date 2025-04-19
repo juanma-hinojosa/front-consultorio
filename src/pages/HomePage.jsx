@@ -43,18 +43,6 @@ function HomePage() {
         path="services"
       />
       <FlyerPopup />
-
-      {/* <section className="home-blogs-section">
-        <h2>Últimas Publicaciones</h2>
-        <div className="home-blogs-grid">
-          {blogs.map((blog) => (
-            <BlogCard key={blog._id} blog={blog} />
-          ))}
-        </div>
-        <div className="see-all-btn-container">
-          <Link to="/blog" className="btn-see-all">Ver todos los blogs</Link>
-        </div>
-      </section> */}
       <section className="home-blogs-section">
         <h2>Últimas Publicaciones</h2>
         <div className="home-blogs-grid">
@@ -63,7 +51,7 @@ function HomePage() {
             : blogs.map((blog) => <BlogCard key={blog._id} blog={blog} />)}
         </div>
         {!loading && (
-          <div className="see-all-btn-container">
+          <div data-aos="fade-up" className="see-all-btn-container">
             <Link to="/blog" className="btn-see-all">Ver todos los blogs</Link>
           </div>
         )}
@@ -75,11 +63,11 @@ function HomePage() {
         <h2>Especialidades Destacadas</h2>
         <div className="services-grid">
           {featured.map((service) => (
-            <ServiceCard key={service._id} service={service} />
+            <ServiceCard  key={service._id} service={service} />
           ))}
         </div>
         <div className="see-more">
-          <Link to="/services" className="btn-see-all">Ver todas las especialidades</Link>
+          <Link to="/services" data-aos="fade-up" className="btn-see-all">Ver todas las especialidades</Link>
         </div>
 
       </section>

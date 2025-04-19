@@ -87,7 +87,7 @@ const BlogPage = () => {
         <h1 className="blog-page-title">Nuestro Blog</h1>
 
         {lastBlog && (
-          <div className="featured-blog">
+          <div className="featured-blog" data-aos="fade-up">
             <img src={lastBlog.mainImageUrl} alt={lastBlog.title} className="featured-image" />
             <div className="featured-content">
               <span className="blog-card-category">{lastBlog.category}</span>

@@ -1,0 +1,36 @@
+@keyframes slideInFromRight {
+    0% {
+      transform: translateX(100%) scale(0.5);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0) scale(1);
+      opacity: 1;
+    }
+  }
+  
+  .wpp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    color: white;
+    padding: 14px;
+    border-radius: 50%;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    animation: slideInFromRight 0.6s ease-out;
+    transition: transform 0.2s;
+  }
+  
+  .wpp-button:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Mostrar solo en móviles */
+  @media (min-width: 768px) {
+    .wpp-button {
+      display: none;
+    }
+  }
+  

@@ -14,7 +14,7 @@ const ServiceCard = ({ service }) => {
   const whatsappLink = `https://wa.me/5491127706352?text=${encodeURIComponent(message)}`;
 
   return (
-    <div className="service-card">
+    <div className="service-card" data-aos="fade-up">
       <div className="service-img-wrapper">
         <img src={image} alt={title} className="service-avatar" />
       </div>

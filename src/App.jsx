@@ -18,8 +18,18 @@ import Footer from './components/Footer';
 import ServiceDetailPage from './pages/ServicesDetailPage';
 import { ToastContainer } from 'react-toastify';
 import NotFoundPage from './pages/NotFoundPage';
+import WhatsappButton from './components/WhatsAppButton';
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react';
 
 function App() {
+  useEffect(() => {
+    AOS.init({
+      once: true,
+    });
+  }, []);
 
   return (
     <>
@@ -69,6 +79,7 @@ function App() {
         </Routes>
         <Footer />
         <ToastContainer />
+        <WhatsappButton />
       </BrowserRouter>
     </>
   )
