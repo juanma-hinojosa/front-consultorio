@@ -37,7 +37,7 @@
 .flyer-content button {
     margin-top: 10px;
     padding: 10px 20px;
-    background: #baa418;
+    background: #19cf40;
     color: white;
     border: none;
     border-radius: 5px;
@@ -48,7 +48,7 @@
 }
 
 .flyer-content button:hover {
-    background: #cfb71a;
+    background: #19cf40;
 }
 
 .button-flyer-wpp {

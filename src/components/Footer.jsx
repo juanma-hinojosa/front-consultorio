@@ -105,7 +105,7 @@ const Footer = () => {
       >
         Desarrollado por&nbsp;
         <a href="https://stakedev.net" target="_blank" rel="noopener noreferrer">
-          Stake Dev
+          <span style={{color: "#e81753"}} >Stake</span><span style={{color: "#2867ac"}} >Dev</span>
           <img
             src="https://stakedev.net/images/logo.png"
             alt="Stake Dev logo"

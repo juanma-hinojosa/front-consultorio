@@ -1,10 +1,24 @@
 import "../css/components/CallToAction.css";
-import React from "react";
+import React, { useEffect } from "react";
 import doctorImage from "/salud.jpg"; // Ruta al archivo de imagen (colocala en public o src/assets)
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { useState } from "react";
 
 Icon
 const CallToAction = () => {
+
+  const [aosAnimation, setAosAnimation] = useState('fade-left');
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth <= 768;
+      setAosAnimation(isMobile ? 'fade-up' : 'fade-left');
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize)
+  }, []);
+
   const items = [
     "Servicio que se da",
     "Servicio que se da",
@@ -37,9 +51,7 @@ const CallToAction = () => {
               <li
                 className="cta-list-item"
                 key={index}
-                // style={{ animationDelay: `${index * 0.2}s` }}
-
-                data-aos="fade-left">
+                data-aos={aosAnimation}>
                 <span className="check-icon">✓</span> {item}
               </li>
             ))}
