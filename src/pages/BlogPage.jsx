@@ -15,28 +15,6 @@ const BlogPage = () => {
   const [flyerData, setFlyerData] = useState(null);
 
   useEffect(() => {
-    // const fetchData = async () => {
-    //   try {
-    //     const [blogsRes, flyerRes] = await Promise.all([
-    //       fetch('https://consultorio-back-xg97.onrender.com/api/blogs'),
-    //       fetch('https://consultorio-back-xg97.onrender.com/api/flyers')
-    //     ]);
-
-    //     if (blogsRes.ok) {
-    //       const blogsData = await blogsRes.json();
-    //       setBlogs(blogsData);
-    //     }
-
-    //     if (flyerRes.ok) {
-    //       const flyerData = await flyerRes.json();
-    //       if (flyerData && flyerData.imageUrl) setShowFlyer(true);
-    //     }
-    //   } catch (error) {
-    //     console.error('Error al cargar datos:', error);
-    //   } finally {
-    //     setIsLoading(false);
-    //   }
-    // };
 
     const fetchData = async () => {
       try {
@@ -76,9 +54,9 @@ const BlogPage = () => {
       {flyerData ? (
         <HeroFlyerComponent flyer={flyerData} />
       ) : (
-        <HeroSection video={Blog} 
-        name="Especialidades"
-        path="services"
+        <HeroSection video={Blog}
+          name="Especialidades"
+          path="services"
         />
       )}
 

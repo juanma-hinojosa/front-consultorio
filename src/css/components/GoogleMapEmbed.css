@@ -26,6 +26,23 @@
   padding: 1rem;
 }
 
+.map-error button {
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #1e8e5e;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.map-error button:hover {
+  background-color: #176f4c;
+}
+
+
 /* Responsive */
 @media (max-width: 768px) {
   .map-fullwidth-container {

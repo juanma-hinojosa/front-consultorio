@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import BlogItem from '../../components/BlogItem';
+import SkeletonItem from '../../components/SkeletonItem';
 
 const DashboardPage = () => {
   const [blogs, setBlogs] = useState([]);
@@ -124,7 +125,12 @@ const DashboardPage = () => {
       <div className="flyer-list">
         <h2>Flyers</h2>
         {flyers.length === 0 ? (
-          <p>No hay flyers creados aún.</p>
+          // <p>No hay flyers creados aún.</p>
+
+          <>
+            {[...Array(2)].map((_, i) => <SkeletonItem key={i} />)}
+            <p>No hay flyers creados aún.</p>
+          </>
         ) : (
           flyers.map((flyer, index) => (
             <div key={flyer._id} className={`flyer-item ${index % 2 === 0 ? 'even' : 'odd'}`}>
@@ -155,7 +161,10 @@ const DashboardPage = () => {
         <h2>Blogs</h2>
 
         {blogs.length === 0 ? (
-          <p>No hay publicaciones aún.</p>
+          <>
+            {[...Array(4)].map((_, i) => <SkeletonItem key={i} />)}
+            <p>No hay publicaciones aún.</p>
+          </>
         ) : (
           blogs.map((blog, index) => (
             <BlogItem
@@ -171,7 +180,7 @@ const DashboardPage = () => {
       <ToastContainer position="top-center" autoClose={3000} />
 
     </div>
-    
+
   );
 };
 
