@@ -16,6 +16,7 @@ const DashboardPage = () => {
 
   const fetchFlyers = async () => {
     try {
+      // const res = await fetch('https://consultorio-back-xg97.onrender.com/api/flyers/all', {
       const res = await fetch('https://consultorio-back-xg97.onrender.com/api/flyers/all', {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -31,6 +32,7 @@ const DashboardPage = () => {
 
   const fetchBlogs = async () => {
     try {
+      // const res = await fetch('https://consultorio-back-xg97.onrender.com/api/blogs');
       const res = await fetch('https://consultorio-back-xg97.onrender.com/api/blogs');
       const data = await res.json();
       setBlogs(data);
@@ -117,6 +119,10 @@ const DashboardPage = () => {
           </Link>
           <Link to="/admin/create-flyer">
             <button><Icon icon="mdi:file-image-plus" /> Crear Flyer</button>
+          </Link>
+
+          <Link to="/admin/turnos">
+            <button><Icon icon="tabler:calendar"/> Gestion de turnos</button>
           </Link>
 
         </div>

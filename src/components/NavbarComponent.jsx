@@ -54,7 +54,7 @@ const Navbar = () => {
           <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
             <div className="close-btn" onClick={closeMenu}>✕</div>
             <li><Link to="/" onClick={closeMenu}>Inicio</Link></li>
-            <li><Link to="/services" onClick={closeMenu}>Especialidades</Link></li>
+            <li><Link to="/especialidades" onClick={closeMenu}>Especialidades</Link></li>
             <li><Link to="/about" onClick={closeMenu}>Nosotros</Link></li>
             <li><Link to="/blog" onClick={closeMenu}>Blogs</Link></li>
           </ul>

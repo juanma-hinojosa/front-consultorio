@@ -56,7 +56,7 @@ const BlogPage = () => {
       ) : (
         <HeroSection video={Blog}
           name="Especialidades"
-          path="services"
+          path="especialidades"
         />
       )}
 

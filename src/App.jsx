@@ -23,6 +23,8 @@ import WhatsappButton from './components/WhatsAppButton';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
+import Turnos from './pages/Admin/TurnosPage';
+import EspecialidadesExternasPage from './pages/EspecialidadesExternasPage';
 
 function App() {
   useEffect(() => {
@@ -40,8 +42,9 @@ function App() {
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutUsPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/services/:slug" element={<ServiceDetailPage />} />
+          <Route path="/especialidades" element={<ServicesPage />} />
+          <Route path="/especialidades/:slug" element={<ServiceDetailPage />} />
+          <Route path="/especialidades-externas/:slug" element={<EspecialidadesExternasPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogDetailPage />} />
 
@@ -75,6 +78,11 @@ function App() {
           <Route path="/admin/flyer/edit/:id" element={<PrivateRoute>
             <EditFlyerPage />
           </PrivateRoute>} />
+
+          <Route path="/admin/turnos" element={<PrivateRoute>
+            <Turnos />
+          </PrivateRoute>} />
+
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <Footer />

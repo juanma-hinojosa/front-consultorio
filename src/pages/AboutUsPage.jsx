@@ -9,7 +9,7 @@ function AboutUsPage() {
             <HeroSection
                 video={Nosotros}
                 name="Especialidades"
-                path="services"
+                path="especialidades"
             />
             <ContactSection />
             <ConsultaForm />

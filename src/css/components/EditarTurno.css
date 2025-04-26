@@ -1,0 +1,67 @@
+.editar-horarios-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f0f4f8;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.editar-horarios-title {
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.editar-horarios-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.editar-select,
+.editar-input {
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.2s;
+}
+
+.editar-select:focus,
+.editar-input:focus {
+    outline: none;
+    border-color: #007acc;
+    box-shadow: 0 0 4px rgba(0, 122, 204, 0.3);
+}
+
+.editar-button {
+    padding: 0.9rem;
+    font-size: 1rem;
+    background-color: #007acc;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.editar-button:hover {
+    background-color: #005f99;
+}
+
+@media (max-width: 480px) {
+    .editar-horarios-container {
+        padding: 1rem;
+    }
+
+    .editar-horarios-title {
+        font-size: 1.4rem;
+    }
+
+    .editar-button {
+        font-size: 0.95rem;
+        padding: 0.8rem;
+    }
+}

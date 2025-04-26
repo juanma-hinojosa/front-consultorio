@@ -20,9 +20,9 @@ const CallToAction = () => {
   }, []);
 
   const items = [
-    "Servicio que se da",
-    "Servicio que se da",
-    "Servicio que se da",
+    "Turnos en el dia",
+    "Obra Sociales",
+    "Tarjeta de Credito",
   ];
 
   const message = `Hola, quisiera solicitar un turno para un checkeo general.`;
@@ -51,7 +51,7 @@ const CallToAction = () => {
               <li
                 className="cta-list-item"
                 key={index}
-                data-aos={aosAnimation}>
+                data-aos="fade-up">
                 <span className="check-icon">✓</span> {item}
               </li>
             ))}

@@ -133,7 +133,7 @@
 }
 .navbar.scrolled {
   top: 0; /* Ocupa el lugar del topbar */
-  background: rgba(255, 255, 255, 0.97);
+  background: rgb(255, 255, 255);
   transition: top 0.3s ease-in-out, background 0.3s ease-in-out;
 }
 

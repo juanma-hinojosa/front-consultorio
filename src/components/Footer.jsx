@@ -5,15 +5,35 @@ import '../css/components/Footer.css';
 import logo from "/logo.png";
 import slugify from './slugify';
 import especialidades from '../assets/js/list';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const Footer = () => {
   const [latestBlogs, setLatestBlogs] = useState([]);
+  // const [especialidades, setEspecialidades] = useState([])
+  const [featured, setFeatured] = useState([]);
   const [loading, setLoading] = useState([]);
 
   let currentYear = new Date().getFullYear();
 
 
   useEffect(() => {
+    const fetchEspecialidades = async () => {
+      try {
+        const res = await fetch('https://consultorio-back-xg97.onrender.com/api/specialties');
+        const data = await res.json();
+
+        const dataWithSlugs = data.map(specialty => ({
+          ...specialty,
+          // slug: specialty.title.toLowerCase().replace(/\s+/g, '-')
+          slug: slugify(specialty.title)
+        }));
+        setFeatured(dataWithSlugs);
+      } catch (err) {
+        console.error('Error al obtener especialidades:', err);
+      }
+    };
+
     const fetchLatestBlogs = async () => {
       try {
         const res = await fetch('https://consultorio-back-xg97.onrender.com/api/blogs');
@@ -27,9 +47,10 @@ const Footer = () => {
         setLoading(false)
       }
     };
-
+    fetchEspecialidades();
     fetchLatestBlogs();
   }, []);
+
 
   return (
     <>
@@ -50,10 +71,28 @@ const Footer = () => {
           <div className="footer-links">
             <div>
               <h4>Especialidades</h4>
+              {featured.length === 0 ? (
+                // Mientras featured está vacío, mostramos 4 Skeletons
+                Array.from({ length: 4 }).map((_, index) => (
+                  <div key={index} style={{ marginBottom: '10px' }}>
+                    <Skeleton height={20} width={200} />
+                  </div>
+                ))
+              ) : (
+                featured.map((specialty) => (
+                  <Link
+                    key={specialty._id}
+                    to={`/especialidades/${specialty.slug}`}
+                    style={{ display: 'block', marginBottom: '10px' }}
+                  >
+                    {specialty.title}
+                  </Link>
+                ))
+              )}
               {especialidades.map((item, index) => (
                 <Link
                   key={index}
-                  to={`/services/${slugify(item.title)}`}
+                  to={`/especialidades-externas/${slugify(item.title)}`}
                 >
                   {item.title}
                 </Link>
@@ -63,7 +102,7 @@ const Footer = () => {
             <div>
               <h4>Páginas</h4>
               <Link to="/">Inicio</Link>
-              <Link to="/services">Especialidades</Link>
+              <Link to="/especialidades">Especialidades</Link>
               <Link to="/about">Nosotros</Link>
               <Link to="/blog">Blog</Link>
             </div>
@@ -96,16 +135,13 @@ const Footer = () => {
         <span>
           <p>© {currentYear} San Marcos Policonsultorio Privado. Todos los derechos reservados.</p>
         </span>
-
-
-
       </footer>
 
       <div className="footer-banner-developers"
       >
         Desarrollado por&nbsp;
         <a href="https://stakedev.net" target="_blank" rel="noopener noreferrer">
-          <span style={{color: "#e81753"}} >Stake</span><span style={{color: "#2867ac"}} >Dev</span>
+          <span style={{ color: "#e81753" }} >Stake</span><span style={{ color: "#2867ac" }} >Dev</span>
           <img
             src="https://stakedev.net/images/logo.png"
             alt="Stake Dev logo"

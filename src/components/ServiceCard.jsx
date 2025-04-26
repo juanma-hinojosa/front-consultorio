@@ -3,26 +3,27 @@ import React from 'react';
 import '../css/components/ServiceCard.css';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import slugify from './slugify';
 
-const ServiceCard = ({ service }) => {
-  const slug = slugify(service.title);
-  const { title, image, subtitle } = service;
+const ServiceCard = ({ specialty }) => {
+  const slug = slugify(specialty.title);
 
 
-  const message = `Hola, quisiera solicitar un turno para la especialidad de ${title}.`;
+  const message = `Hola, quisiera solicitar un turno para la especialidad de ${specialty.title}.`;
   const whatsappLink = `https://wa.me/5491127706352?text=${encodeURIComponent(message)}`;
 
   return (
     <div className="service-card" data-aos="fade-up">
       <div className="service-img-wrapper">
-        <img src={image} alt={title} className="service-avatar" />
+        <img src={specialty.image} alt={specialty.title} className="service-avatar" />
       </div>
       <div className="service-info">
-        <h3 className="service-title">{title}</h3>
-        <p className="service-subtitle">{subtitle}</p>
+        <h3 className="service-title">{specialty.title}</h3>
+        <p className="service-subtitle">{specialty.subtitle}</p>
         <div className="service-links">
-          <Link to={`/services/${slug}`} className="link-read-more">
+          <Link to={`/especialidades/${slug}`} className="link-read-more">
             Leer más <Icon icon="eva:diagonal-arrow-right-up-outline" />
           </Link>
           <a
@@ -32,7 +33,7 @@ const ServiceCard = ({ service }) => {
             rel="noopener noreferrer"
           >
             <Icon icon="ic:baseline-whatsapp" style={{
-              marginRight: "5px", fontSize:"20px"
+              marginRight: "5px", fontSize: "20px"
             }} />
             Solicitar Turno
           </a>
