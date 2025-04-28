@@ -9,6 +9,7 @@ import { ToastContainer } from 'react-toastify';
 
 const ServiceDetailPage = () => {
   const { slug } = useParams();
+  const [specialties, setSpecialties] = useState([]);
   const [specialty, setSpecialty] = useState(null);
 
   useEffect(() => {
@@ -16,6 +17,7 @@ const ServiceDetailPage = () => {
       try {
         const res = await fetch(`https://consultorio-back-xg97.onrender.com/api/specialties`);
         const data = await res.json();
+        setSpecialties(data)
         const found = data.find(s => slugify(s.title) === slug);
         setSpecialty(found);
       } catch (err) {
@@ -28,12 +30,16 @@ const ServiceDetailPage = () => {
 
   if (!specialty) return <p>Cargando especialidad...</p>;
 
-  const message = `Hola, quisiera solicitar un turno para la especialidad de ${specialty.title}.`;
-  const whatsappLink = `https://wa.me/5491127706352?text=${encodeURIComponent(message)}`;
-  // // Elegir 3 servicios distintos del actual
-  // const otherServices = especialidades
-  //   .filter((item) => slugify(item.title) !== slug)
-  //   .slice(0, 3);
+  // Elegir 3 servicios distintos del actual
+  const otherServices = specialties
+    .filter(item => slugify(item.title) !== slug) // saca la especialidad actual
+    .sort(() => 0.5 - Math.random()) // desordena aleatoriamente
+    .slice(0, 3); // toma 3
+
+
+  // const message = `Hola, quisiera solicitar un turno para la especialidad de ${specialty.title}.`;
+  // const whatsappLink = `https://wa.me/5491127706352?text=${encodeURIComponent(message)}`;
+
 
   return (
     <>
@@ -60,16 +66,21 @@ const ServiceDetailPage = () => {
               data-aos="zoom-in"
               data-aos-duration="500">{specialty.subtitle}</h3>
             {/* <a
-          href={whatsappLink}
-          className="btn-whatsapp"
-          target="_blank"
-          rel="noopener noreferrer"
-          data-aos="fade-up"
-          data-aos-duration="500"
-        >
-          <Icon icon="ic:baseline-whatsapp" />
-          Solicitar Turno
-        </a> */}
+              href={whatsappLink}
+              className="btn-whatsapp"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-aos="fade-up"
+              data-aos-duration="500"
+            >
+              <Icon icon="ic:baseline-whatsapp" />
+              Solicitar Turno
+            </a> */}
+
+            <Link to="/especialidades" className="btn-whatsapp">
+              <Icon icon="icon-park-solid:back" className="blog-detail__back-icon" />
+              Volver
+            </Link>
             <p data-aos="zoom-in" >{specialty.description}</p>
 
             <AppointmentCalendar
@@ -94,20 +105,20 @@ const ServiceDetailPage = () => {
 
 
 
-      {/* <section className="related-services">
+      <section className="related-services">
         <h2>También te puede interesar</h2>
         <div className="related-services-grid">
           {otherServices.map((item) => (
-            <div key={item.title} className="related-service-card" >
+            <div key={item._id} className="related-service-card" >
               <img src={item.image} alt={item.title} />
               <h4>{item.title}</h4>
-              <Link to={`/services/${slugify(item.title)}`} className="btn-ver-mas">
+              <Link to={`/especialidades/${slugify(item.title)}`} className="btn-ver-mas">
                 Ver más
               </Link>
             </div>
           ))}
         </div>
-      </section> */}
+      </section>
     </>
 
   );

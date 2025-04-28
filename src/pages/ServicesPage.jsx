@@ -43,11 +43,6 @@ function ServicesPage() {
       <section className="services-container">
         <h1>Nuestras Especialidades</h1>
         <div className="services-grid">
-          {/* {specialties
-            .map(s => (
-              <ServiceCard key={s._id} specialty={s} />
-            ))} */}
-
           {loading
             ? Array.from({ length: 8 }).map((_, i) => <ServiceCardSkeleton key={i} />)
             : specialties

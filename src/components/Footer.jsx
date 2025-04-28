@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import '../css/components/Footer.css';
-import logo from "/logo.png";
+import logo from "/white.png";
 import slugify from './slugify';
 import especialidades from '../assets/js/list';
 import Skeleton from 'react-loading-skeleton';
