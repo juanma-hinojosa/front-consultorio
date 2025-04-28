@@ -18,10 +18,10 @@ const EspecialidadesExternasPage = () => {
 
     const message = `Hola, quisiera solicitar un turno para la especialidad de ${specialty.title}.`;
     const whatsappLink = `https://wa.me/5491127706352?text=${encodeURIComponent(message)}`;
-    // // Elegir 3 servicios distintos del actual
-    // const otherServices = especialidades
-    //   .filter((item) => slugify(item.title) !== slug)
-    //   .slice(0, 3);
+    // Elegir 3 servicios distintos del actual
+    const otherServices = especialidades
+      .filter((item) => slugify(item.title) !== slug)
+      .slice(0, 3);
 
     
 
@@ -59,20 +59,20 @@ const EspecialidadesExternasPage = () => {
                 {/* <AppointmentCalendar specialty={specialty} /> */}
             </section>
 
-            {/* <section className="related-services">
+            <section className="related-services">
         <h2>También te puede interesar</h2>
         <div className="related-services-grid">
           {otherServices.map((item) => (
             <div key={item.title} className="related-service-card" >
               <img src={item.image} alt={item.title} />
               <h4>{item.title}</h4>
-              <Link to={`/services/${slugify(item.title)}`} className="btn-ver-mas">
+              <Link to={`/especialidades-externas/${slugify(item.title)}`} className="btn-ver-mas">
                 Ver más
               </Link>
             </div>
           ))}
         </div>
-      </section> */}
+      </section>
         </>
     );
 

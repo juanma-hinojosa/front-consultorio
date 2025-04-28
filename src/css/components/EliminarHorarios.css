@@ -1,0 +1,83 @@
+/* EliminarHorarios.css */
+
+/* Contenedor principal */
+.eliminar-horarios-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+.eliminar-horarios-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Formulario */
+.eliminar-horarios-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Estilo del select */
+.eliminar-select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Estilo del input */
+.eliminar-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Estilo del botón */
+.eliminar-button {
+    padding: 12px 20px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    transition: background-color 0.3s;
+}
+
+.eliminar-button:hover {
+    background-color: #e03e3e;
+}
+
+/* Estilos responsivos */
+@media (max-width: 600px) {
+    .eliminar-horarios-container {
+        padding: 15px;
+    }
+
+    .eliminar-horarios-title {
+        font-size: 20px;
+    }
+
+    .eliminar-select, .eliminar-input, .eliminar-button {
+        font-size: 14px;
+    }
+}

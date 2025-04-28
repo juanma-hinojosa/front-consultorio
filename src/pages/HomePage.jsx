@@ -12,6 +12,7 @@ import ConsultaForm from '../components/consultaFormComponent';
 import BlogCard from '../components/BlogCardComponent';
 import BlogCardSkeleton from '../components/BlogCardSkeleton';
 import ServiceCardSkeleton from '../components/skeleton/ServiceCardSkeleton';
+import doctorImage from "/salud.jpg"; // Ruta al archivo de imagen (colocala en public o src/assets)
 
 function HomePage() {
   const [blogs, setBlogs] = useState([]);
@@ -47,7 +48,7 @@ function HomePage() {
     fetchBlogs();
     fetchEspecialidades();
   }, []);
-  
+
   return (
     <>
       <HeroSection
@@ -71,7 +72,11 @@ function HomePage() {
       </section>
 
 
-      <CallToAction />
+      <CallToAction 
+      titulo='Especialistas comprometidos con tu bienestar'
+      parrafo="En nuestro consultorio encontrarás atención médica personalizada, disponibilidad inmediata de turnos, cobertura de obras sociales y facilidades de pago. Queremos verte bien."
+      img={doctorImage}
+      />
       <section className="homepage-services">
         <h2>Especialidades Destacadas</h2>
         <div className="services-grid">
@@ -91,9 +96,20 @@ function HomePage() {
 
       </section>
 
-      <BenefitsSection />
+      <BenefitsSection
+        titulo='MEDICINA PRIVADA'
+        texto='Contar con un médico privado y atención en clínicas privadas ofrece múltiples ventajas.
+                  Recibís un trato personalizado, con seguimiento continuo y mayor confianza en tu cuidado.
+                  Los tiempos de espera son mínimos, y los diagnósticos y tratamientos se realizan con mayor
+                  rapidez y eficacia. Además, accedés a tecnología avanzada, instalaciones modernas y un entorno
+                  cómodo. Podés elegir el especialista, coordinar turnos según tu disponibilidad y recibir una atención
+                  adaptada a tus necesidades. Es una inversión en salud, prevención y calidad de vida, con profesionales
+                  comprometidos en brindarte el mejor servicio.'
+        imgDos='https://images.unsplash.com/photo-1590611936760-eeb9bc598548?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+        imgUno='https://images.unsplash.com/photo-1607746882042-944635dfe10e'
+      />
       {/* <!-- Elfsight Google Reviews | Untitled Google Reviews --> */}
-      <div style={{padding: '50px 0'}} class="elfsight-app-2ad46362-2c63-4b57-b3cf-c25d5ac6651a" data-elfsight-app-lazy></div>
+      <div style={{ padding: '50px 0' }} class="elfsight-app-2ad46362-2c63-4b57-b3cf-c25d5ac6651a" data-elfsight-app-lazy></div>
       <ConsultaForm />
       <GoogleMapEmbed />
 

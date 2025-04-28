@@ -31,12 +31,12 @@
   font-size: 4rem;
   margin-bottom: 20px;
   font-weight: bold;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+  /* text-shadow: 2px 2px 5px rgba(0,0,0,0.6); */
 }
 
 .hero-content p {
   font-size: 1.5rem;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+  /* text-shadow: 1px 1px 4px rgba(0,0,0,0.5); */
 }
 
 .hero-buttons {
@@ -60,7 +60,8 @@
 }
 
 .hero-buttons a:first-child {
-  background-color: #d1af49; /* Dorado */
+  background-color: #d1af49;
+  /* Dorado */
   color: black;
 }
 
@@ -69,7 +70,8 @@
 }
 
 .hero-buttons a:last-child {
-  background-color: #1ead4e; /* Verde */
+  background-color: #1ead4e;
+  /* Verde */
   color: white;
 }
 

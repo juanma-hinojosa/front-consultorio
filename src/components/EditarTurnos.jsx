@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify'; // Importa Toastify
+import 'react-toastify/dist/ReactToastify.css'; // Estilos de Toastify
 import "../css/components/EditarTurno.css"
 const EditarTurnos = () => {
   const [especialidades, setEspecialidades] = useState([]);
@@ -13,6 +15,20 @@ const EditarTurnos = () => {
       .catch(err => console.error(err));
   }, []);
 
+  // const handleActualizar = async () => {
+  //   try {
+  //     const response = await axios.put('https://consultorio-back-xg97.onrender.com/api/specialties/update-slots', {
+  //       specialtyId: especialidadId,
+  //       date: fecha,
+  //       times: nuevosHorarios.split(',').map(h => h.trim())
+  //     });
+  //     alert('Horarios actualizados con éxito');
+  //   } catch (err) {
+  //     console.error(err);
+  //     alert('Error al actualizar horarios');
+  //   }
+  // };
+
   const handleActualizar = async () => {
     try {
       const response = await axios.put('https://consultorio-back-xg97.onrender.com/api/specialties/update-slots', {
@@ -20,32 +36,14 @@ const EditarTurnos = () => {
         date: fecha,
         times: nuevosHorarios.split(',').map(h => h.trim())
       });
-      alert('Horarios actualizados con éxito');
+      toast.success('Horarios actualizados con éxito'); // Notificación de éxito
     } catch (err) {
       console.error(err);
-      alert('Error al actualizar horarios');
+      toast.error('Error al actualizar horarios'); // Notificación de error
     }
   };
 
   return (
-    // <div>
-    //   <h3>Editar Horarios por Fecha</h3>
-    //   <select onChange={e => setEspecialidadId(e.target.value)}>
-    //     <option value="">Selecciona una especialidad</option>
-    //     {especialidades.map(e => (
-    //       <option key={e._id} value={e._id}>{e.title}</option>
-    //     ))}
-    //   </select>
-    //   <input type="date" value={fecha} onChange={e => setFecha(e.target.value)} />
-    //   <input
-    //     type="text"
-    //     placeholder="Nuevos horarios (ej: 10:00, 11:30)"
-    //     value={nuevosHorarios}
-    //     onChange={e => setNuevosHorarios(e.target.value)}
-    //   />
-    //   <button onClick={handleActualizar}>Actualizar</button>
-    // </div>
-
     <div className="editar-horarios-container">
       <h3 className="editar-horarios-title">Editar Horarios por Fecha</h3>
 
@@ -79,6 +77,8 @@ const EditarTurnos = () => {
           Actualizar
         </button>
       </div>
+
+      <ToastContainer />
     </div>
 
   );

@@ -35,7 +35,11 @@ function ServicesPage() {
         name="Cuidados"
         path="blog"
       />
-      <CallToAction />
+      <CallToAction
+        titulo='Consultá a nuestros especialistas hoy mismo'
+        parrafo='Accedé a turnos en el día en diversas especialidades médicas, con cobertura de obras sociales y opciones de pago pensadas para vos. Atendete sin esperar.'
+        img='https://images.unsplash.com/photo-1673865641073-4479f93a7776?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+      />
       <section className="services-container">
         <h1>Nuestras Especialidades</h1>
         <div className="services-grid">
@@ -61,7 +65,12 @@ function ServicesPage() {
           ))}
         </div>
       </section>
-      <BenefitsSection />
+      <BenefitsSection
+        titulo='La Importancia de Elegir un Consultorio Privado con Especialidades Diversas'
+        texto='Contar con un consultorio privado que ofrezca una amplia gama de especialidades médicas es clave para una atención integral y personalizada. Cada especialidad tiene su propio enfoque y tratamiento, permitiendo diagnosticar y tratar diversas condiciones de manera precisa. Ya sea para problemas de salud comunes o complejos, tener acceso a expertos en áreas como cardiología, dermatología, ginecología, entre otras, asegura una atención de calidad. Además, la posibilidad de recibir un seguimiento continuo por parte de especialistas favorece una recuperación más rápida y un bienestar duradero. ¡Tu salud merece lo mejor!'
+        imgUno='https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+        imgDos='https://plus.unsplash.com/premium_photo-1681966826227-d008a1cfe9c7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+      />
     </>
   )
 }

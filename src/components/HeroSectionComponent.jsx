@@ -17,13 +17,14 @@ const HeroSection = (props) => {
             color: "#c0ad64",
             fontWeight: "bolder"
           }}>(</span>
-          Consultorio medico integral San Marcos
+          Un equipo enfocado en tu salud y bienestar
           <span style={{
             color: "#c0ad64",
             fontWeight: "bolder"
           }}>)</span>
         </p>
-        <h1>Un equipo enfocado<br />en tu salud y<br />bienestar.</h1>
+        <h1> Consultorio medico <br /> integral <br />
+          San Marcos</h1>
         <div className="hero-buttons">
           <Link to={`/${props.path}`} >
             {props.name}

@@ -38,7 +38,7 @@ const Navbar = () => {
     <>
       <div className={`topbar ${showTopbar ? 'show' : 'hide'}`}>
         <div className="topbar-container">
-          <span><Icon icon="tabler:clock" width="24" height="24" /> Lun - Sab 8:00 a 18:00. Domingo - CERRADO</span>
+          <span><Icon icon="tabler:clock" width="24" height="24" /> Lun - Vie 9:00 a 18:00. Sab y Dom - CERRADO</span>
           <div className="topbar-right">
             <span><Icon icon="tabler:phone" width="24" height="24" /> +54 1127706352</span>
             <span><Icon icon="uiw:mail-o" width="20" height="20" /> consultorio@sanmarcos.com</span>

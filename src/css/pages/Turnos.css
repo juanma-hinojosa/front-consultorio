@@ -1,72 +1,98 @@
-/* General container */
-.turnos-dashboard {
-    max-width: 1200px;
-    margin: 120px auto 40px auto;
-    padding: 0 1rem;
-    font-family: 'Segoe UI', sans-serif;
-}
-
-/* Section title */
-.turnos-dashboard h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
-}
-
-/* Main nav buttons */
-.turnos-nav-buttons {
+.gestion-container {
     display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
+    height: 100vh;
+    background-color: #f9f7f7;
 }
 
-.turnos-nav-buttons button {
-    background-color: #0055a5;
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background-color: #27ae60;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 120px;
+}
+
+.sidebar-title {
     color: white;
-    padding: 0.7rem 1.2rem;
-    border: none;
-    border-radius: 8px;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+}
+
+.sidebar-button {
+    background: none;
+    border: 1px solid white;
+    color: white;
+    padding: 10px 15px;
+    font-size: 1rem;
+    margin-bottom: 10px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    width: 100%;
+    border-radius: 5px;
+    transition: background 0.3s;
 }
 
-.turnos-nav-buttons button:hover {
-    background-color: #003f7d;
+.sidebar-button:hover {
+    background: white;
+    color: #27ae60;
 }
 
-/* Subview buttons */
-.paciente-subnav {
+/* Submenu */
+.submenu {
+    width: 100%;
     display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    justify-content: flex-start;
+    flex-direction: column;
+    margin-bottom: 10px;
 }
 
-.paciente-subnav button {
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
+.submenu button {
+    background: white;
+    color: #27ae60;
+    border: none;
+    padding: 8px;
+    margin: 3px 0;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.3s;
 }
 
-.paciente-subnav button:hover {
-    background-color: #e0e0e0;
+.submenu button:hover {
+    background-color: #d4f5e3;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    /* padding: 30px; */
+    overflow-y: auto;
+    padding-top: 120px;
+
+}
+
+.main-content>div {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
 }
 
 /* Responsive */
-@media screen and (max-width: 768px) {
-
-    .turnos-nav-buttons,
-    .paciente-subnav {
+@media (max-width: 768px) {
+    .gestion-container {
         flex-direction: column;
-        align-items: center;
     }
 
-    .turnos-nav-buttons button,
-    .paciente-subnav button {
+    .sidebar {
         width: 100%;
-        max-width: 300px;
+        /* flex-direction: row; */
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .sidebar-button {
+        width: auto;
+        margin: 5px;
     }
 }

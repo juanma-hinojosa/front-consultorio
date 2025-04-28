@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Importar estilos de Toastify
 import "../css/components/ListarTurnosReservados.css"
 
 const ListarTurnosReservados = () => {
@@ -7,9 +9,26 @@ const ListarTurnosReservados = () => {
   const [editandoId, setEditandoId] = useState(null);
   const [form, setForm] = useState({ fullName: '', telefono: '', date: '', time: '', status: '' });
 
+  const formatearFecha = (fechaString) => {
+    const [year, month, day] = fechaString.split('-');
+    const fecha = new Date(year, month - 1, day); // ¡Mes empieza en 0!
+    const opciones = { weekday: 'long', day: 'numeric', month: 'long' };
+    const fechaFormateada = fecha.toLocaleDateString('es-ES', opciones);
+    return fechaFormateada.charAt(0).toUpperCase() + fechaFormateada.slice(1);
+  };
+
+  // const fetchTurnos = async () => {
+  //   const res = await axios.get('https://consultorio-back-xg97.onrender.com/api/appointments');
+  //   setTurnos(res.data);
+  // };
+
   const fetchTurnos = async () => {
-    const res = await axios.get('https://consultorio-back-xg97.onrender.com/api/appointments');
-    setTurnos(res.data);
+    try {
+      const res = await axios.get('https://consultorio-back-xg97.onrender.com/api/appointments');
+      setTurnos(res.data);
+    } catch (error) {
+      toast.error('Error al cargar los turnos.');
+    }
   };
 
   useEffect(() => {
@@ -27,167 +46,173 @@ const ListarTurnosReservados = () => {
     });
   };
 
+  // const handleGuardar = async () => {
+  //   await axios.put(`https://consultorio-back-xg97.onrender.com/api/appointments/${editandoId}`, form);
+  //   setEditandoId(null);
+  //   fetchTurnos();
+  // };
+
   const handleGuardar = async () => {
-    await axios.put(`https://consultorio-back-xg97.onrender.com/api/appointments/${editandoId}`, form);
-    setEditandoId(null);
-    fetchTurnos();
+    try {
+      await axios.put(`https://consultorio-back-xg97.onrender.com/api/appointments/${editandoId}`, form);
+      toast.success('Turno actualizado correctamente.');
+      setEditandoId(null);
+      fetchTurnos();
+    } catch (error) {
+      toast.error('Error al actualizar el turno.');
+    }
   };
+
+  // const handleCancelar = async (id) => {
+  //   if (window.confirm('¿Estás seguro de eliminar este turno?')) {
+  //     await axios.delete(`https://consultorio-back-xg97.onrender.com/api/appointments/${id}`);
+  //     fetchTurnos();
+  //   }
+  // };
 
   const handleCancelar = async (id) => {
     if (window.confirm('¿Estás seguro de eliminar este turno?')) {
-      await axios.delete(`https://consultorio-back-xg97.onrender.com/api/appointments/${id}`);
-      fetchTurnos();
+      try {
+        await axios.delete(`https://consultorio-back-xg97.onrender.com/api/appointments/${id}`);
+        toast.success('Turno cancelado exitosamente.');
+        fetchTurnos();
+      } catch (error) {
+        toast.error('Error al cancelar el turno.');
+      }
     }
   };
 
   return (
-    // <div>
-    //   <h3>Turnos Reservados</h3>
-    //   <ul>
-    //     {turnos.map(turno => (
-    //       <li key={turno._id}>
-    //         {editandoId === turno._id ? (
-    //           <div>
-    //             <input type="text" value={form.fullName} onChange={e => setForm({ ...form, fullName: e.target.value })} />
-    //             <input type="date" value={form.date} onChange={e => setForm({ ...form, date: e.target.value })} />
-    //             {/* <input type="time" value={form.time} onChange={e => setForm({ ...form, time: e.target.value })} /> */}
-    //             <select value={form.status} onChange={e => setForm({ ...form, status: e.target.value })}>
-    //               <option value="pendiente">Pendiente</option>
-    //               <option value="confirmado">Confirmado</option>
-    //               <option value="cancelado">Cancelado</option>
-    //             </select>
-    //             <button onClick={handleGuardar}>Guardar</button>
-    //           </div>
-    //         ) : (
-    //           <>
-    //             <strong>{turno.fullName}, telefono :{turno.telefono}</strong> - {turno.date} a las {turno.time} ({turno.specialty.title}) [{turno.status}]
-    //             <button onClick={() => handleEditar(turno)}>Editar</button>
-    //             <button onClick={() => handleCancelar(turno._id)}>Cancelar</button>
-    //           </>
-    //         )}
-    //       </li>
-    //     ))}
-    //   </ul>
-    // </div>
-
     <div className="turnos-container">
-    <h3 className="turnos-titulo">Turnos Reservados</h3>
-  
-    <div className="turnos-columns">
-      <div className="turnos-column confirmados">
+
+      <ToastContainer />
+
+      <h2 className="turnos-titulo">Gestion de turnos para pacientes
+        <br />
+        <span style={{ fontSize: '20px' }}>
+          Turnos Reservados Pacientes
+        </span>
+      </h2>
+
+
+      <div className="turnos-columns">
         <h4>Confirmados</h4>
-        {turnos.filter(turno => turno.status === 'confirmado').map(turno => (
-          <div key={turno._id} className="turno-card">
-            {editandoId === turno._id ? (
-              <div className="turno-form">
-                <input
-                  type="text"
-                  value={form.fullName}
-                  onChange={e => setForm({ ...form, fullName: e.target.value })}
-                />
-                <input
-                  type="date"
-                  value={form.date}
-                  onChange={e => setForm({ ...form, date: e.target.value })}
-                />
-                <select
-                  value={form.status}
-                  onChange={e => setForm({ ...form, status: e.target.value })}
-                >
-                  <option value="pendiente">Pendiente</option>
-                  <option value="confirmado">Confirmado</option>
-                  <option value="cancelado">Cancelado</option>
-                </select>
-                <button onClick={handleGuardar}>Guardar</button>
-              </div>
-            ) : (
-              <>
-                <strong>{turno.fullName}, teléfono: {turno.telefono}</strong> - {turno.date} a las {turno.time} ({turno.specialty.title})
-                <button onClick={() => handleEditar(turno)}>Editar</button>
-                <button onClick={() => handleCancelar(turno._id)}>Cancelar</button>
-              </>
-            )}
-          </div>
-        ))}
-      </div>
-  
-      <div className="turnos-column pendientes">
+        <div className="turnos-column confirmados">
+          {turnos.filter(turno => turno.status === 'confirmado').map(turno => (
+            <div key={turno._id} className="turno-card">
+              {editandoId === turno._id ? (
+                <div className="turno-form">
+                  <input
+                    type="text"
+                    value={form.fullName}
+                    onChange={e => setForm({ ...form, fullName: e.target.value })}
+                  />
+                  <input
+                    type="date"
+                    value={form.date}
+                    onChange={e => setForm({ ...form, date: e.target.value })}
+                  />
+                  <select
+                    value={form.status}
+                    onChange={e => setForm({ ...form, status: e.target.value })}
+                  >
+                    <option value="pendiente">Pendiente</option>
+                    <option value="confirmado">Confirmado</option>
+                    <option value="cancelado">Cancelado</option>
+                  </select>
+                  <button onClick={handleGuardar}>Guardar</button>
+                </div>
+              ) : (
+                <>
+                  <strong>{turno.fullName}, teléfono: {turno.telefono} </strong> - {formatearFecha(turno.date)} a las {turno.time} ({turno.specialty.title})
+                  <button onClick={() => handleEditar(turno)}>Editar</button>
+                  <button onClick={() => handleCancelar(turno._id)}>Cancelar</button>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+
+
         <h4>Pendientes</h4>
-        {turnos.filter(turno => turno.status === 'pendiente').map(turno => (
-          <div key={turno._id} className="turno-card">
-            {editandoId === turno._id ? (
-              <div className="turno-form">
-                <input
-                  type="text"
-                  value={form.fullName}
-                  onChange={e => setForm({ ...form, fullName: e.target.value })}
-                />
-                <input
-                  type="date"
-                  value={form.date}
-                  onChange={e => setForm({ ...form, date: e.target.value })}
-                />
-                <select
-                  value={form.status}
-                  onChange={e => setForm({ ...form, status: e.target.value })}
-                >
-                  <option value="pendiente">Pendiente</option>
-                  <option value="confirmado">Confirmado</option>
-                  <option value="cancelado">Cancelado</option>
-                </select>
-                <button onClick={handleGuardar}>Guardar</button>
-              </div>
-            ) : (
-              <>
-                <strong>{turno.fullName}, teléfono: {turno.telefono}</strong> - {turno.date} a las {turno.time} ({turno.specialty.title})
-                <button onClick={() => handleEditar(turno)}>Editar</button>
-                <button onClick={() => handleCancelar(turno._id)}>Cancelar</button>
-              </>
-            )}
-          </div>
-        ))}
-      </div>
-  
-      <div className="turnos-column cancelados">
+
+        <div className="turnos-column pendientes">
+          {turnos.filter(turno => turno.status === 'pendiente').map(turno => (
+            <div key={turno._id} className="turno-card">
+              {editandoId === turno._id ? (
+                <div className="turno-form">
+                  <input
+                    type="text"
+                    value={form.fullName}
+                    onChange={e => setForm({ ...form, fullName: e.target.value })}
+                  />
+                  <input
+                    type="date"
+                    value={form.date}
+                    onChange={e => setForm({ ...form, date: e.target.value })}
+                  />
+                  <select
+                    value={form.status}
+                    onChange={e => setForm({ ...form, status: e.target.value })}
+                  >
+                    <option value="pendiente">Pendiente</option>
+                    <option value="confirmado">Confirmado</option>
+                    <option value="cancelado">Cancelado</option>
+                  </select>
+                  <button onClick={handleGuardar}>Guardar</button>
+                </div>
+              ) : (
+                <>
+                  <strong>{turno.fullName}, teléfono: {turno.telefono}</strong> - {formatearFecha(turno.date)} a las {turno.time} ({turno.specialty.title})
+                  <button onClick={() => handleEditar(turno)}>Editar</button>
+                  <button onClick={() => handleCancelar(turno._id)}>Cancelar</button>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+
         <h4>Cancelados</h4>
-        {turnos.filter(turno => turno.status === 'cancelado').map(turno => (
-          <div key={turno._id} className="turno-card">
-            {editandoId === turno._id ? (
-              <div className="turno-form">
-                <input
-                  type="text"
-                  value={form.fullName}
-                  onChange={e => setForm({ ...form, fullName: e.target.value })}
-                />
-                <input
-                  type="date"
-                  value={form.date}
-                  onChange={e => setForm({ ...form, date: e.target.value })}
-                />
-                <select
-                  value={form.status}
-                  onChange={e => setForm({ ...form, status: e.target.value })}
-                >
-                  <option value="pendiente">Pendiente</option>
-                  <option value="confirmado">Confirmado</option>
-                  <option value="cancelado">Cancelado</option>
-                </select>
-                <button onClick={handleGuardar}>Guardar</button>
-              </div>
-            ) : (
-              <>
-                <strong>{turno.fullName}, teléfono: {turno.telefono}</strong> - {turno.date} a las {turno.time} ({turno.specialty.title})
-                <button onClick={() => handleEditar(turno)}>Editar</button>
-                <button onClick={() => handleCancelar(turno._id)}>Cancelar</button>
-              </>
-            )}
-          </div>
-        ))}
+
+        <div className="turnos-column cancelados">
+          {turnos.filter(turno => turno.status === 'cancelado').map(turno => (
+            <div key={turno._id} className="turno-card">
+              {editandoId === turno._id ? (
+                <div className="turno-form">
+                  <input
+                    type="text"
+                    value={form.fullName}
+                    onChange={e => setForm({ ...form, fullName: e.target.value })}
+                  />
+                  <input
+                    type="date"
+                    value={form.date}
+                    onChange={e => setForm({ ...form, date: e.target.value })}
+                  />
+                  <select
+                    value={form.status}
+                    onChange={e => setForm({ ...form, status: e.target.value })}
+                  >
+                    <option value="pendiente">Pendiente</option>
+                    <option value="confirmado">Confirmado</option>
+                    <option value="cancelado">Cancelado</option>
+                  </select>
+                  <button onClick={handleGuardar}>Guardar</button>
+                </div>
+              ) : (
+                <>
+                  <strong>{turno.fullName}, teléfono: {turno.telefono}</strong> - {formatearFecha(turno.date)} a las {turno.time} ({turno.specialty.title})
+                  <button onClick={() => handleEditar(turno)}>Editar</button>
+                  <button onClick={() => handleCancelar(turno._id)}>Cancelar</button>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
-  </div>
-  
-  
+
+
 
   );
 };

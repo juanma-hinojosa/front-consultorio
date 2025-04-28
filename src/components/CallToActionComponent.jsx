@@ -4,8 +4,7 @@ import doctorImage from "/salud.jpg"; // Ruta al archivo de imagen (colocala en 
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
 
-Icon
-const CallToAction = () => {
+const CallToAction = (props) => {
 
   const [aosAnimation, setAosAnimation] = useState('fade-left');
   useEffect(() => {
@@ -20,9 +19,9 @@ const CallToAction = () => {
   }, []);
 
   const items = [
-    "Turnos en el dia",
-    "Obra Sociales",
-    "Tarjeta de Credito",
+    "Turnos rapidos y sin demora",
+    "Obra Sociales y prepagas",
+    "Pago con tarjeta y efectivo",
   ];
 
   const message = `Hola, quisiera solicitar un turno para un checkeo general.`;
@@ -32,18 +31,14 @@ const CallToAction = () => {
     <section className="cta-section">
       <div className="cta-container">
         <div className="cta-image">
-          <img data-aos="zoom-in" src={doctorImage} alt="Doctor con paciente" />
+          <img data-aos="zoom-in" src={props.img} alt="Doctor con paciente" />
         </div>
         <div className="cta-content">
           <h2>
-            Texto generico para mostrar, captar la atencion y llamar a la
-            accion.
+            {props.titulo}
           </h2>
           <p>
-            Parrafo generico para explicar un poco mas detalle la funcion, los
-            beneficios, el tratamiento y mejoras para que la informacion sea
-            como una introduccion bien detallada para que el cliente solicite
-            el servicio.
+           {props.parrafo}
           </p>
 
           <ul className="cta-list">
