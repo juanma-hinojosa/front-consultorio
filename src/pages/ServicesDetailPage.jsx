@@ -61,10 +61,12 @@ const ServiceDetailPage = () => {
 
             <h1 data-aos="zoom-in"
               data-aos-duration="500"
-            >{specialty.title}</h1>
+            >{specialty.title}
+            </h1>
             <h3
               data-aos="zoom-in"
-              data-aos-duration="500">{specialty.subtitle}</h3>
+              data-aos-duration="500">{specialty.subtitle}
+            </h3>
             {/* <a
               href={whatsappLink}
               className="btn-whatsapp"
@@ -82,6 +84,33 @@ const ServiceDetailPage = () => {
               Volver
             </Link>
             <p data-aos="zoom-in" >{specialty.description}</p>
+
+            <div className="practices-list" data-aos="fade-up" data-aos-duration="500">
+              <h4>Prácticas que se realizan:</h4>
+              <ul>
+                {specialty.practices.map((practica, index) => (
+                  <li key={index}>{practica}</li>
+                ))}
+              </ul>
+            </div>
+
+            {specialty.videoUrl && (
+              <div className="service-video" data-aos="zoom-in" data-aos-duration="500">
+                <h4>Video informativo</h4>
+                <div className="video-responsive">
+                  <iframe
+                    width="100%"
+                    height="400"
+                    src={specialty.videoUrl.replace("watch?v=", "embed/")}
+                    title="Video informativo"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </div>
+            )}
+
 
             <AppointmentCalendar
               specialty={specialty}
