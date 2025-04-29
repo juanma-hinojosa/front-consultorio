@@ -9,28 +9,47 @@ const Navbar = () => {
 
   const [scrolledDown, setScrolledDown] = useState(false);
 
-  useEffect(() => {
-    let lastScroll = window.scrollY;
+  // useEffect(() => {
+  //   let lastScroll = window.scrollY;
 
+  //   const handleScroll = () => {
+  //     const currentScroll = window.scrollY;
+
+  //     if (currentScroll > lastScroll && currentScroll > 50) {
+  //       // Scrolling down
+  //       setShowTopbar(false);
+  //       setScrolledDown(true);
+  //     } else {
+  //       // Scrolling up
+  //       setShowTopbar(true);
+  //       setScrolledDown(false);
+  //     }
+
+  //     lastScroll = currentScroll;
+  //   };
+
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => window.removeEventListener('scroll', handleScroll);
+  // }, []);
+  useEffect(() => {
     const handleScroll = () => {
       const currentScroll = window.scrollY;
-
-      if (currentScroll > lastScroll && currentScroll > 50) {
-        // Scrolling down
-        setShowTopbar(false);
-        setScrolledDown(true);
-      } else {
-        // Scrolling up
+  
+      // Mostrar topbar y navbar transparente solo en Y = 0
+      if (currentScroll === 0) {
         setShowTopbar(true);
         setScrolledDown(false);
+      } else {
+        setShowTopbar(false);
+        setScrolledDown(true);
       }
-
-      lastScroll = currentScroll;
     };
-
+  
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+  
+  
   const closeMenu = () => setMenuOpen(false);
 
 
