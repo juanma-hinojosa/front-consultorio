@@ -10,6 +10,9 @@ import SkeletonItem from '../../components/SkeletonItem';
 const DashboardPage = () => {
   const [blogs, setBlogs] = useState([]);
   const [flyers, setFlyers] = useState([]);
+  const [loadingBlogs, setLoadingBlogs] = useState(true);
+  const [loadingFlyers, setLoadingFlyers] = useState(true);
+
   const navigate = useNavigate();
 
   const token = localStorage.getItem('token');
@@ -25,6 +28,8 @@ const DashboardPage = () => {
       setFlyers(data);
     } catch (err) {
       console.error('Error al obtener flyers', err);
+    } finally {
+      setLoadingFlyers(false)
     }
   };
 
@@ -36,6 +41,8 @@ const DashboardPage = () => {
       setBlogs(data);
     } catch (err) {
       console.error('Error al obtener blogs', err);
+    } finally {
+      setLoadingBlogs(false)
     }
   };
 
@@ -90,7 +97,6 @@ const DashboardPage = () => {
     }
   };
 
-
   const handleLogout = () => {
     localStorage.removeItem('token');
     navigate('/admin/login');
@@ -128,13 +134,10 @@ const DashboardPage = () => {
 
       <div className="flyer-list">
         <h2>Flyers</h2>
-        {flyers.length === 0 ? (
-          // <p>No hay flyers creados aún.</p>
-
-          <>
-            {[...Array(2)].map((_, i) => <SkeletonItem key={i} />)}
-            <p>No hay flyers creados aún.</p>
-          </>
+        {loadingFlyers ? (
+          [...Array(2)].map((_, i) => <SkeletonItem key={i} />)
+        ) : flyers.length === 0 ? (
+          <p>No hay flyers creados aún.</p>
         ) : (
           flyers.map((flyer, index) => (
             <div key={flyer._id} className={`flyer-item ${index % 2 === 0 ? 'even' : 'odd'}`}>
@@ -164,11 +167,10 @@ const DashboardPage = () => {
       <div className="blog-list">
         <h2>Blogs</h2>
 
-        {blogs.length === 0 ? (
-          <>
-            {[...Array(4)].map((_, i) => <SkeletonItem key={i} />)}
-            <p>No hay publicaciones aún.</p>
-          </>
+        {loadingBlogs ? (
+          [...Array(4)].map((_, i) => <SkeletonItem key={i} />)
+        ) : blogs.length === 0 ? (
+          <p>No hay publicaciones aún.</p>
         ) : (
           blogs.map((blog, index) => (
             <BlogItem

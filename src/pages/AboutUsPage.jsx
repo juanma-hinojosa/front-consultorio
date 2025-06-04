@@ -12,7 +12,7 @@ function AboutUsPage() {
                 path="especialidades"
             />
             <ContactSection />
-            <ConsultaForm />
+            {/* <ConsultaForm /> */}
             <CallToAction
                 titulo='Te esperamos con los brazos abiertos'
                 parrafo='Queremos ayudarte y tener un mejor estilo de vida desde la salud y nos comprometemos a siempre prevenir y recuperar tu estado de salud para que pueda disfrutar los bellos momento de la vida.'

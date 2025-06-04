@@ -19,6 +19,7 @@ import ServiceDetailPage from './pages/ServicesDetailPage';
 import { ToastContainer } from 'react-toastify';
 import NotFoundPage from './pages/NotFoundPage';
 import WhatsappButton from './components/WhatsAppButton';
+import 'react-toastify/dist/ReactToastify.css';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';

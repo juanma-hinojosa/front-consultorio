@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import "../../css/pages/EditBlogPage.css"
 import { Icon } from '@iconify/react/dist/iconify.js';
+
 const EditBlogPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ const EditBlogPage = () => {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
+        // const res = await fetch(`http://localhost:5000/api/blogs/${id}`);
         const res = await fetch(`https://consultorio-back-xg97.onrender.com/api/blogs/${id}`);
         if (!res.ok) throw new Error('Blog no encontrado');
         const blog = await res.json();
@@ -54,6 +56,110 @@ const EditBlogPage = () => {
     setExtraSections([...extraSections, { paragraph: '', imageUrl: '' }]);
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   const formData = new FormData();
+  //   formData.append('title', title);
+  //   formData.append('intro', intro);
+  //   formData.append('category', category);
+  //   formData.append('contentParagraph', contentParagraph);
+  //   formData.append(
+  //     'extraSections',
+  //     JSON.stringify(extraSections.map((sec) => ({ paragraph: sec.paragraph })))
+  //   );
+
+  //   if (mainImageFile) {
+  //     formData.append('mainImage', mainImageFile);
+  //   }
+
+  //   contentImagesFiles.forEach((file) => {
+  //     formData.append('contentImages', file);
+  //   });
+
+  //   extraImagesFiles.forEach((file) => {
+  //     formData.append('extraImages', file);
+  //   });
+
+  //   try {
+  //     const token = localStorage.getItem('token');
+  //     const res = await fetch(`http://localhost:5000/api/blogs/${id}`, {
+
+  //       // const res = await fetch(`https://consultorio-back-xg97.onrender.com/api/blogs/${id}`, {
+  //       method: 'PUT',
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //       body: formData,
+  //     });
+
+  //     if (!res.ok) throw new Error('Error al actualizar el blog');
+
+  //     const updated = await res.json();
+  //     console.log('Blog actualizado:', updated);
+  //     toast.success('Blog actualizado correctamente 🎉');
+  //     setTimeout(() => {
+  //       navigate('/admin/dashboard');
+  //     }, 3000); // espera 1 segundo
+  //   } catch (err) {
+  //     console.error('Error enviando formulario:', err);
+  //     toast.error('Hubo un error al actualizar el blog 😓');
+  //   }
+  // };
+
+
+  //   const handleSubmit = async (e) => {
+  //     e.preventDefault();
+
+  //     const formData = new FormData();
+  //     formData.append('title', title);
+  //     formData.append('intro', intro);
+  //     formData.append('category', category);
+  //     formData.append('contentParagraph', contentParagraph);
+
+  //     formData.append('extraSections', JSON.stringify(extraSections.map((sec) => ({
+  //         paragraph: sec.paragraph,
+  //         // Asegurarse de que 'imageUrl' no sea un array vacío
+  //         imageUrl: sec.imageUrl.length > 0 ? sec.imageUrl : ''
+  //     }))));
+
+  //     if (mainImageFile) {
+  //         formData.append('mainImage', mainImageFile);
+  //     }
+
+  //     contentImagesFiles.forEach((file) => {
+  //         formData.append('contentImages', file);
+  //     });
+
+  //     extraSections.forEach((_, index) => {
+  //         if (extraImagesFiles[index]) {
+  //             formData.append(`extraImages-${index}`, extraImagesFiles[index]);
+  //         }
+  //     });
+
+  //     try {
+  //         const token = localStorage.getItem('token');
+  //         const res = await fetch(`http://localhost:5000/api/blogs/${id}`, {
+  //             method: 'PUT',
+  //             headers: {
+  //                 Authorization: `Bearer ${token}`
+  //             },
+  //             body: formData,
+  //         });
+
+  //         if (!res.ok) {
+  //             const errorData = await res.json();
+  //             throw new Error(errorData.error || 'Error al actualizar el blog');
+  //         }
+
+  //         toast.success('Blog actualizado correctamente');
+  //         navigate('/admin/dashboard');
+  //     } catch (err) {
+  //         console.error('Error enviando formulario:', err);
+  //         toast.error(`Error al actualizar el blog: ${err.message}`);
+  //     }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -62,7 +168,11 @@ const EditBlogPage = () => {
     formData.append('intro', intro);
     formData.append('category', category);
     formData.append('contentParagraph', contentParagraph);
-    formData.append('extraSections', JSON.stringify(extraSections.map((sec) => ({ paragraph: sec.paragraph }))));
+
+    formData.append('extraSections', JSON.stringify(extraSections.map((sec) => ({
+      paragraph: sec.paragraph,
+      imageUrl: sec.imageUrl.length > 0 ? sec.imageUrl : ''
+    }))));
 
     if (mainImageFile) {
       formData.append('mainImage', mainImageFile);
@@ -72,33 +182,43 @@ const EditBlogPage = () => {
       formData.append('contentImages', file);
     });
 
-    extraImagesFiles.forEach((file) => {
-      formData.append('extraImages', file);
+    extraSections.forEach((_, index) => {
+      if (extraImagesFiles[index]) {
+        formData.append(`extraImages-${index}`, extraImagesFiles[index]);
+      }
     });
 
     try {
       const token = localStorage.getItem('token');
+      // const res = await fetch(`http://localhost:5000/api/blogs/${id}`, {
       const res = await fetch(`https://consultorio-back-xg97.onrender.com/api/blogs/${id}`, {
         method: 'PUT',
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`
         },
         body: formData,
       });
 
-      if (!res.ok) throw new Error('Error al actualizar el blog');
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.error || 'Error al actualizar el blog');
+      }
 
-      const updated = await res.json();
-      console.log('Blog actualizado:', updated);
-      toast.success('Blog actualizado correctamente 🎉');
+      // ✅ Mostrar toast de éxito
+      toast.success('Blog actualizado correctamente');
+
+      // Redirigir si deseas
       setTimeout(() => {
         navigate('/admin/dashboard');
-      }, 3000); // espera 1 segundo
+      }, 1500);
     } catch (err) {
       console.error('Error enviando formulario:', err);
-      toast.error('Hubo un error al actualizar el blog 😓');
+
+      // ❌ Mostrar toast de error
+      toast.error(`Error al actualizar el blog: ${err.message}`);
     }
   };
+
 
   return (
     <div className="edit-blog">
@@ -106,7 +226,7 @@ const EditBlogPage = () => {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "flex-start",
-        marginTop:"100px"
+        marginTop: "100px"
       }} >
         <h2>Editar Blog</h2>
         <Link to="/admin/dashboard" className="return-link">

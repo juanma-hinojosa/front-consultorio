@@ -60,7 +60,7 @@ const Footer = () => {
           <div className="footer-brand">
             <img src={logo} alt="Logo" className="footer-logo" />
             <div className="footer-socials">
-              <a href="https://www.facebook.com/profile.php?id=61574685549726" target='_blank'><Icon icon="ic:baseline-facebook" /></a>
+              <a href="https://www.facebook.com/profile.php?id=61575129959587" target='_blank'><Icon icon="ic:baseline-facebook" /></a>
               <a href="#"><Icon icon="mdi:linkedin" /></a>
               <a href="#"><Icon icon="mdi:youtube" /></a>
               <a href="https://www.instagram.com/sanmarcos.consultorio?igsh=MTg0d2F2YTNzNzdmbw%3D%3D" target='_blank'><Icon icon="mdi:instagram" /></a>
@@ -120,8 +120,8 @@ const Footer = () => {
               <h4>Informacion de contacto</h4>
               <p>Rivera 146, Villa Madero</p>
               <p>+54 1127706352</p>
-              <p>Lun - Vie 9:00 a 18:00.</p>
-              <p>consultorio@sanmarcos.com</p>
+              <p>Lun - Vie 9:00 a 18:00. Sab de 9:00 a 13:00. Dom Cerrado.</p>
+              <p>consultoriointegralsanmarcos@gmail.com</p>
               {/* <Link to="/blog">Blog</Link> */}
             </div>
           </div>

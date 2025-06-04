@@ -12,19 +12,20 @@ const HeroSection = (props) => {
         Tu navegador no soporta video HTML5.
       </video>
       <div className="hero-content">
-        <p className="subheading">
-          <span style={{
-            color: "#c0ad64",
-            fontWeight: "bolder"
-          }}>(</span>
-          Un equipo enfocado en tu salud y bienestar
-          <span style={{
-            color: "#c0ad64",
-            fontWeight: "bolder"
-          }}>)</span>
-        </p>
-        <h1> Consultorio medico <br /> integral <br />
+
+        <h1> Consultorio médico <br /> integral <br />
           San Marcos</h1>
+        <p className="subheading">
+          {/* <span style={{
+            color: "#c0ad64",
+            fontWeight: "bolder"
+          }}>(</span> */}
+          Un equipo enfocado en tu salud y bienestar
+          {/* <span style={{
+            color: "#c0ad64",
+            fontWeight: "bolder"
+          }}>)</span> */}
+        </p>
         <div className="hero-buttons">
           <Link to={`/${props.path}`} >
             {props.name}

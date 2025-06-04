@@ -9,29 +9,7 @@ const Navbar = () => {
 
   const [scrolledDown, setScrolledDown] = useState(false);
 
-  // useEffect(() => {
-  //   let lastScroll = window.scrollY;
-
-  //   const handleScroll = () => {
-  //     const currentScroll = window.scrollY;
-
-  //     if (currentScroll > lastScroll && currentScroll > 50) {
-  //       // Scrolling down
-  //       setShowTopbar(false);
-  //       setScrolledDown(true);
-  //     } else {
-  //       // Scrolling up
-  //       setShowTopbar(true);
-  //       setScrolledDown(false);
-  //     }
-
-  //     lastScroll = currentScroll;
-  //   };
-
-  //   window.addEventListener('scroll', handleScroll);
-  //   return () => window.removeEventListener('scroll', handleScroll);
-  // }, []);
-  useEffect(() => {
+ useEffect(() => {
     const handleScroll = () => {
       const currentScroll = window.scrollY;
   
@@ -57,11 +35,11 @@ const Navbar = () => {
     <>
       <div className={`topbar ${showTopbar ? 'show' : 'hide'}`}>
         <div className="topbar-container">
-          <span><Icon icon="tabler:clock" width="24" height="24" /> Lun - Vie 9:00 a 18:00. Sab y Dom - CERRADO</span>
+          <span><Icon icon="tabler:clock" width="24" height="24" /> Lun - Vie 9:00 a 18:00. Sab 9:00 a 13:00. Dom - CERRADO</span>
           <div className="topbar-right">
             <span><Icon icon="tabler:phone" width="24" height="24" /> +54 1127706352</span>
-            <span><Icon icon="uiw:mail-o" width="20" height="20" /> consultorio@sanmarcos.com</span>
-            <span><Icon icon="tabler:map" width="24" height="24" /> Rivera 146, Villa Madero, CABA</span>
+            <span><Icon icon="uiw:mail-o" width="20" height="20" /> consultoriointegralsanmarcos@gmail.com</span>
+            <span><Icon icon="tabler:map" width="24" height="24" /> Rivera 146, Villa Madero, Buenos Aires</span>
           </div>
         </div>
       </div>

@@ -110,7 +110,7 @@ function HomePage() {
       />
       {/* <!-- Elfsight Google Reviews | Untitled Google Reviews --> */}
       <div style={{ padding: '50px 0' }} class="elfsight-app-2ad46362-2c63-4b57-b3cf-c25d5ac6651a" data-elfsight-app-lazy></div>
-      <ConsultaForm />
+      {/* <ConsultaForm /> */}
       <GoogleMapEmbed />
 
     </>

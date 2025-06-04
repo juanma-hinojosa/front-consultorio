@@ -17,11 +17,6 @@ const ListarTurnosReservados = () => {
     return fechaFormateada.charAt(0).toUpperCase() + fechaFormateada.slice(1);
   };
 
-  // const fetchTurnos = async () => {
-  //   const res = await axios.get('https://consultorio-back-xg97.onrender.com/api/appointments');
-  //   setTurnos(res.data);
-  // };
-
   const fetchTurnos = async () => {
     try {
       const res = await axios.get('https://consultorio-back-xg97.onrender.com/api/appointments');
@@ -46,12 +41,6 @@ const ListarTurnosReservados = () => {
     });
   };
 
-  // const handleGuardar = async () => {
-  //   await axios.put(`https://consultorio-back-xg97.onrender.com/api/appointments/${editandoId}`, form);
-  //   setEditandoId(null);
-  //   fetchTurnos();
-  // };
-
   const handleGuardar = async () => {
     try {
       await axios.put(`https://consultorio-back-xg97.onrender.com/api/appointments/${editandoId}`, form);
@@ -63,12 +52,6 @@ const ListarTurnosReservados = () => {
     }
   };
 
-  // const handleCancelar = async (id) => {
-  //   if (window.confirm('¿Estás seguro de eliminar este turno?')) {
-  //     await axios.delete(`https://consultorio-back-xg97.onrender.com/api/appointments/${id}`);
-  //     fetchTurnos();
-  //   }
-  // };
 
   const handleCancelar = async (id) => {
     if (window.confirm('¿Estás seguro de eliminar este turno?')) {

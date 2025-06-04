@@ -2,7 +2,7 @@ import fs from 'fs';
 import fetch from 'node-fetch';
 import especialidades from './src/assets/js/list.js';
 
-const BASE_URL = 'https://tusitio.com'; // CAMBIAR por tu dominio real
+const BASE_URL = 'https://www.consultoriosanmarcos.com'; // CAMBIAR por tu dominio real
 
 function slugify(str) {
   return str
