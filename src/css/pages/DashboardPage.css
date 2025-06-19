@@ -1,149 +1,118 @@
-.dashboard-container {
-  
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-.dashboard-header {
-  margin-top: 100px;
+/* Contenedor principal */
+.admin-panel-container {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 30px;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.dashboard-header h1 {
-  font-size: 2rem;
-  margin-bottom: 10px;
+/* Barra lateral */
+.admin-aside {
+  background-color: #318d57;
+  color: #fff;
+  width: 250px;
+  padding: 1rem;
+  transition: transform 0.3s ease;
 }
 
-.dashboard-header div {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+.admin-aside nav ul {
+  list-style: none;
+  padding: 0;
 }
 
-.dashboard-header button {
+.admin-aside nav ul li {
   display: flex;
   align-items: center;
-  gap: 6px;
-  background-color: #2c3e50;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 6px;
+  gap: 8px;
+  padding: 12px;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
-  font-size: 0.95rem;
+  border-radius: 4px;
 }
 
-.dashboard-header button:hover {
-  background-color: #1a252f;
-  transform: scale(1.03);
+.admin-aside nav ul li:hover {
+  background-color: #2e995b;
 }
 
-.flyer-item {
+.admin-close-btn {
+  display: none;
+}
+
+
+
+/* Main */
+.admin-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* Header */
+.admin-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  background: #eaeaea;
   padding: 1rem;
-  border-radius: 12px;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
-  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-.flyer-item:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  transform: translateY(-2px);
+.admin-menu-toggle {
+  display: none;
 }
 
-.flyer-item.even {
-  background-color: #f9f9f9;
+
+
+/* Panel de contenido */
+.admin-panel-content {
+  padding: 1rem;
 }
 
-.flyer-item.odd {
-  background-color: #ffffff;
+/* Info de usuario */
+.admin-user-info {
+  text-align: right;
 }
-
-.flyer-item img {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.flyer-item .info {
-  flex: 1;
-  min-width: 180px;
-}
-
-.flyer-item .info h3 {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.flyer-item .info p {
-  margin: 2px 0;
-  color: #666;
-  font-size: 0.9rem;
-}
-
-.flyer-item .actions {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.flyer-item .actions button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  padding: 4px;
-}
-
-.flyer-item .actions button:hover {
-  transform: scale(1.1);
-}
-
-.flyer-item .actions .edit-icon {
-  color: #2ecc71;
-}
-
-.flyer-item .actions .delete-icon {
-  color: #e74c3c;
-}
-
 
 /* Responsive */
-@media screen and (max-width: 768px) {
-  .dashboard-header {
-    align-items: flex-start;
+@media (max-width: 768px) {
+  .admin-aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: translateX(-100%);
+    z-index: 100;
   }
 
-  .dashboard-header div {
-    flex-direction: column;
-    width: 100%;
+  .admin-close-btn {
+    display: block;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 1rem;
+    cursor: pointer;
   }
 
-  .dashboard-header button {
-    width: 100%;
-    justify-content: center;
+  .admin-menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
   }
 
-}
-/* Responsive */
-@media (max-width: 600px) {
-  .flyer-item {
-    flex-direction: column;
-    align-items: flex-start;
+  .admin-aside.open {
+    transform: translateX(0);
   }
 
-  .flyer-item .actions {
-    margin-top: 0.5rem;
+  .admin-header h1 {
+    display: none;
+    font-size: 1.2rem;
   }
+
+  /* .admin-user-info {
+    display: none;
+  } */
 }

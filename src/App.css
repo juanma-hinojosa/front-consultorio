@@ -3,3 +3,169 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+
+/* ======= Estructura base ======= */
+.ui-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.ui-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ======= Labels e Inputs ======= */
+.ui-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+  color: #333;
+}
+
+.ui-input,
+.ui-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.ui-input:focus,
+.ui-textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
+
+.ui-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+.ui-select {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #333;
+  appearance: none; /* Remueve el estilo nativo */
+  background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 16px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.ui-select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
+
+/* ======= Opciones dentro del SELECT ======= */
+.ui-option {
+  padding: 0.5rem;
+  font-size: 1rem;
+  color: #333;
+  background-color: #fff;
+}
+
+/* ======= Disable select style ======= */
+.ui-select:disabled {
+  background-color: #f1f1f1;
+  color: #888;
+  cursor: not-allowed;
+}
+/* ======= Botones genéricos ======= */
+.ui-button {
+  padding: 0.7rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ======= Botones por tipo HTTP ======= */
+.ui-btn-post {
+  background-color: #28a745;
+}
+
+.ui-btn-post:hover {
+  background-color: #218838;
+}
+
+.ui-btn-get {
+  background-color: #17a2b8;
+}
+
+.ui-btn-get:hover {
+  background-color: #138496;
+}
+
+.ui-btn-put {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.ui-btn-put:hover {
+  background-color: #e0a800;
+}
+
+.ui-btn-delete {
+  background-color: #dc3545;
+}
+
+.ui-btn-delete:hover {
+  background-color: #c82333;
+}
+
+/* ======= Botones deshabilitados ======= */
+.ui-button:disabled {
+  background-color: #adb5bd;
+  cursor: not-allowed;
+}
+
+/* ======= Responsive spacing ======= */
+@media (max-width: 480px) {
+  .ui-form-container {
+    padding: 0.75rem;
+  }
+
+  .ui-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.no-arrows {
+  -webkit-appearance: none; /* Desactiva las flechas en Safari y Chrome */
+  -moz-appearance: textfield; /* Desactiva las flechas en Firefox */
+  appearance: none; /* Desactiva las flechas en otros navegadores */
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

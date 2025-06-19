@@ -17,39 +17,39 @@ const Footer = () => {
   let currentYear = new Date().getFullYear();
 
 
-  useEffect(() => {
-    const fetchEspecialidades = async () => {
-      try {
-        const res = await fetch('https://consultorio-back-xg97.onrender.com/api/specialties');
-        const data = await res.json();
+  // useEffect(() => {
+  //   const fetchEspecialidades = async () => {
+  //     try {
+  //       const res = await fetch('https://consultorio-back-xg97.onrender.com/api/specialties');
+  //       const data = await res.json();
 
-        const dataWithSlugs = data.map(specialty => ({
-          ...specialty,
-          // slug: specialty.title.toLowerCase().replace(/\s+/g, '-')
-          slug: slugify(specialty.title)
-        }));
-        setFeatured(dataWithSlugs);
-      } catch (err) {
-        console.error('Error al obtener especialidades:', err);
-      }
-    };
+  //       const dataWithSlugs = data.map(specialty => ({
+  //         ...specialty,
+  //         // slug: specialty.title.toLowerCase().replace(/\s+/g, '-')
+  //         slug: slugify(specialty.title)
+  //       }));
+  //       setFeatured(dataWithSlugs);
+  //     } catch (err) {
+  //       console.error('Error al obtener especialidades:', err);
+  //     }
+  //   };
 
-    const fetchLatestBlogs = async () => {
-      try {
-        const res = await fetch('https://consultorio-back-xg97.onrender.com/api/blogs');
-        const data = await res.json();
-        const lastFour = data.slice(0, 4);
-        setLatestBlogs(lastFour);
-      } catch (error) {
-        console.error('Error al cargar los blogs en el footer:', error);
-      }
-      finally {
-        setLoading(false)
-      }
-    };
-    fetchEspecialidades();
-    fetchLatestBlogs();
-  }, []);
+  //   const fetchLatestBlogs = async () => {
+  //     try {
+  //       const res = await fetch('https://consultorio-back-xg97.onrender.com/api/blogs');
+  //       const data = await res.json();
+  //       const lastFour = data.slice(0, 4);
+  //       setLatestBlogs(lastFour);
+  //     } catch (error) {
+  //       console.error('Error al cargar los blogs en el footer:', error);
+  //     }
+  //     finally {
+  //       setLoading(false)
+  //     }
+  //   };
+  //   fetchEspecialidades();
+  //   fetchLatestBlogs();
+  // }, []);
 
 
   return (
@@ -71,7 +71,7 @@ const Footer = () => {
           <div className="footer-links">
             <div>
               <h4>Especialidades</h4>
-              {featured.length === 0 ? (
+              {/* {featured.length === 0 ? (
                 // Mientras featured está vacío, mostramos 4 Skeletons
                 Array.from({ length: 4 }).map((_, index) => (
                   <div key={index} style={{ marginBottom: '10px' }}>
@@ -88,7 +88,7 @@ const Footer = () => {
                     {specialty.title}
                   </Link>
                 ))
-              )}
+              )} */}
               {especialidades.map((item, index) => (
                 <Link
                   key={index}
@@ -104,7 +104,7 @@ const Footer = () => {
               <Link to="/">Inicio</Link>
               <Link to="/especialidades">Especialidades</Link>
               <Link to="/about">Nosotros</Link>
-              <Link to="/blog">Blog</Link>
+              <Link to="/blog">Noticias</Link>
             </div>
 
             <div>
@@ -130,7 +130,7 @@ const Footer = () => {
         </div>
         <div style={
           { height: "1px", backgroundColor: "white", margin: "10px 0" }
-        } >
+        } > 
         </div>
         <span>
           <p>© {currentYear} San Marcos Policonsultorio Privado. Todos los derechos reservados.</p>

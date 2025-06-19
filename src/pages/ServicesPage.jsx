@@ -8,28 +8,35 @@ import "../css/pages/ServicesPage.css"
 import { useEffect, useState } from "react";
 import ServiceCardSkeleton from "../components/skeleton/ServiceCardSkeleton";
 import CardEspecialidad from "../components/CardEspecialidad";
+import { Helmet } from "react-helmet-async";
 function ServicesPage() {
   const [specialties, setSpecialties] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const fetchSpecialties = async () => {
-      try {
-        const res = await fetch('https://consultorio-back-xg97.onrender.com/api/specialties');
-        const data = await res.json();
-        setSpecialties(data);
-      } catch (err) {
-        console.error('Error al obtener especialidades:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
+  //   const fetchSpecialties = async () => {
+  //     try {
+  //       const res = await fetch('https://consultorio-back-xg97.onrender.com/api/specialties');
+  //       const data = await res.json();
+  //       setSpecialties(data);
+  //     } catch (err) {
+  //       console.error('Error al obtener especialidades:', err);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchSpecialties();
-  }, []);
+  //   fetchSpecialties();
+  // }, []);
   return (
     <>
+      <Helmet>
+        <title>Especialidades | Consultorio San Marcos</title>
+        <meta name="description" content="Atención médica integral en San Marcos. Rivera 146, Villa Madero, Buenos Aires. Tenemos una gran variedad de especialidades para poder ateneder tus necesidades medicas." />
+        <link rel="canonical" href="https://consultoriosanmarcos.com/especialidades" />
+      </Helmet>
+
       <HeroSection
         video={Services}
         name="Cuidados"
@@ -43,12 +50,12 @@ function ServicesPage() {
       <section className="services-container">
         <h1>Nuestras Especialidades</h1>
         <div className="services-grid">
-          {loading
+          {/* {loading
             ? Array.from({ length: 8 }).map((_, i) => <ServiceCardSkeleton key={i} />)
             : specialties
               .map(s => (
                 <ServiceCard key={s._id} specialty={s} />
-              ))}
+              ))} */}
 
           {especialidades.map((especialidad, index) => (
             <CardEspecialidad

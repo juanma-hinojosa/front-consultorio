@@ -1,57 +1,51 @@
 import { Icon } from '@iconify/react/dist/iconify.js';
 import '../css/pages/BlogDetailPage.css';
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import Loader from '../components/Loader'; // ✅ Agregado
+import { Helmet } from 'react-helmet-async';
 
 const BlogDetailPage = () => {
-  const { search } = useLocation();
-  const params = new URLSearchParams(search);
-  const id = params.get("id");
-
+  const { id } = useParams(); // obtenemos solo el ID
   const [blog, setBlog] = useState(null);
-  const [otherBlogs, setOtherBlogs] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // ✅ Nuevo estado
+
+  const location = useLocation();
+  const canonicalUrl = `https://consultoriosanmarcos.com${location.pathname}`;
+
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [resBlog, resAll] = await Promise.all([
-          fetch(`https://consultorio-back-xg97.onrender.com/api/blogs/${id}`),
-          fetch('https://consultorio-back-xg97.onrender.com/api/blogs')
-        ]);
+    fetch(`${import.meta.env.VITE_API_URL}/api/blogs/publico/${id}`)
+      // fetch(`http://localhost:5000/api/blogs/publico/${id}`)
+      .then((res) => res.json())
+      .then(setBlog)
+      .catch(console.error);
 
-        const blogData = await resBlog.json();
-        const allBlogs = await resAll.json();
-        const filtered = allBlogs.filter(item => item._id !== id).slice(0, 3);
-
-        setBlog(blogData);
-        setOtherBlogs(filtered);
-      } catch (error) {
-        console.error('Error al cargar el blog:', error);
-      } finally {
-        setIsLoading(false); // ✅ Finaliza el loading
-      }
-    };
-
-    if (id) fetchData();
   }, [id]);
 
   // ✅ Mostrar loader mientras se carga
-  if (isLoading || !blog) return <Loader />;
+  if (!blog) return <Loader />;
+  // console.log(blog);
 
   return (
     <>
+
+      <Helmet>
+        <title>{blog.titulo} | Consultorio San Marcos</title>
+        <meta name="description" content={blog.introduccion} />
+        <link rel="canonical" href={canonicalUrl} />
+      </Helmet>
+
       <div className="main-image-container">
-        <img src={blog.mainImageUrl} alt={blog.title} className="main-image" />
+        <img src={blog.imagenPrincipal} alt={blog.titulo} className="main-image" />
       </div>
       <section className="blog-detail">
         <div className="blog-detail__text-section">
           <div className="blog-detail__header">
             <div className="blog-detail__header-left">
-              <p className="blog-detail__category">{blog.category}</p>
-              <h1 className="blog-detail__title">{blog.title}</h1>
-              <p className="blog-detail__intro">{blog.intro}</p>
+              <p className="blog-detail__category">{blog.tema}</p>
+              <h1 className="blog-detail__title">{blog.titulo}</h1>
+              <p className="blog-detail__intro">{blog.introduccion}</p>
+              <p className="">Autor: {blog.autor.nombre} {blog.autor.apellido}</p>
             </div>
 
             <Link to="/blog" className="blog-detail__back-button">
@@ -60,9 +54,26 @@ const BlogDetailPage = () => {
             </Link>
           </div>
 
-          <p className="blog-detail__paragraph">{blog.contentParagraph}</p>
+          {/* <p className="blog-detail__paragraph">{blog.contentParagraph}</p> */}
 
-          {blog.contentImagesUrls?.length > 0 && (
+          {blog.parrafos?.map((parrafo, idx) => (
+            <div key={idx} className="blog-detail__paragraph">
+              {parrafo.texto && <p>{parrafo.texto}</p>}
+              <div className="blog-detail__gallery">
+                {parrafo.imagenes?.map((img, i) => (
+                  <img
+                    data-aos="zoom-in-up"
+                    key={i}
+                    src={img.startsWith("http") ? img : `${import.meta.env.VITE_API_URL}/${img}`}
+                    alt={`Imagen ${i + 1}`}
+                    className="blog-detail__gallery-image"
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
+
+          {/* {blog.contentImagesUrls?.length > 0 && (
             <div className="blog-detail__gallery">
               {blog.contentImagesUrls.map((img, index) => (
                 <img key={index} src={img} alt={`img-${index}`} className="blog-detail__gallery-image" />
@@ -81,7 +92,7 @@ const BlogDetailPage = () => {
                 </div>
               ))}
             </div>
-          )}
+          )} */}
         </div>
 
         <Link to="/blog" className="blog-detail__back-button blog-detail__back-button--bottom">

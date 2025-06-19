@@ -1,97 +1,110 @@
-/* AdminLoginPage.css */
-.login-container {
-    font-family: 'Segoe UI', sans-serif;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding: 1rem;
+/* Contenedor principal en dos columnas */
+.admin-login-wrapper_765584 {
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #ffffff;
+  font-family: 'Arial', sans-serif;
 }
 
-.login-card {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
-    text-align: center;
+/* Columna izquierda: Imagen */
+.admin-login-image_765584 {
+  flex: 1;
 }
 
-.login-logo {
-    width: 120px;
-    height: auto;
-    margin: 0 auto 1.5rem;
-    display: block;
+.admin-login-image_765584 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.login-form h2 {
-    margin-bottom: 1.5rem;
-    color: #333;
+/* Columna derecha: Formulario */
+.admin-login-container_765584 {
+  flex: 1;
+  max-width: 100%;
+  padding: 40px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.login-form input {
-    width: 100%;
-    margin-bottom: 1rem;
-    padding: 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: 0.2s ease-in-out;
+/* Logo */
+.admin-login-logo_765584 {
+  width: 120px;
+  margin-bottom: 24px;
 }
 
-.login-form input:focus {
-    border-color: #1e8e5e;
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(30, 142, 94, 0.2);
+/* Título principal */
+.admin-login-title_765584 {
+  font-size: 1.375rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #333;
+  text-align: center;
 }
 
-.login-form button {
-    width: 100%;
-    padding: 0.9rem;
-    background-color: #1e8e5e;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s ease;
+/* Texto de ayuda */
+.admin-login-subtext_765584 {
+  font-size: 0.875rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 32px;
+  max-width: 320px;
 }
 
-.login-form button:hover {
-    background-color: #176f4c;
+/* Formulario */
+.admin-login-form_765584 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.login-form button:disabled {
-    background-color: #aaa;
-    cursor: not-allowed;
+/* Inputs */
+.admin-login-input_765584 {
+  padding: 10px 12px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9375rem;
 }
 
-.spinner {
-    width: 20px;
-    height: 20px;
-    border: 3px solid white;
-    border-top: 3px solid transparent;
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    display: inline-block;
+/* Botón */
+.admin-login-button_765584 {
+  padding: 12px;
+  background-color: #50a550;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
 }
 
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+.admin-login-button_765584:hover {
+  background-color: #13682c;
 }
 
+/* Mensaje de error */
+.admin-login-error_765584 {
+  color: #d60000;
+  font-size: 0.8125rem;
+  margin-top: 12px;
+  text-align: center;
+}
 
-@media (max-width: 480px) {
-    .login-card {
-        padding: 1.5rem;
-    }
+/* Responsive: diseño en una sola columna */
+@media (max-width: 768px) {
+  .admin-login-wrapper_765584 {
+    flex-direction: column;
+  }
 
-    .login-logo {
-        width: 100px;
-    }
+  .admin-login-image_765584 {
+    height: 200px;
+    flex: none;
+  }
+
+  .admin-login-container_765584 {
+    padding: 28px 24px;
+  }
 }

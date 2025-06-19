@@ -1,48 +1,44 @@
-import React, { useEffect, useState } from 'react';
-import '../css/components/HeroFlyerComponent.css';
-import slugify from './slugify';
-import { Icon } from '@iconify/react/dist/iconify.js';
+// src/components/Flyers/HeroFlyer.jsx
+import React from "react";
+import "../css/components/HeroFlyerComponent.css";
+// import HeaderTitleComponent from "./HeaderTitleComponent";
 
-const HeroFlyerComponent = ({ flyer }) => {
+const HeroFlyer = ({ flyer }) => {
   if (!flyer) return null;
-
-  const slug = slugify(flyer.text);
-  const { text } = flyer;
-
-
-  const message = `Hola, tengo interes en recibir mas informacion sobre ${text}.`;
-  const whatsappLink = `https://wa.me/5491127706352?text=${encodeURIComponent(message)}`;
-  // console.log(whatsappLink);
+  const formatDateLocal = (isoDate) => {
+    if (!isoDate) return "";
+    const [year, month, day] = isoDate.split("T")[0].split("-");
+    return `${day}-${month}-${year}`;
+  };
 
   return (
-    <section className="hero-flyer">
-      <img
-        src={flyer.imageUrl || '/default-flyer.jpg'}
+    <section className="hero-flyer poppins-regular" aria-label={`Flyer destacado: ${flyer.titulo}`}>
+       <img
+        src={flyer.image || '/default-flyer.jpg'}
         alt="Flyer"
         className="hero-flyer-image"
       />
-      <div className="hero-flyer-text">
-        <h1>{flyer.text || 'Bienvenido a nuestro Blog'}</h1>
-        <p>{flyer.paragraph || 'Explorá nuestras últimas publicaciones sobre salud y bienestar.'}</p>
-        <div
-          style={{
-            width: "200px",
-            margin: "0 auto",
-            marginTop: "20px",
-
-          }}
-        >
-          <a className="cta-button" href={whatsappLink} target="_blank" rel="noopener noreferrer">
-            <Icon icon="ic:baseline-whatsapp"
-              style={{
-                marginRight: "5px", fontSize: "20px"
-              }}
-            />Solicitar Turno
-          </a>
+      {/* <div
+        className="hero-flyer-image"
+        style={{
+          backgroundImage: `linear-gradient(rgba(214, 217, 219, 0.7), rgba(214, 217, 219, 0.8)),url(${flyer.image})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat"
+        }}
+      > */}
+        <div className="hero-flyer-text">
+          <h1>{flyer.title}</h1>
+          <p>{flyer.paragraph}</p>
+          <p className="expiration">
+            Válido hasta:  {formatDateLocal(flyer.expirationDate)}
+            {/* {new Date(flyer.expirationDate).toLocaleDateString()} */}
+           
+          </p>
         </div>
-      </div>
+
     </section>
   );
 };
 
-export default HeroFlyerComponent;
+export default HeroFlyer;

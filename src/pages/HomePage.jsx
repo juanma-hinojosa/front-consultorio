@@ -13,6 +13,8 @@ import BlogCard from '../components/BlogCardComponent';
 import BlogCardSkeleton from '../components/BlogCardSkeleton';
 import ServiceCardSkeleton from '../components/skeleton/ServiceCardSkeleton';
 import doctorImage from "/salud.jpg"; // Ruta al archivo de imagen (colocala en public o src/assets)
+import { Helmet } from 'react-helmet-async';
+import especialidadesData from '../assets/js/list';
 
 function HomePage() {
   const [blogs, setBlogs] = useState([]);
@@ -23,7 +25,7 @@ function HomePage() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await fetch('https://consultorio-back-xg97.onrender.com/api/blogs');
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/blogs/publicos`);
         const data = await res.json();
         // Ordenar por fecha descendente y tomar solo los 3 más nuevos
         const latestThree = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 3);
@@ -34,23 +36,31 @@ function HomePage() {
         setLoading(false);
       }
     };
-    const fetchEspecialidades = async () => {
-      try {
-        const res = await fetch('https://consultorio-back-xg97.onrender.com/api/specialties');
-        const data = await res.json();
-        setEspecialidades(data);
-        setFeatured(data.slice(0, 4));
-      } catch (err) {
-        console.error('Error al obtener especialidades:', err);
-      }
-    };
+    // const fetchEspecialidades = async () => {
+    //   try {
+    //     const res = await fetch('https://consultorio-back-xg97.onrender.com/api/specialties');
+    //     const data = await res.json();
+    //     setEspecialidades(data);
+    //     setFeatured(data.slice(0, 4));
+    //   } catch (err) {
+    //     console.error('Error al obtener especialidades:', err);
+    //   }
+    // };
 
     fetchBlogs();
-    fetchEspecialidades();
+    setEspecialidades(especialidadesData);
+    setFeatured(especialidadesData.slice(0, 4));
+    // fetchEspecialidades();
   }, []);
 
   return (
     <>
+      <Helmet>
+        <title>Inicio | Consultorio San Marcos</title>
+        <meta name="description" content="Atención médica integral en San Marcos. Rivera 146, Villa Madero, Buenos Aires. Descubre nuestros servicios y especialidades." />
+        <link rel="canonical" href="https://consultoriosanmarcos.com/" />
+      </Helmet>
+
       <HeroSection
         video={Home}
         name="Especialidades"
@@ -72,21 +82,18 @@ function HomePage() {
       </section>
 
 
-      <CallToAction 
-      titulo='Especialistas comprometidos con tu bienestar'
-      parrafo="En nuestro consultorio encontrarás atención médica personalizada, disponibilidad inmediata de turnos, cobertura de obras sociales y facilidades de pago. Queremos verte bien."
-      img={doctorImage}
+      <CallToAction
+        titulo='Especialistas comprometidos con tu bienestar'
+        parrafo="En nuestro consultorio encontrarás atención médica personalizada, disponibilidad inmediata de turnos, cobertura de obras sociales y facilidades de pago. Queremos verte bien."
+        img={doctorImage}
       />
-      <section className="homepage-services">
+      {/* <section className="homepage-services">
         <h2>Especialidades Destacadas</h2>
         <div className="services-grid">
-          {/* {featured.map((specialty) => (
-            <ServiceCard key={specialty._id} specialty={specialty} />
-          ))} */}
 
           {loading
             ? [1, 2, 3, 4].map((i) => <ServiceCardSkeleton key={i} />)
-            : featured.map((specialty) => (
+            : especialidades.map((specialty) => (
               <ServiceCard key={specialty._id} specialty={specialty} />
             ))}
         </div>
@@ -94,7 +101,24 @@ function HomePage() {
           <Link to="/especialidades" data-aos="fade-up" className="btn-see-all">Ver todas las especialidades</Link>
         </div>
 
+      </section> */}
+
+      <section className="homepage-services">
+        <h2>Especialidades Destacadas</h2>
+        <div className="services-grid">
+          {loading
+            ? [1, 2, 3, 4].map((i) => <ServiceCardSkeleton key={i} />)
+            : featured.slice(0, 4).map((specialty, index) => (
+              <ServiceCard key={index} specialty={specialty} />
+            ))}
+        </div>
+        <div className="see-more">
+          <Link to="/especialidades" data-aos="fade-up" className="btn-see-all">
+            Ver todas las especialidades
+          </Link>
+        </div>
       </section>
+
 
       <BenefitsSection
         titulo='MEDICINA PRIVADA'
@@ -109,7 +133,7 @@ function HomePage() {
         imgUno='https://images.unsplash.com/photo-1607746882042-944635dfe10e'
       />
       {/* <!-- Elfsight Google Reviews | Untitled Google Reviews --> */}
-      <div style={{ padding: '50px 0' }} class="elfsight-app-2ad46362-2c63-4b57-b3cf-c25d5ac6651a" data-elfsight-app-lazy></div>
+      <div style={{ padding: '50px 0' }} className="elfsight-app-2ad46362-2c63-4b57-b3cf-c25d5ac6651a" data-elfsight-app-lazy></div>
       {/* <ConsultaForm /> */}
       <GoogleMapEmbed />
 

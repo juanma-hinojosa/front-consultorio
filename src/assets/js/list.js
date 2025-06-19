@@ -1,28 +1,28 @@
 const especialidades = [
-    // {
-    //     "title": "Medicina general",
-    //     "subtitle": "Atención primaria que abarca el diagnóstico, tratamiento y prevención de diversas enfermedades en adultos y niños, enfocándose en la salud integral del paciente.",
-    //     "description": "La medicina general es la puerta de entrada al sistema de salud y una de las especialidades más amplias y fundamentales. Se encarga de brindar atención médica primaria y continua a personas de todas las edades, sexos y condiciones. Los médicos generales diagnostican y tratan una gran variedad de patologías comunes, tanto agudas como crónicas, y tienen un rol clave en la prevención de enfermedades, el control de factores de riesgo y la promoción de hábitos saludables. Además, son responsables de derivar a especialistas cuando la situación lo requiere. Esta disciplina no solo se enfoca en el tratamiento de síntomas, sino que considera al paciente en su contexto biopsicosocial, con el objetivo de mejorar su calidad de vida y mantener una relación médico-paciente cercana y duradera.",
-    //     "image": "https://magnetosur.com/wp-content/uploads/2021/11/Que-diferencias-existen-entre-la-medicina-general-y-la-medicina-interna.jpg"
-    // },
-    // {
-    //     "title": "Medicina integral",
-    //     "subtitle": "Enfoque que considera al paciente en su totalidad, integrando aspectos físicos, emocionales y sociales para promover su bienestar general.",
-    //     "description": "La medicina integral aborda la salud del paciente desde una perspectiva holística, considerando al ser humano como una unidad donde interactúan cuerpo, mente y entorno. No se limita únicamente a la curación de enfermedades, sino que busca promover el bienestar general mediante un enfoque que incluye aspectos físicos, emocionales, sociales y espirituales. Esta disciplina integra conocimientos de la medicina convencional con prácticas complementarias o alternativas, según el caso, adaptándose a las necesidades individuales del paciente. La medicina integral enfatiza la participación activa del paciente en su propio proceso de sanación, fomentando estilos de vida saludables, la prevención de enfermedades y el equilibrio general del organismo. Es especialmente útil en el manejo de enfermedades crónicas, trastornos emocionales y procesos de recuperación complejos.",
-    //     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHxp-lxvu7Y5uQYgEnggcYdjN-Hvzq4GYr2w&s"
-    // },
-    // {
-    //     "title": "Traumatología general",
-    //     "subtitle": "Especialidad que se ocupa del diagnóstico y tratamiento de lesiones y enfermedades del sistema musculoesquelético, incluyendo huesos, articulaciones y tejidos blandos.",
-    //     "description": "La traumatología general es la especialidad médica que se dedica al estudio, diagnóstico, tratamiento y rehabilitación de lesiones del aparato locomotor. Esto incluye huesos, articulaciones, ligamentos, tendones y músculos. Es fundamental tanto en situaciones de emergencia —como fracturas, luxaciones o esguinces— como en enfermedades degenerativas o crónicas del sistema musculoesquelético, tales como la artrosis, hernias de disco o lesiones deportivas. Los traumatólogos utilizan diversas herramientas diagnósticas, desde radiografías hasta resonancias magnéticas, y aplican tratamientos conservadores (reposo, fisioterapia, medicamentos) o quirúrgicos (osteosíntesis, prótesis, artroscopias), según la gravedad del caso. Esta especialidad no solo alivia el dolor y mejora la funcionalidad, sino que también trabaja en la prevención de futuras lesiones mediante educación postural y programas de fortalecimiento muscular.",
-    //     "image": "https://riberasalud.com/hospital-de-molina/wp-content/uploads/2019/10/mitos-traumatologia.jpg"
-    // },
-    // {
-    //     "title": "Pediatría",
-    //     "subtitle": "Área de la medicina que se centra en la atención médica de bebés, niños y adolescentes, abarcando desde el nacimiento hasta la adolescencia.",
-    //     "description": "La pediatría es la rama de la medicina que se especializa en el cuidado integral de bebés, niños y adolescentes, desde el nacimiento hasta los 18 años. Su campo de acción incluye el seguimiento del crecimiento y desarrollo infantil, la prevención de enfermedades, la administración de vacunas, el tratamiento de patologías agudas y crónicas, y la detección temprana de posibles trastornos físicos, cognitivos o emocionales. El pediatra también cumple un rol fundamental en el acompañamiento de los padres y cuidadores, orientando sobre temas como alimentación, sueño, higiene, conducta y escolaridad. Esta especialidad no solo se enfoca en curar enfermedades, sino en garantizar un desarrollo saludable, favoreciendo el bienestar físico y emocional de los más pequeños en todas las etapas de su vida.",
-    //     "image": "https://drapatriciasaintamand.com/wp-content/uploads/2021/05/sobre-Pediatria.jpg"
-    // },
+    {
+        "title": "Medicina general",
+        "subtitle": "Atención primaria que abarca el diagnóstico, tratamiento y prevención de diversas enfermedades en adultos y niños, enfocándose en la salud integral del paciente.",
+        "description": "La medicina general es la puerta de entrada al sistema de salud y una de las especialidades más amplias y fundamentales. Se encarga de brindar atención médica primaria y continua a personas de todas las edades, sexos y condiciones. Los médicos generales diagnostican y tratan una gran variedad de patologías comunes, tanto agudas como crónicas, y tienen un rol clave en la prevención de enfermedades, el control de factores de riesgo y la promoción de hábitos saludables. Además, son responsables de derivar a especialistas cuando la situación lo requiere. Esta disciplina no solo se enfoca en el tratamiento de síntomas, sino que considera al paciente en su contexto biopsicosocial, con el objetivo de mejorar su calidad de vida y mantener una relación médico-paciente cercana y duradera.",
+        "image": "https://magnetosur.com/wp-content/uploads/2021/11/Que-diferencias-existen-entre-la-medicina-general-y-la-medicina-interna.jpg"
+    },
+    {
+        "title": "Medicina interna",
+        "subtitle": "Enfoque que considera al paciente en su totalidad, integrando aspectos físicos, emocionales y sociales para promover su bienestar general.",
+        "description": "La medicina integral aborda la salud del paciente desde una perspectiva holística, considerando al ser humano como una unidad donde interactúan cuerpo, mente y entorno. No se limita únicamente a la curación de enfermedades, sino que busca promover el bienestar general mediante un enfoque que incluye aspectos físicos, emocionales, sociales y espirituales. Esta disciplina integra conocimientos de la medicina convencional con prácticas complementarias o alternativas, según el caso, adaptándose a las necesidades individuales del paciente. La medicina integral enfatiza la participación activa del paciente en su propio proceso de sanación, fomentando estilos de vida saludables, la prevención de enfermedades y el equilibrio general del organismo. Es especialmente útil en el manejo de enfermedades crónicas, trastornos emocionales y procesos de recuperación complejos.",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHxp-lxvu7Y5uQYgEnggcYdjN-Hvzq4GYr2w&s"
+    },
+    {
+        "title": "Traumatología general",
+        "subtitle": "Especialidad que se ocupa del diagnóstico y tratamiento de lesiones y enfermedades del sistema musculoesquelético, incluyendo huesos, articulaciones y tejidos blandos.",
+        "description": "La traumatología general es la especialidad médica que se dedica al estudio, diagnóstico, tratamiento y rehabilitación de lesiones del aparato locomotor. Esto incluye huesos, articulaciones, ligamentos, tendones y músculos. Es fundamental tanto en situaciones de emergencia —como fracturas, luxaciones o esguinces— como en enfermedades degenerativas o crónicas del sistema musculoesquelético, tales como la artrosis, hernias de disco o lesiones deportivas. Los traumatólogos utilizan diversas herramientas diagnósticas, desde radiografías hasta resonancias magnéticas, y aplican tratamientos conservadores (reposo, fisioterapia, medicamentos) o quirúrgicos (osteosíntesis, prótesis, artroscopias), según la gravedad del caso. Esta especialidad no solo alivia el dolor y mejora la funcionalidad, sino que también trabaja en la prevención de futuras lesiones mediante educación postural y programas de fortalecimiento muscular.",
+        "image": "https://riberasalud.com/hospital-de-molina/wp-content/uploads/2019/10/mitos-traumatologia.jpg"
+    },
+    {
+        "title": "Pediatría",
+        "subtitle": "Área de la medicina que se centra en la atención médica de bebés, niños y adolescentes, abarcando desde el nacimiento hasta la adolescencia.",
+        "description": "La pediatría es la rama de la medicina que se especializa en el cuidado integral de bebés, niños y adolescentes, desde el nacimiento hasta los 18 años. Su campo de acción incluye el seguimiento del crecimiento y desarrollo infantil, la prevención de enfermedades, la administración de vacunas, el tratamiento de patologías agudas y crónicas, y la detección temprana de posibles trastornos físicos, cognitivos o emocionales. El pediatra también cumple un rol fundamental en el acompañamiento de los padres y cuidadores, orientando sobre temas como alimentación, sueño, higiene, conducta y escolaridad. Esta especialidad no solo se enfoca en curar enfermedades, sino en garantizar un desarrollo saludable, favoreciendo el bienestar físico y emocional de los más pequeños en todas las etapas de su vida.",
+        "image": "https://drapatriciasaintamand.com/wp-content/uploads/2021/05/sobre-Pediatria.jpg"
+    },
     {
         "title": "Fonoaudiología neurolingüística",
         "subtitle": "Disciplina que estudia y trata las alteraciones del lenguaje y la comunicación relacionadas con el sistema nervioso, abarcando desde dificultades en el habla hasta trastornos neurológicos complejos.",

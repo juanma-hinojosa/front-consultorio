@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import CallToAction from "../components/CallToActionComponent";
 import ConsultaForm from "../components/consultaFormComponent";
 import ContactSection from "../components/ContactSection";
@@ -6,6 +7,11 @@ import Nosotros from "/nosotros.mp4"
 function AboutUsPage() {
     return (
         <>
+            <Helmet>
+                <title>Nosotros | Consultorio San Marcos</title>
+                <meta name="description" content="Atención médica integral en San Marcos. Rivera 146, Villa Madero, Buenos Aires. Somos un consultorio en el que nos apasiona la medicina y poder cuidar de tu salud." />
+                <link rel="canonical" href="https://consultoriosanmarcos.com/about" />
+            </Helmet>
             <HeroSection
                 video={Nosotros}
                 name="Especialidades"
