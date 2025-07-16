@@ -23,7 +23,7 @@ const ServiceCard = ({ specialty }) => {
         <h3 className="service-title">{specialty.title}</h3>
         <p className="service-subtitle">{specialty.subtitle}</p>
         <div className="service-links">
-          <Link to={`/especialidades/${slug}`} className="link-read-more">
+          <Link to={`/especialidades-externas/${slug}`} className="link-read-more">
             Leer más <Icon icon="eva:diagonal-arrow-right-up-outline" />
           </Link>
           <a

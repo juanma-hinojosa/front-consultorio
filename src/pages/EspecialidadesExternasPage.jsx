@@ -79,7 +79,7 @@ const EspecialidadesExternasPage = () => {
             <div key={item.title} className="related-service-card" >
               <img src={item.image} alt={item.title} />
               <h4>{item.title}</h4>
-              <Link to={`/especialidades-externas/${slugify(item.title)}`} className="btn-ver-mas">
+              <Link to={`/especialidades/${slugify(item.title)}`} className="btn-ver-mas">
                 Ver más
               </Link>
             </div>

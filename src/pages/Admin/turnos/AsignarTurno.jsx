@@ -234,7 +234,7 @@ const AsignarTurno = () => {
               <option className="ui-option" value="">Seleccione un doctor</option>
               {odontologos.map((o) => (
                 <option key={o._id} value={o._id}>
-                  {o.nombre} {o.apellido} - {o.especialidad}
+                  {o.nombre} {o.apellido} - {Array.isArray(o.especialidad) ? o.especialidad.join(', ') : '-'}
                   {/* role del perfil */}
                   {/* ({o.role}) */}
                 </option>

@@ -57,7 +57,7 @@ const ListaHistoriaClinica = () => {
       {registros.map(r => (
         <div key={r._id} style={{ border: '1px solid gray', margin: '10px', padding: '10px' }}>
           <h4>- {r.titulo}</h4>
-          <p><strong>Doctor:</strong> {r.doctor?.nombre} {r.doctor?.apellido} </p>
+          <p><strong>Especialidad:</strong> {Array.isArray(r.doctor?.especialidad) ? r.doctor?.especialidad.join(', ') : '-'} - {r.doctor?.role}</p>
           <p><strong>Especialidad:</strong> {r.doctor?.especialidad} - {r.doctor?.role}</p>
           <p><strong>Descripcion:</strong> {r.descripcion}</p>
           <p>

@@ -5,23 +5,117 @@
 }
 
 .empleado-form {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 15px;
-  margin-bottom: 30px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.empleado-form h2 {
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 .empleado-form input,
 .empleado-form select {
-  padding: 10px;
-  border: 1px solid #ddd;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
   border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.empleado-form textarea {
-  resize: vertical;
-  min-height: 80px;
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
 }
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Espacio reducido entre checkbox y texto */
+  padding: 0.5rem 0.75rem;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+  flex: 1 1 45%;
+  box-sizing: border-box;
+}
+
+.checkbox-label:hover {
+  background-color: #f0f8ff;
+  border-color: #007bff;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0; /* Elimina el margen que crea separación innecesaria */
+  accent-color: #007bff; /* Colorea el checkbox en navegadores modernos */
+  cursor: pointer;
+}
+
+.btn {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+/* ---------------------------
+   RESPONSIVE STYLES
+--------------------------- */
+@media (max-width: 768px) {
+  .checkbox-label {
+    flex: 1 1 100%;
+  }
+
+  .empleado-form {
+    padding: 1rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .empleado-form h2 {
+    font-size: 1.25rem;
+  }
+
+  .empleado-form input,
+  .empleado-form select {
+    font-size: 0.95rem;
+  }
+
+  .btn {
+    font-size: 0.95rem;
+  }
+}
+
 
 .btn {
   padding: 8px 15px;

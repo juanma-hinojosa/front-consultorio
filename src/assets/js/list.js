@@ -6,7 +6,7 @@ const especialidades = [
         "image": "https://magnetosur.com/wp-content/uploads/2021/11/Que-diferencias-existen-entre-la-medicina-general-y-la-medicina-interna.jpg"
     },
     {
-        "title": "Medicina interna",
+        "title": "Clinica Medica",
         "subtitle": "Enfoque que considera al paciente en su totalidad, integrando aspectos físicos, emocionales y sociales para promover su bienestar general.",
         "description": "La medicina integral aborda la salud del paciente desde una perspectiva holística, considerando al ser humano como una unidad donde interactúan cuerpo, mente y entorno. No se limita únicamente a la curación de enfermedades, sino que busca promover el bienestar general mediante un enfoque que incluye aspectos físicos, emocionales, sociales y espirituales. Esta disciplina integra conocimientos de la medicina convencional con prácticas complementarias o alternativas, según el caso, adaptándose a las necesidades individuales del paciente. La medicina integral enfatiza la participación activa del paciente en su propio proceso de sanación, fomentando estilos de vida saludables, la prevención de enfermedades y el equilibrio general del organismo. Es especialmente útil en el manejo de enfermedades crónicas, trastornos emocionales y procesos de recuperación complejos.",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHxp-lxvu7Y5uQYgEnggcYdjN-Hvzq4GYr2w&s"
@@ -17,6 +17,13 @@ const especialidades = [
         "description": "La traumatología general es la especialidad médica que se dedica al estudio, diagnóstico, tratamiento y rehabilitación de lesiones del aparato locomotor. Esto incluye huesos, articulaciones, ligamentos, tendones y músculos. Es fundamental tanto en situaciones de emergencia —como fracturas, luxaciones o esguinces— como en enfermedades degenerativas o crónicas del sistema musculoesquelético, tales como la artrosis, hernias de disco o lesiones deportivas. Los traumatólogos utilizan diversas herramientas diagnósticas, desde radiografías hasta resonancias magnéticas, y aplican tratamientos conservadores (reposo, fisioterapia, medicamentos) o quirúrgicos (osteosíntesis, prótesis, artroscopias), según la gravedad del caso. Esta especialidad no solo alivia el dolor y mejora la funcionalidad, sino que también trabaja en la prevención de futuras lesiones mediante educación postural y programas de fortalecimiento muscular.",
         "image": "https://riberasalud.com/hospital-de-molina/wp-content/uploads/2019/10/mitos-traumatologia.jpg"
     },
+   {
+    "title": "Traumatología Pediátrica",
+    "subtitle": "Especialidad enfocada en el diagnóstico y tratamiento de lesiones óseas y musculares en niños y adolescentes, considerando su crecimiento y desarrollo.",
+    "description": "La traumatología pediátrica es una rama de la medicina dedicada a atender lesiones del sistema músculo-esquelético en niños y adolescentes. A diferencia de los adultos, los cuerpos en desarrollo tienen huesos más flexibles y procesos de crecimiento activos, por lo que el enfoque en su tratamiento debe ser muy específico. Esta especialidad abarca desde fracturas y luxaciones, hasta deformidades congénitas, problemas de crecimiento óseo o lesiones deportivas frecuentes en la infancia. Los traumatólogos pediátricos no solo se encargan de curar las lesiones, sino que también cuidan que la recuperación no interfiera con el desarrollo normal del niño. Su objetivo es asegurar que los pequeños pacientes vuelvan a moverse, jugar y vivir con normalidad, sin secuelas a largo plazo. Es una especialidad muy importante en la etapa en la que el cuerpo está en constante cambio y crecimiento.",
+    "image": "https://clinicamartingomez.es/wp-content/uploads/traumatologia-infantil-1.jpg"
+}
+,
     {
         "title": "Pediatría",
         "subtitle": "Área de la medicina que se centra en la atención médica de bebés, niños y adolescentes, abarcando desde el nacimiento hasta la adolescencia.",
@@ -53,12 +60,39 @@ const especialidades = [
         "description": "La estimulación temprana es un conjunto de técnicas, actividades y ejercicios diseñados para potenciar el desarrollo integral de los niños desde el nacimiento hasta los seis años, especialmente durante los primeros tres años de vida, que son fundamentales por su alta plasticidad neuronal. Esta intervención puede ser preventiva, para favorecer el desarrollo óptimo, o terapéutica, en casos donde existen factores de riesgo o retrasos en áreas como la motricidad, lenguaje, socialización o cognición. Profesionales de diferentes disciplinas (psicólogos, fonoaudiólogos, kinesiólogos, terapeutas ocupacionales) trabajan en conjunto con las familias para crear ambientes estimulantes, afectivos y seguros que potencien las capacidades del niño, respetando su individualidad y ritmo de crecimiento. La estimulación temprana es clave para mejorar las oportunidades de aprendizaje y adaptación futura.",
         "image": "https://www.psicoactiva.com/wp-content/uploads/2024/05/estimulacion-temprana.jpg"
     },
-    // {
-    //     "title": "Gastroenterología infantil",
-    //     "subtitle": "Rama de la pediatría que se enfoca en el diagnóstico y tratamiento de trastornos gastrointestinales en niños, incluyendo problemas como reflujo, alergias alimentarias y enfermedades hepáticas.",
-    //     "description": "La gastroenterología infantil es una subespecialidad de la pediatría que se enfoca en el diagnóstico, tratamiento y seguimiento de enfermedades del aparato digestivo en niños y adolescentes. Esto incluye patologías del esófago, estómago, intestinos, hígado, vesícula biliar y páncreas. Entre los problemas más frecuentes se encuentran el reflujo gastroesofágico, intolerancias y alergias alimentarias, constipación, enfermedad celíaca, diarreas crónicas y enfermedades hepáticas congénitas. El gastroenterólogo infantil realiza estudios diagnósticos específicos, como endoscopías o análisis funcionales, y trabaja en estrecha colaboración con nutricionistas, pediatras y otros especialistas. Su objetivo es aliviar síntomas, prevenir complicaciones y garantizar una nutrición adecuada para el crecimiento y desarrollo del niño. La atención temprana y personalizada es clave en esta especialidad, ya que muchas de estas condiciones pueden impactar significativamente en la calidad de vida del menor.",
-    //     "image": "https://clinica25demayo.com.ar/wp-content/uploads/especialidad-gastroenterologia-infantil.jpg"
-    // }
+    {
+    "title": "Gastroenterología General",
+    "subtitle": "Especialidad médica que se encarga del diagnóstico y tratamiento de enfermedades del sistema digestivo, como el estómago, los intestinos, el hígado, el páncreas y la vesícula biliar.",
+    "description": "La gastroenterología es la rama de la medicina que estudia el funcionamiento y las enfermedades del aparato digestivo. Este sistema es esencial para transformar los alimentos en energía y nutrientes, y abarca órganos como el esófago, estómago, intestinos, hígado, páncreas y vesícula biliar. Los gastroenterólogos tratan una amplia variedad de problemas, desde molestias comunes como el reflujo o la gastritis, hasta enfermedades más complejas como colitis ulcerosa, enfermedad de Crohn, hepatitis o cáncer digestivo. También evalúan síntomas como dolor abdominal, diarrea crónica, hinchazón o pérdida inexplicada de peso. Su labor combina estudios clínicos, exámenes como endoscopias y colonoscopias, y tratamientos personalizados que ayudan a mejorar la digestión y la calidad de vida de las personas. Esta especialidad es fundamental para mantener en buen estado uno de los sistemas más importantes del cuerpo.",
+    "image": "https://centromedicovida.com.ec/wp-content/uploads/2024/10/Diseno-sin-titulo-2024-10-28T171335.383-1024x435.png"
+}
+,
+    {
+        "title": "Gastroenterología infantil",
+        "subtitle": "Rama de la pediatría que se enfoca en el diagnóstico y tratamiento de trastornos gastrointestinales en niños, incluyendo problemas como reflujo, alergias alimentarias y enfermedades hepáticas.",
+        "description": "La gastroenterología infantil es una subespecialidad de la pediatría que se enfoca en el diagnóstico, tratamiento y seguimiento de enfermedades del aparato digestivo en niños y adolescentes. Esto incluye patologías del esófago, estómago, intestinos, hígado, vesícula biliar y páncreas. Entre los problemas más frecuentes se encuentran el reflujo gastroesofágico, intolerancias y alergias alimentarias, constipación, enfermedad celíaca, diarreas crónicas y enfermedades hepáticas congénitas. El gastroenterólogo infantil realiza estudios diagnósticos específicos, como endoscopías o análisis funcionales, y trabaja en estrecha colaboración con nutricionistas, pediatras y otros especialistas. Su objetivo es aliviar síntomas, prevenir complicaciones y garantizar una nutrición adecuada para el crecimiento y desarrollo del niño. La atención temprana y personalizada es clave en esta especialidad, ya que muchas de estas condiciones pueden impactar significativamente en la calidad de vida del menor.",
+        "image": "https://clinica25demayo.com.ar/wp-content/uploads/especialidad-gastroenterologia-infantil.jpg"
+    },
+   {
+    "title": "Endoscopia",
+    "subtitle": "Especialidad médica que utiliza tecnología para observar el interior del cuerpo humano, ayudando a diagnosticar, tratar y prevenir enfermedades, especialmente en el sistema digestivo.",
+    "description": "La endoscopia es una técnica médica que permite ver el interior del cuerpo sin necesidad de hacer una cirugía. Se realiza con un instrumento llamado endoscopio, que es una cámara muy delgada y flexible, que se introduce por la boca, el ano o pequeñas incisiones según la zona que se necesita observar. Esta herramienta permite a los médicos detectar problemas como úlceras, pólipos, tumores o inflamaciones, principalmente en el aparato digestivo (esófago, estómago, intestinos). Además de ayudar a diagnosticar, también se pueden realizar tratamientos durante el procedimiento, como tomar muestras de tejido (biopsias), quitar pólipos o detener sangrados. La endoscopia es una técnica clave para prevenir enfermedades graves como el cáncer de colon, ya que permite detectarlas a tiempo con un procedimiento poco invasivo y de rápida recuperación.",
+    "image": "https://blog.hospitalangeles.com/wp-content/uploads/2025/01/endoscopia.jpg"
+},
+    {
+        "title": "Kinesiología",
+        "subtitle": "Disciplina que se enfoca en la prevención, tratamiento y rehabilitación de lesiones o disfunciones del sistema músculo-esquelético mediante el movimiento y la terapia física.",
+        "description": "La kinesiología es una disciplina de la salud que se basa en el estudio del movimiento humano y su aplicación terapéutica para prevenir, tratar y rehabilitar distintas afecciones físicas. Los kinesiólogos trabajan con pacientes que presentan dolencias musculares, articulares, óseas o neurológicas, ya sea por lesiones deportivas, accidentes, cirugías, enfermedades crónicas o condiciones posturales. Utilizan técnicas como ejercicios terapéuticos, estiramientos, masoterapia, electroterapia y reeducación postural para restaurar la movilidad, aliviar el dolor y mejorar la calidad de vida. La kinesiología también cumple un rol fundamental en la prevención de futuras lesiones y en la mejora del rendimiento físico, tanto en personas activas como en quienes llevan una vida sedentaria. El tratamiento es personalizado y adaptado a cada etapa de la vida, desde la infancia hasta la adultez mayor.",
+        "image": "https://admision.uautonoma.cl/content/uploads/2023/07/kinesiologia.jpg"
+    },
+    {
+        "title": "Gerontología",
+        "subtitle": "Especialidad que estudia el envejecimiento y busca promover la salud, el bienestar y la autonomía de las personas mayores en sus distintas dimensiones: física, psicológica y social.",
+        "description": "La gerontología es una disciplina interdisciplinaria dedicada al estudio del proceso de envejecimiento y de las necesidades de las personas mayores. A diferencia de la geriatría, que se enfoca en los aspectos médicos, la gerontología aborda integralmente factores biológicos, psicológicos, sociales y ambientales que afectan a los adultos mayores. Los profesionales gerontólogos trabajan en la promoción de un envejecimiento activo y saludable, ayudando a prevenir enfermedades, mantener la funcionalidad, mejorar la calidad de vida y fortalecer la autonomía personal. También participan en el diseño de programas de atención, políticas públicas, acompañamiento familiar y adaptación del entorno para personas mayores. Esta especialidad cobra cada vez más importancia en sociedades con poblaciones longevas, donde se busca no solo vivir más, sino vivir mejor.",
+        "image": "https://maodoamor.com.br/wp-content/uploads/2021/07/mao-do-amor-diferenca-geriatra-gerontologo-1030x579.jpg"
+    }
+
+
 ];
 
 export default especialidades;

@@ -66,6 +66,7 @@ const CrearPaciente = ({ onVolver }) => {
           <label htmlFor="" className='ui-label'>Apellido</label>
           <input className="ui-input" name="apellido" value={form.apellido} onChange={handleChange} placeholder="Apellido" required />
           <label htmlFor="" className='ui-label'>Numero de Documento</label>
+          <input className="ui-input" name="dni" value={form.dni} onChange={handleChange} placeholder="DNI" required />
 
           <label className='ui-label'>Obra Social</label>
           <select
@@ -106,7 +107,6 @@ const CrearPaciente = ({ onVolver }) => {
             </>
           )}
 
-          <input className="ui-input" name="dni" value={form.dni} onChange={handleChange} placeholder="DNI" required />
           <label htmlFor="" className='ui-label'>Fecha de nacimiento</label>
           <input className="ui-input" name="fechaNacimiento" type="date" value={form.fechaNacimiento} onChange={handleChange} required />
           <label htmlFor="" className='ui-label'>Domicilio</label>
@@ -116,7 +116,7 @@ const CrearPaciente = ({ onVolver }) => {
           <label htmlFor="" className='ui-label'>Celular de contacto</label>
           <input className="ui-input" name="telefono" value={form.telefono} onChange={handleChange} placeholder="Teléfono" required />
           <label htmlFor="" className='ui-label'>Observaciones</label>
-          <textarea className="ui-textarea" name="alergias" value={form.alergias} onChange={handleChange} placeholder="Alergias (si hay)" />
+          <textarea rows={20} className="ui-textarea" name="alergias" value={form.alergias} onChange={handleChange} placeholder="Alergias (si hay)" />
           <button style={{ padding: "10px" }} type="submit">Guardar</button>
           <button style={{ padding: "10px" }} type="button" onClick={onVolver}>Volver</button>
         </form>

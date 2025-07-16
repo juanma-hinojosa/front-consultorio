@@ -102,7 +102,7 @@ const FlyerManager = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("¿Estás seguro de eliminar este flyer?")) return;
     try {
-      await axios.delete(`https://backend-cios.onrender.com/api/flyers/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/flyers/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success("Flyer eliminado");

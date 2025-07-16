@@ -54,7 +54,7 @@ function AppContent() {
         <Route path="/about" element={<AboutUsPage />} />
         <Route path="/especialidades" element={<ServicesPage />} />
         {/* <Route path="/especialidades/:slug" element={<ServiceDetailPage />} /> */}
-        <Route path="/especialidades-externas/:slug" element={<EspecialidadesExternasPage />} />
+        <Route path="/especialidades/:slug" element={<EspecialidadesExternasPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<BlogDetailPage />} />
 

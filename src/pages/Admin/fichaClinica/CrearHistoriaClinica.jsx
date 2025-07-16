@@ -76,6 +76,7 @@ const CrearHistoriaClinica = () => {
               placeholder="Descripción del tratamiento"
               value={descripcion}
               onChange={e => setDescripcion(e.target.value)}
+              rows={20}
               required
             />
             <input

@@ -106,6 +106,23 @@ const ListaTurnosAsignados = () => {
     })
     : turnos;
 
+  // const formatearFechaLarga = (fechaStr) => {
+  //   const fecha = new Date(fechaStr);
+  //   return fecha.toLocaleDateString('es-AR', {
+  //     weekday: 'long',
+  //     day: 'numeric',
+  //     month: 'long',
+  //   });
+  // };
+
+  const formatearFechaLarga = (fechaStr) => {
+    const [anio, mes, dia] = fechaStr.split("-").map(Number);
+    const fecha = new Date(anio, mes - 1, dia); // el mes es 0-based
+    const opciones = { weekday: 'long', day: 'numeric', month: 'long' };
+    const fechaFormateada = fecha.toLocaleDateString('es-AR', opciones);
+    return fechaFormateada.charAt(0).toUpperCase() + fechaFormateada.slice(1);
+  };
+
 
   return (
     <div className="poppins-semibold">
@@ -171,7 +188,7 @@ const ListaTurnosAsignados = () => {
             {t.paciente?.telefono && (
               <a
                 href={`https://wa.me/54${t.paciente.telefono.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
-                  `Hola ${t.paciente?.nombre} ${t.paciente?.apellido}, este es un recordatorio para mañana de tu turno el día ${t.dia} a las ${t.horario} con el/la odontólogo/a ${t.odontologo?.name}.`
+                  `Hola ${t.paciente?.nombre} ${t.paciente?.apellido}, este es un recordatorio para mañana de tu turno el día ${formatearFechaLarga(t.dia)} a las ${t.horario} con el/la doctor/a ${t.doctor?.nombre} ${t.doctor?.apellido}. Podras asistir a la consulta?`
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -183,7 +200,9 @@ const ListaTurnosAsignados = () => {
 
 
             <strong>Doctora/o:</strong> {t.doctor?.nombre} {t.doctor?.apellido}<br />
-            <strong>Especialidad:</strong> {t.doctor?.especialidad}<br />
+            {/* <strong>Especialidad:</strong> {t.doctor?.especialidad}<br /> */}
+            <strong>Especialidad:</strong> {Array.isArray(t.doctor?.especialidad) ? t.doctor?.especialidad.join(', ') : '-'}<br />
+
             <strong>Día:</strong> {t.dia} | <strong>Hora:</strong> {t.horario} | <strong>Consultorio:</strong> {t.consultorio}<br />
             <strong>Categoría:</strong> {t.categoria}<br />
             <button

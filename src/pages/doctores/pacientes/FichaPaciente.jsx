@@ -147,8 +147,9 @@ const FichaPaciente = ({ paciente, onBack }) => {
             placeholder="Teléfono"
             required
           />
-          <input
+          <textarea
             className='ui-input'
+            rows={25}
             name="alergias"
             value={form.alergias || ''}
             onChange={handleChange}

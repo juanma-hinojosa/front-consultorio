@@ -92,7 +92,7 @@ const Footer = () => {
               {especialidades.map((item, index) => (
                 <Link
                   key={index}
-                  to={`/especialidades-externas/${slugify(item.title)}`}
+                  to={`/especialidades/${slugify(item.title)}`}
                 >
                   {item.title}
                 </Link>
