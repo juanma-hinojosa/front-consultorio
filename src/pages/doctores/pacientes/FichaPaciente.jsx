@@ -75,6 +75,7 @@ const FichaPaciente = ({ paciente, onBack }) => {
             onChange={handleChange}
             placeholder="DNI"
             required
+            type='number'
           />
 
           <label className='ui-label'>Obra Social</label>

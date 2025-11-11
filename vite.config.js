@@ -5,4 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: '/',
+  optimizeDeps: {
+    include: ['react-pdf', 'pdfjs-dist'] // 👈 necesario para que el visor PDF funcione bien
+  },
 })

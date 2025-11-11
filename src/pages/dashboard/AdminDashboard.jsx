@@ -11,6 +11,7 @@ import HistoriaClinicaManager from '../Admin/fichaClinica/HistoriaClinicaManager
 import FlyerManager from '../Admin/flyer/FlyerManager';
 import TurnosManager from '../Admin/turnos/TurnoManager';
 import BlogManager from '../Admin/blog/BlogManager';
+import VideoManager from '../Admin/video/VideoManager';
 
 function DashboardAdmin() {
   const [view, setView] = useState("turnos");
@@ -84,6 +85,10 @@ function DashboardAdmin() {
               <Icon icon="lets-icons:img-out-box-fill" /> Flyers
             </li>
 
+            <li onClick={() => { setView("reels"); setIsMenuOpen(false); }}>
+              <Icon icon="typcn:video" /> Reels
+            </li>
+
             <li onClick={handleLogout}>
               <Icon icon="mdi:logout" /> Cerrar sesión
             </li>
@@ -124,6 +129,7 @@ function DashboardAdmin() {
           {/* {view === "tratamientos" && <TratamientosManager />} */}
           {view === "blog" && <BlogManager userRole={user?.role} />}
           {view === "flyers" && <FlyerManager />}
+          {view === "reels" && <VideoManager />}
         </section>
       </main>
     </div>

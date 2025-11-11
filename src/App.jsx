@@ -82,12 +82,10 @@ function AppContent() {
           </PrivateRoute>
         }
         />
-        {/* <Route path="/doctor/dashboard" element={<DoctorDashboard />} /> */}
 
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       {!shouldHideNavbar && <WhatsappButton />}
-      {/* {!shouldHideHome && <WhatsappButton />} */}
       {!shouldHideNavbar && <Footer />}
     </>
   )

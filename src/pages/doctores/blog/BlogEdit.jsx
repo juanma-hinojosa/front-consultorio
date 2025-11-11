@@ -16,7 +16,7 @@ const BlogEdit = ({ blogId }) => {
 
         if (!res.ok) {
           throw new Error("Blog no encontrado");
-        }
+        } 
 
         const data = await res.json();
         setBlog({ ...data, intro: data.introduccion });
@@ -43,42 +43,58 @@ const BlogEdit = ({ blogId }) => {
     setBlog({ ...blog, nuevaImagenPrincipal: e.target.files[0] });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const confirmado = window.confirm("¿Estás seguro de que deseas actualizar este blog?");
-    if (!confirmado) return;
-
-    const formData = new FormData();
-    formData.append("tema", blog.tema);
-    formData.append("titulo", blog.titulo);
-    formData.append("introduccion", blog.intro);
-    formData.append("parrafos", JSON.stringify(blog.parrafos));
-
-    if (blog.nuevaImagenPrincipal) {
-      formData.append("imagenPrincipal", blog.nuevaImagenPrincipal);
-    }
-
-    try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/blogs/${blogId}`, {
-        method: "PUT",
-        // headers: {
-        //   Authorization: `Bearer ${localStorage.getItem("token")}`,
-        // },
-        credentials: 'include',
-        body: formData,
-      });
-
-      const data = await res.json();
-      if (res.ok) {
-        toast.success("Blog actualizado");
-      } else {
-        toast.error(data.message || "Error al actualizar");
-      }
-    } catch (error) {
-      toast.error("Error al actualizar el blog");
-    }
-  };
+ const handleSubmit = async (e) => {
+   e.preventDefault();
+ 
+   const confirmado = window.confirm("¿Estás seguro de que deseas actualizar este blog?");
+   if (!confirmado) return;
+ 
+   const formData = new FormData();
+   formData.append("tema", blog.tema);
+   formData.append("titulo", blog.titulo);
+   formData.append("introduccion", blog.intro);
+ 
+   // Clonar y preparar párrafos
+   const parrafos = blog.parrafos.map(parrafo => {
+     const clone = { texto: parrafo.texto, imagenes: [...(parrafo.imagenes || [])] };
+     return clone;
+   });
+ 
+   // Agregar nuevas imágenes
+   blog.parrafos.forEach((parrafo, index) => {
+     if (parrafo.nuevasImagenes?.length) {
+       parrafo.nuevasImagenes.forEach((file) => {
+         formData.append(`parrafos[${index}][imagenes]`, file);
+       });
+     }
+   });
+ 
+   formData.append("parrafosData", JSON.stringify(parrafos)); // 👈 ENVIAR COMO JSON SEPARADO
+ 
+   if (blog.nuevaImagenPrincipal) {
+     formData.append("imagenPrincipal", blog.nuevaImagenPrincipal);
+   }
+ 
+   try {
+     const res = await fetch(`${import.meta.env.VITE_API_URL}/api/blogs/${blogId}`, {
+       method: "PUT",
+       headers: {
+         Authorization: `Bearer ${localStorage.getItem("token")}`,
+       },
+       credentials: "include",
+       body: formData,
+     });
+ 
+     const data = await res.json();
+     if (res.ok) {
+       toast.success("Blog actualizado");
+     } else {
+       toast.error(data.message || "Error al actualizar");
+     }
+   } catch (error) {
+     toast.error("Error al actualizar el blog");
+   }
+ };
 
   if (!blog) return <p>Cargando...</p>;
 

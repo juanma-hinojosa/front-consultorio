@@ -13,7 +13,7 @@ const BlogCreate = () => {
     nuevosParrafos[index].texto = value;
     setParrafos(nuevosParrafos);
   };
-
+ 
   const handleImagenChange = (index, files) => {
     const nuevosParrafos = [...parrafos];
     nuevosParrafos[index].imagenes = files;
@@ -36,10 +36,12 @@ const BlogCreate = () => {
     }
 
     parrafos.forEach((parrafo, idx) => {
-      formData.append(`parrafos[${idx}][texto]`, parrafo.texto);
+      // formData.append(`parrafos[${idx}][texto]`, parrafo.texto);
+      formData.append(`parrafos[${idx}][texto]`, parrafo.texto || "");
       for (let i = 0; i < parrafo.imagenes.length; i++) {
         formData.append(`parrafos[${idx}][imagenes]`, parrafo.imagenes[i]);
       }
+
     });
 
     try {
@@ -66,6 +68,8 @@ const BlogCreate = () => {
     } catch (error) {
       toast.error("Error del servidor");
     }
+
+    
   };
 
   return (

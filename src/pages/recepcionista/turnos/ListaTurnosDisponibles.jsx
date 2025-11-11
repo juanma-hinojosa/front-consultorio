@@ -89,6 +89,8 @@ const ListaTurnosDisponibles = () => {
               <option value="1">Consultorio 1</option>
               <option value="2">Consultorio 2</option>
               <option value="3">Consultorio 3</option>
+              <option value="Consulta a domicilio">Consulta a Domicilio</option>
+
               {/* Agrega más consultorios según tu caso */}
             </select>
           </label>

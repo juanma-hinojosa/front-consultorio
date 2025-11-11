@@ -1,0 +1,38 @@
+.video-card{
+    width: 100%;
+    background-color: white;
+    /* padding: 1rem; */
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    display: flex;
+    overflow: hidden;
+}
+
+.video-card > video {
+    width: 35%;
+    /* object-fit: cover; */
+    object-fit: contain;
+}
+
+.video-card > div{
+    padding: 1rem;
+}
+
+@media (max-width:500px) {
+    .video-card {
+    flex-direction: column;
+  }
+
+  .video-card > video {
+    width: 100%;
+    height: 400px;
+  }
+
+  .video-card > div > h3 {
+    margin-bottom: 10px;
+  } 
+
+  .video-card > div > p {
+    display: none;
+  }
+}

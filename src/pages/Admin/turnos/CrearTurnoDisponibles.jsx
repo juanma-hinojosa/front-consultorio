@@ -47,38 +47,6 @@ const CrearTurnosDisponibles = () => {
     }
   };
 
-
-  // const handleCrear = async () => {
-  //   const token = localStorage.getItem('token');
-  //   const horariosArray = horarios.split(",").map(h => h.trim());
-
-  //   try {
-  //     for (const fecha of dias) {
-  //       // Convertir a hora de Buenos Aires
-  //       const diaISO = moment(fecha.toDate())
-  //         .tz('America/Argentina/Buenos_Aires')
-  //         .format('DD-MM-YYYY');
-
-  //       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/turnos-disponibles`, {
-  //         method: "POST",
-  //         headers: { "Content-Type": "application/json" },
-  //         credentials: 'include',
-  //         body: JSON.stringify({
-  //           dia: diaISO,
-  //           consultorio,
-  //           horarios: horariosArray
-  //         })
-  //       });
-
-  //       if (!res.ok) throw new Error("Error al crear el turno");
-  //     }
-
-  //     toast.success("Turnos creados correctamente (hora Buenos Aires)");
-  //   } catch (error) {
-  //     toast.error("Error: " + error.message);
-  //   }
-  // };
-
   return (
     <div className="poppins-regular" >
       <h3>Crear Turnos Disponibles</h3>
@@ -102,6 +70,8 @@ const CrearTurnosDisponibles = () => {
             <option className="ui-option" value="1">Consultorio 1</option>
             <option className="ui-option" value="2">Consultorio 2</option>
             <option className="ui-option" value="3">Consultorio 3</option>
+
+            <option className="ui-option" value="Consulta a domicilio">Consulta a Domicilio</option>
           </select>
 
           <label className="ui-label">Horarios (ej: 09:00, 10:00, 11:00):</label>

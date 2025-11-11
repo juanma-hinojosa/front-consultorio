@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import ServiceCardSkeleton from "../components/skeleton/ServiceCardSkeleton";
 import CardEspecialidad from "../components/CardEspecialidad";
 import { Helmet } from "react-helmet-async";
+import MarqueeComponent from "../components/marquee.jsx/MarqueeComponent";
 function ServicesPage() {
   const [specialties, setSpecialties] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -47,6 +48,8 @@ function ServicesPage() {
         parrafo='Accedé a turnos en el día en diversas especialidades médicas, con cobertura de obras sociales y opciones de pago pensadas para vos. Atendete sin esperar.'
         img='https://images.unsplash.com/photo-1673865641073-4479f93a7776?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
       />
+      <MarqueeComponent />
+
       <section className="services-container">
         <h1>Nuestras Especialidades</h1>
         <div className="services-grid">

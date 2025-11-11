@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import BuscarPacienteInput from './BuscarPaciente';
 import { toast } from "react-toastify";
 import LightGallery from 'lightgallery/react';
-// import Modal from 'react-modal';
+
 
 // import styles
 import 'lightgallery/css/lightgallery.css';
@@ -13,10 +13,13 @@ import 'lightgallery/css/lg-thumbnail.css';
 // import plugins if you need
 import lgThumbnail from 'lightgallery/plugins/thumbnail';
 import lgZoom from 'lightgallery/plugins/zoom';
+// import PDFModal from '../../../components/modal/pdf-modal';
 
 const ListaHistoriaClinica = () => {
   const [paciente, setPaciente] = useState(null);
   const [registros, setRegistros] = useState([]);
+
+  const [pdfUrl, setPdfUrl] = useState(null);
 
   const buscarRegistros = async id => {
     try {
@@ -58,9 +61,8 @@ const ListaHistoriaClinica = () => {
         <div key={r._id} style={{ border: '1px solid gray', margin: '10px', padding: '10px' }}>
           <h4>- {r.titulo}</h4>
           <p><strong>Doctor:</strong> {r.doctor?.nombre} {r.doctor?.apellido} </p>
-          {/* <p><strong>Especialidad:</strong> {r.doctor?.especialidad} - {r.doctor?.role}</p> */}
           <p><strong>Especialidad:</strong> {Array.isArray(r.doctor?.especialidad) ? r.doctor?.especialidad.join(', ') : '-'} - {r.doctor?.role}</p>
-          <p><strong>Descripcion:</strong> {r.descripcion}</p>
+          <p style={{ whiteSpace: 'pre-line' }}><strong>Descripcion:</strong>  {r.descripcion}</p>
           <p>
             <strong>Fecha:</strong>{' '}
             {new Date(r.fecha).toLocaleDateString('es-AR', {
@@ -76,23 +78,57 @@ const ListaHistoriaClinica = () => {
             })} hs
           </p>
 
-          {/* {r.imagenes.map((img, i) => (
-            <img key={i} src={img} alt="registro" width="150" />
-          ))} */}
+          {r.archivos.map((archivo, i) => {
+            const esPDF = archivo.toLowerCase().endsWith('.pdf');
+            return esPDF ? (
+              <div key={i} style={{ margin: '5px 0' }}>
+                <a
+                  href={archivo} target="_blank" rel="noopener noreferrer"
+                  style={{
+                    background: '#007bff',
+                    color: 'white',
+                    border: 'none',
+                    padding: '6px 10px',
+                    borderRadius: '5px',
+                    cursor: 'pointer'
+                  }}
+                >
+                  📄 Ver archivo PDF
+                </a>
+              </div>
 
-          <LightGallery
-            onInit={onInit}
-            speed={500}
-            plugins={[lgThumbnail, lgZoom]}
-          >
-            {r.imagenes.map((img, i) => (
-              <a key={i} href={img}>
-                <img src={img} alt="registro" width="150" />
-              </a>
+              // <div key={i} style={{ margin: '5px 0' }}>
+              //   <button
+              //     onClick={() => setPdfUrl(archivo)}
+              //     style={{
+              //       background: '#007bff',
+              //       color: 'white',
+              //       border: 'none',
+              //       padding: '6px 10px',
+              //       borderRadius: '5px',
+              //       cursor: 'pointer'
+              //     }}
+              //   >
+              //     📄 Ver archivo PDF
+              //   </button>
+              // </div>
+            ) : (
+              <LightGallery
+                onInit={onInit}
+                speed={500}
+                plugins={[lgThumbnail, lgZoom]}
+              >
+                <a key={i} href={archivo}>
+                  <img src={archivo} alt="registro" width="150" />
+                </a>
+              </LightGallery>
 
-            ))}
-          </LightGallery>
+            );
+          })}
 
+
+          {/* Modal de PDF */}
+          {/* <PDFModal isOpen={!!pdfUrl} pdfUrl={pdfUrl} onClose={() => setPdfUrl(null)} /> */}
         </div>
       ))}
     </div>

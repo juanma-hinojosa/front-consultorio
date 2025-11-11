@@ -75,6 +75,7 @@ const FichaPaciente = ({ paciente, onBack }) => {
             value={form.dni || ''}
             onChange={handleChange}
             placeholder="DNI"
+            type='number'
             required
           />
 

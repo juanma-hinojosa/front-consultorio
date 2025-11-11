@@ -24,7 +24,6 @@ const AsignarTurno = () => {
     const token = localStorage.getItem("token");
 
     fetch(`${import.meta.env.VITE_API_URL}/api/users/empleados`, {
-      // fetch("http://localhost:5000/api/users", {
       credentials: 'include',
       headers: { Authorization: `Bearer ${token}` },
 
@@ -56,27 +55,6 @@ const AsignarTurno = () => {
       toast.error("Error al buscar turnos");
     }
   };
-
-  //   const buscarTurnos = async () => {
-  //   if (!fecha) return toast.error("Seleccione una fecha");
-
-  //   // Normalizar fecha a UTC-3
-  //   const fechaBuenosAires = moment(fecha)
-  //     .tz('America/Argentina/Buenos_Aires')
-  //     .format('DD-MM-YYYY');
-
-  //   try {
-  //     const res = await fetch(
-  //       `${import.meta.env.VITE_API_URL}/api/turnos-disponibles?dia=${fechaBuenosAires}`,
-  //       { credentials: 'include' }
-  //     );
-
-  //     const data = await res.json();
-  //     setTurnos(data);
-  //   } catch (err) {
-  //     toast.error("Error al buscar turnos");
-  //   }
-  // };
 
   const crearPacienteRapido = async () => {
     const token = localStorage.getItem("token");

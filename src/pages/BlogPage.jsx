@@ -10,13 +10,27 @@ import Loader from '../components/Loader'; // ✅ Importá el nuevo componente
 import HeroFlyer from '../components/HeroFlyerComponent';
 import axios from "axios";
 import { Helmet } from 'react-helmet-async';
+import "../css/components/videoCard.css"
 
+function useWindowWidth() {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return width;
+}
 
 const BlogPage = () => {
   const [blogs, setBlogs] = useState([]);
-  // const [showFlyer, setShowFlyer] = useState(false);
+  const [videos, setVideos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [flyer, setFlyer] = useState(null);
+
+  const width = useWindowWidth();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,11 +56,48 @@ const BlogPage = () => {
       }
     };
 
+    const fetchVideos = async () => {
+      try {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/videos`);
+        const data = await res.json();
+
+        // ✅ Ordenar por fecha más reciente primero
+        const sortedVideos = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        setVideos(sortedVideos);
+        // console.log(sortedVideos);
+
+      } catch (error) {
+        console.error("Error cargando videos:", error);
+      }
+    };
+
+   
+
     fetchData();
+    fetchVideos();
+   
+
   }, []);
+
 
   const lastBlog = blogs[0];
   const otherBlogs = blogs.slice(1);
+
+  const getGridTemplate = () => {
+    if (width >= 1200) {
+      return 'repeat(auto-fit, minmax(400px, 1fr))';
+    } else if (width >= 768) {
+      return 'repeat(auto-fit, minmax(400px, 1fr))';
+    } else {
+      return 'repeat(auto-fit, minmax(300px, 1fr))';
+    }
+  };
+
+  const gridStyle = {
+    display: 'grid',
+    gridTemplateColumns: getGridTemplate(),
+    gap: '16px',
+  };
 
   if (isLoading) return <Loader />; // ✅ Mostrar el loader hasta que cargue todo
 
@@ -94,6 +145,41 @@ const BlogPage = () => {
           ))}
         </div>
       </section>
+
+      <section className="blog-page" >
+        <h2 className="blog-page-title">Últimos Videos</h2>
+
+        {videos.length === 0 ? (
+          <p>No hay videos disponibles.</p>
+        ) : (
+          <div >
+            <div style={gridStyle} >
+              {videos.map((video) => (
+                <div key={video._id}
+                  className='video-card'
+                  data-aos="fade-up"
+                >
+                  <video
+                    src={video.videoUrl}
+                    controls
+                  />
+                  <div style={{ backgroundColor: "white", padding: "1rem", }} >
+                    <h3>{video.titulo}</h3>
+                    {video.descripcion && <p>{video.descripcion}</p>}
+
+                    <p style={{ marginTop: "7px", fontSize: '12px', color: '#777' }}>
+                      Subido el {new Date(video.createdAt).toLocaleDateString()}
+                    </p>
+                  </div>
+
+                </div>
+              ))}
+            </div>
+
+          </div>
+        )}
+      </section>
+
     </>
   );
 };

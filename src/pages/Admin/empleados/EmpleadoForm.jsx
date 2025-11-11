@@ -13,7 +13,10 @@ const especialidades = [
   'Cardiologia Pediatrica',
   "kinesiologia",
   "Gerontologia",
-  "Endoscopia"
+  "Endoscopia",
+  "Oftamologia Infantil",
+  "Oftamologia General",
+  "Nutricionista"
 ];
 
 const EmpleadoForm = ({ initialData, onSuccess, onCancel }) => {

@@ -2,9 +2,9 @@ import { Link, useParams } from 'react-router-dom';
 import slugify from '../components/slugify';
 import '../css/pages/ServiceDetailPage.css';
 import { Icon } from '@iconify/react/dist/iconify.js';
-import { useEffect, useState } from 'react';
-import AppointmentCalendar from '../components/AppointmentCalendar';
-import ServiceDetailSkeleton from '../components/skeleton/ServiceDetailSkeleton';
+// import { useEffect, useState } from 'react';
+// import AppointmentCalendar from '../components/AppointmentCalendar';
+// import ServiceDetailSkeleton from '../components/skeleton/ServiceDetailSkeleton';
 import especialidades from '../assets/js/list';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
@@ -46,7 +46,7 @@ const EspecialidadesExternasPage = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          height: "300px",
+          minHeight: "400px",
           width: "100%"
         }}
       ></div>

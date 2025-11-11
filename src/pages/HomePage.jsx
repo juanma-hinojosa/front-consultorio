@@ -15,6 +15,8 @@ import ServiceCardSkeleton from '../components/skeleton/ServiceCardSkeleton';
 import doctorImage from "/salud.jpg"; // Ruta al archivo de imagen (colocala en public o src/assets)
 import { Helmet } from 'react-helmet-async';
 import especialidadesData from '../assets/js/list';
+import UltimoVideo from '../components/VideoSectionComponent';
+import MarqueeComponent from '../components/marquee.jsx/MarqueeComponent';
 
 function HomePage() {
   const [blogs, setBlogs] = useState([]);
@@ -67,6 +69,13 @@ function HomePage() {
         path="especialidades"
       />
       <FlyerPopup />
+
+      <CallToAction
+        titulo='Especialistas comprometidos con tu bienestar'
+        parrafo="En nuestro consultorio encontrarás atención médica personalizada, disponibilidad inmediata de turnos, cobertura de obras sociales y facilidades de pago. Queremos verte bien."
+        img={doctorImage}
+      />
+
       <section className="home-blogs-section">
         <h2>Últimas Publicaciones</h2>
         <div className="home-blogs-grid">
@@ -82,26 +91,11 @@ function HomePage() {
       </section>
 
 
-      <CallToAction
-        titulo='Especialistas comprometidos con tu bienestar'
-        parrafo="En nuestro consultorio encontrarás atención médica personalizada, disponibilidad inmediata de turnos, cobertura de obras sociales y facilidades de pago. Queremos verte bien."
-        img={doctorImage}
-      />
-      {/* <section className="homepage-services">
-        <h2>Especialidades Destacadas</h2>
-        <div className="services-grid">
 
-          {loading
-            ? [1, 2, 3, 4].map((i) => <ServiceCardSkeleton key={i} />)
-            : especialidades.map((specialty) => (
-              <ServiceCard key={specialty._id} specialty={specialty} />
-            ))}
-        </div>
-        <div className="see-more">
-          <Link to="/especialidades" data-aos="fade-up" className="btn-see-all">Ver todas las especialidades</Link>
-        </div>
+      <UltimoVideo />
 
-      </section> */}
+      <MarqueeComponent />
+
 
       <section className="homepage-services">
         <h2>Especialidades Destacadas</h2>

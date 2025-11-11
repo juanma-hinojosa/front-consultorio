@@ -8,37 +8,11 @@ const ListaTurnosAsignados = () => {
   const [fechaSeleccionada, setFechaSeleccionada] = useState(null);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   // const token = localStorage.getItem("token");
-
-  //   fetch(`${import.meta.env.VITE_API_URL}/api/turnos/proximos`, {
-  //     // headers: {
-  //     //   Authorization: `Bearer ${token}`
-  //     // }
-  //     credentials: 'include',
-
-  //   })
-  //     .then(res => {
-  //       if (!res.ok) throw new Error("No autorizado");
-  //       return res.json();
-  //     })
-  //     .then(data => {
-  //       // Verifica la estructura de los datos recibidos
-  //       // console.log("Datos de turnos recibidos:", data);
-  //       setTurnos(data);
-  //     })
-  //     .catch(err => {
-  //       console.error(err);
-  //       alert("No autorizado. Inicie sesión nuevamente.");
-  //       navigate("/");
-  //     });
-  // }, []);
-
 
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    fetch(`${import.meta.env.VITE_API_URL}/api/turnos/proximos`, {
+    fetch(`${import.meta.env.VITE_API_URL}/api/turnos/proximos-quince`, {
       headers: {
         Authorization: `Bearer ${token}`
       },
@@ -81,10 +55,10 @@ const ListaTurnosAsignados = () => {
     }
   };
 
-  const getNext7Weekdays = () => {
+  const getNext15Weekdays = () => {
     const fechas = [];
     let fecha = new Date();
-    while (fechas.length < 7) {
+    while (fechas.length < 15) {
       if (fecha.getDay() !== 0) {
         fechas.push(new Date(fecha));
       }
@@ -95,9 +69,6 @@ const ListaTurnosAsignados = () => {
 
   const formatearFecha = (fecha) => fecha.toISOString().split("T")[0];
 
-  // const turnosFiltrados = fechaSeleccionada
-  //   ? turnos.filter(t => t.dia === fechaSeleccionada)
-  //   : turnos;
 
   const turnosFiltrados = fechaSeleccionada
     ? turnos.filter(t => {
@@ -126,7 +97,7 @@ const ListaTurnosAsignados = () => {
 
   return (
     <div className="poppins-semibold">
-      <h3 className="poppins-semibold">Turnos Asignados (Próximos 7 días)</h3>
+      <h3 className="poppins-semibold">Turnos Asignados (Próximos 15                                                                                                          días)</h3>
 
       {/* Buscar paciente por nombre */}
       <div style={{ marginBottom: "20px" }}>
@@ -140,12 +111,12 @@ const ListaTurnosAsignados = () => {
         gridTemplateColumns: "repeat(auto-fit, minmax(100px, 1fr))",
         gap: "1rem",
       }}>
-        {getNext7Weekdays().map((fecha, idx) => {
+        {getNext15Weekdays().map((fecha, idx) => {
           const fechaStr = formatearFecha(fecha);
           return (
             <button
-              key={idx}
-              onClick={() => setFechaSeleccionada(fechaStr)}
+              key={idx}                                        
+              onClick={() => setFechaSeleccionada(fechaStr)}    
               style={{
                 padding: "5px 10px",
                 backgroundColor: fechaStr === fechaSeleccionada ? "#4caf50" : "#e0e0e0",
@@ -156,15 +127,15 @@ const ListaTurnosAsignados = () => {
             >
               {fecha.toLocaleDateString("es-AR", {
                 weekday: "short",
-                day: "numeric",
+                day: "numeric",                                                                                                                                                                                                       
                 month: "short"
-              })}
-            </button>
-          );
-        })}
-        <button
-          onClick={() => setFechaSeleccionada(null)}
-          style={{
+              })}                                                                                                                   
+            </button>            
+          );                           
+        })}                                                                                                                             
+          <button
+          onClick={() => setFechaSeleccionada(null)}               
+          style={{      
             padding: "5px 10px",
             backgroundColor: "#2196f3",
             color: "#fff",

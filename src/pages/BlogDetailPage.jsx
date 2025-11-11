@@ -99,23 +99,6 @@ const BlogDetailPage = () => {
           ← Volver a Blogs
         </Link>
       </section>
-
-      {/* {otherBlogs.length > 0 && (
-        <section className="related-blogs">
-          <h2>También te puede interesar</h2>
-          <div className="related-blogs-grid">
-            {otherBlogs.map((item) => (
-              <div key={item._id} className="related-blog-card">
-                <img src={item.mainImageUrl} alt={item.title} />
-                <h4>{item.title}</h4>
-                <Link to={`/blog/detail?id=${item._id}`} className="btn-ver-mas">
-                  Leer más
-                </Link>
-              </div>
-            ))}
-          </div>
-        </section>
-      )} */}
     </>
   );
 };

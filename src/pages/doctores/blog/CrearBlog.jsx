@@ -27,7 +27,7 @@ const BlogCreate = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("tema", tema);
+    formData.append("tema", tema); 
     formData.append("titulo", titulo);
     formData.append("intro", intro);
 

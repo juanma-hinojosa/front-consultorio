@@ -66,7 +66,7 @@ const CrearPaciente = ({ onVolver }) => {
           <label htmlFor="" className='ui-label'>Apellido</label>
           <input className="ui-input" name="apellido" value={form.apellido} onChange={handleChange} placeholder="Apellido" required />
           <label htmlFor="" className='ui-label'>Numero de Documento</label>
-          <input className="ui-input" name="dni" value={form.dni} onChange={handleChange} placeholder="DNI" required />
+          <input className="ui-input" name="dni" value={form.dni} onChange={handleChange} type='number' placeholder="DNI" required />
 
           <label className='ui-label'>Obra Social</label>
           <select

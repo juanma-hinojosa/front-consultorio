@@ -86,7 +86,7 @@ const CrearHistoriaClinica = () => {
               type="file"
               multiple
               onChange={e => setImagenes([...e.target.files])}
-              accept="image/*"
+              accept="image/*,application/pdf"
             />
             <button type="submit" disabled={isSubmitting}>
               {isSubmitting ? 'Guardando...' : 'Guardar entrada'}
