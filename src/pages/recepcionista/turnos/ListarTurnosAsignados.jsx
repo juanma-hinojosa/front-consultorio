@@ -8,33 +8,6 @@ const ListaTurnosAsignados = () => {
   const [fechaSeleccionada, setFechaSeleccionada] = useState(null);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   // const token = localStorage.getItem("token");
-
-  //   fetch(`${import.meta.env.VITE_API_URL}/api/turnos/proximos`, {
-  //     // headers: {
-  //     //   Authorization: `Bearer ${token}`
-  //     // }
-  //     credentials: 'include',
-
-  //   })
-  //     .then(res => {
-  //       if (!res.ok) throw new Error("No autorizado");
-  //       return res.json();
-  //     })
-  //     .then(data => {
-  //       // Verifica la estructura de los datos recibidos
-  //       // console.log("Datos de turnos recibidos:", data);
-  //       setTurnos(data);
-  //     })
-  //     .catch(err => {
-  //       console.error(err);
-  //       alert("No autorizado. Inicie sesión nuevamente.");
-  //       navigate("/");
-  //     });
-  // }, []);
-
-
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -170,11 +143,18 @@ const ListaTurnosAsignados = () => {
       {/* Lista */}
       <ul>
         {turnosFiltrados.length === 0 && <li className="poppins-regular">No hay turnos asignados.</li>}
-        {turnosFiltrados.map(t => (
-          <li className="poppins-regular" key={t._id} style={{ marginBottom: "15px", borderBottom: "1px solid #ccc", paddingBottom: "10px", listStyle: "none" }}>
-            <strong>Paciente:</strong> {t.paciente?.nombre} {t.paciente?.apellido} ({t.paciente?.telefono})<br />
 
-            {/* <strong>Paciente:</strong> {t.paciente?.nombre} {t.paciente?.apellido}{" "} */}
+        {turnosFiltrados.map(t => (
+          <li
+            key={t._id}
+            style={{
+              marginBottom: "15px",
+              borderBottom: "1px solid #ccc",
+              paddingBottom: "10px",
+              listStyle: "none"
+            }}
+          >
+            <strong>Paciente:</strong> {t.paciente?.nombre} {t.paciente?.apellido} ({t.paciente?.telefono})<br />
             {t.paciente?.telefono && (
               <a
                 href={`https://wa.me/54${t.paciente.telefono.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
@@ -186,13 +166,60 @@ const ListaTurnosAsignados = () => {
               >
                 (WhatsApp)
               </a>
-            )}<br />
-
-
+            )}
+            <br />
             <strong>Doctora/o:</strong> {t.doctor?.nombre} {t.doctor?.apellido}<br />
             <strong>Especialidad:</strong> {Array.isArray(t.doctor?.especialidad) ? t.doctor?.especialidad.join(', ') : '-'}<br />
             <strong>Día:</strong> {t.dia} | <strong>Hora:</strong> {t.horario} | <strong>Consultorio:</strong> {t.consultorio}<br />
             <strong>Categoría:</strong> {t.categoria}<br />
+            <strong>Estado:</strong>{" "}
+            <span style={{
+              color: t.estadoAtencion === "atendido" ? "green" : "orange",
+              fontWeight: "bold"
+            }}>
+              {t.estadoAtencion === "atendido" ? "Atendido" : "Pendiente"}
+            </span>
+            <br />
+
+            {t.estadoAtencion === "pendiente" && (
+              <button
+                onClick={async () => {
+                  try {
+                    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/turnos/${t._id}`, {
+                      method: "PUT",
+                      headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                      },
+                      body: JSON.stringify({ estadoAtencion: "atendido" }),
+                    });
+                    const actualizado = await res.json();
+                    if (res.ok) {
+                      setTurnos(turnos.map(turno => turno._id === t._id ? actualizado : turno));
+                      toast.success("El paciente fue marcado como atendido.");
+                    } else {
+                      toast.error(actualizado.error || "Error al actualizar el turno.");
+                    }
+                  } catch (err) {
+                    console.error(err);
+                    toast.error("No se pudo actualizar el estado del turno.");
+                  }
+                }}
+                style={{
+                  marginTop: "5px",
+                  padding: "5px 10px",
+                  backgroundColor: "#4caf50",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                  marginRight: "10px"
+                }}
+              >
+                Marcar como Atendido
+              </button>
+            )}
+
             <button
               onClick={() => cancelarTurno(t._id)}
               style={{

@@ -25,10 +25,6 @@ const ListaTurnosAsignados = () => {
         return res.json();
       })
       .then(data => {
-        // console.log("Turnos del backend:", data);
-        // console.log("ID del doctor logueado:", doctorId);
-        // console.log(data)
-
         const turnosFiltrados = doctorId
           ? data.filter(t => {
             const turnoDoctorId = typeof t.doctor === 'string' ? t.doctor : t.doctor?._id;
@@ -147,13 +143,26 @@ const ListaTurnosAsignados = () => {
         </button>
       </div>
 
+
+      {/* Lista de turnos */}
       <ul>
+        {/* Loading */}
         {turnosFiltradosPorFecha.length === 0 && <li className="poppins-regular">No hay turnos asignados.</li>}
+
+        {/* Iteracion de turnos */}
         {turnosFiltradosPorFecha.map(t => (
-          <li key={t._id} style={{ marginBottom: "15px", borderBottom: "1px solid #ccc", paddingBottom: "10px", listStyle: "none" }}>
+          <li
+            key={t._id}
+            style={{
+              marginBottom: "15px",
+              borderBottom: "1px solid #ccc",
+              paddingBottom: "10px",
+              listStyle: "none"
+            }}
+          >
             <strong>Paciente:</strong> {t.paciente?.nombre} {t.paciente?.apellido} ({t.paciente?.telefono})<br />
             {t.paciente?.telefono && (
-                <a
+              <a
                 href={`https://wa.me/54${t.paciente.telefono.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
                   `Hola ${t.paciente?.nombre} ${t.paciente?.apellido}, este es un recordatorio para mañana de tu turno el día ${formatearFechaLarga(t.dia)} a las ${t.horario} con el/la doctor/a ${t.doctor?.nombre} ${t.doctor?.apellido}. Podras asistir a la consulta?`
                 )}`}
@@ -163,11 +172,60 @@ const ListaTurnosAsignados = () => {
               >
                 (WhatsApp)
               </a>
-            )}<br />
+            )}
+            <br />
             <strong>Doctora/o:</strong> {t.doctor?.nombre} {t.doctor?.apellido}<br />
             <strong>Especialidad:</strong> {Array.isArray(t.doctor?.especialidad) ? t.doctor?.especialidad.join(', ') : '-'}<br />
             <strong>Día:</strong> {t.dia} | <strong>Hora:</strong> {t.horario} | <strong>Consultorio:</strong> {t.consultorio}<br />
             <strong>Categoría:</strong> {t.categoria}<br />
+            <strong>Estado:</strong>{" "}
+            <span style={{
+              color: t.estadoAtencion === "atendido" ? "green" : "orange",
+              fontWeight: "bold"
+            }}>
+              {t.estadoAtencion === "atendido" ? "Atendido" : "Pendiente"}
+            </span>
+            <br />
+
+            {t.estadoAtencion === "pendiente" && (
+              <button
+                onClick={async () => {
+                  try {
+                    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/turnos/${t._id}`, {
+                      method: "PUT",
+                      headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                      },
+                      body: JSON.stringify({ estadoAtencion: "atendido" }),
+                    });
+                    const actualizado = await res.json();
+                    if (res.ok) {
+                      setTurnos(turnos.map(turno => turno._id === t._id ? actualizado : turno));
+                      toast.success("El paciente fue marcado como atendido.");
+                    } else {
+                      toast.error(actualizado.error || "Error al actualizar el turno.");
+                    }
+                  } catch (err) {
+                    console.error(err);
+                    toast.error("No se pudo actualizar el estado del turno.");
+                  }
+                }}
+                style={{
+                  marginTop: "5px",
+                  padding: "5px 10px",
+                  backgroundColor: "#4caf50",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                  marginRight: "10px"
+                }}
+              >
+                Marcar como Atendido
+              </button>
+            )}
+
             <button
               onClick={() => cancelarTurno(t._id)}
               style={{
