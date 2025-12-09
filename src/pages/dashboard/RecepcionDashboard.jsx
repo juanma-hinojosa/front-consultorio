@@ -8,6 +8,7 @@ import PacienteManager from '../doctores/pacientes/PacienteManager';
 // import HistoriaClinicaManager from '../Admin/fichaClinica/HistoriaClinicaManager';
 import LogoutButton from '../../components/hooks/Logout';
 import TurnosManager from '../recepcionista/turnos/TurnoManager';
+import BirthdayAlertManager from '../recepcionista/birthday/BirthdayAlertManager';
 // import FlyerManager from '../Admin/flyer/FlyerManager';
 // import TurnosManager from './turnos/TurnoManager';
 
@@ -64,6 +65,28 @@ function DashboardRecepcion() {
             <li onClick={() => { setView("pacientes"); setIsMenuOpen(false); }}>
               <Icon icon="mdi:account-heart" /> Pacientes
             </li>
+
+            <li
+              onClick={() => { setView("cumpleaños"); setIsMenuOpen(false); }}
+              style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
+            >
+              <span>
+                <Icon icon="mdi:party-popper" /> Cumpleaños
+              </span>
+
+              {birthdayAlert && (
+                <span
+                  style={{
+                    width: "10px",
+                    height: "10px",
+                    background: "red",
+                    borderRadius: "50%",
+                    marginLeft: "10px"
+                  }}
+                ></span>
+              )}
+            </li>
+
             {/* <li onClick={() => { setView("historiaClinica"); setIsMenuOpen(false); }}>
               <Icon icon="mdi:book-open-page-variant" /> Historia Clínica
             </li> */}
@@ -116,6 +139,10 @@ function DashboardRecepcion() {
         <section className="admin-panel-content">
           {/* {view === "empleados" && <EmpleadoManager />} */}
           {view === "pacientes" && <PacienteManager />}
+
+          {view === "cumpleaños" && <BirthdayAlertManager setBirthdayAlert={setBirthdayAlert} />}
+
+
           {/* {view === "historiaClinica" && <HistoriaClinicaManager />} */}
           {view === "turnos" && <TurnosManager />}
           {/* {view === "pagos" && <PagosManager />} */}

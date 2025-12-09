@@ -12,11 +12,14 @@ import FlyerManager from '../Admin/flyer/FlyerManager';
 import TurnosManager from '../Admin/turnos/TurnoManager';
 import BlogManager from '../Admin/blog/BlogManager';
 import VideoManager from '../Admin/video/VideoManager';
+import BirthdayAlertManager from '../Admin/birthday/BirthdayAlertManager';
 
 function DashboardAdmin() {
   const [view, setView] = useState("turnos");
   const [user, setUser] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [birthdayAlert, setBirthdayAlert] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -66,18 +69,36 @@ function DashboardAdmin() {
             <li onClick={() => { setView("pacientes"); setIsMenuOpen(false); }}>
               <Icon icon="mdi:account-heart" /> Pacientes
             </li>
+
+
+            <li
+              onClick={() => { setView("cumpleaños"); setIsMenuOpen(false); }}
+              style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
+            >
+              <span>
+                <Icon icon="mdi:party-popper" /> Cumpleaños
+              </span>
+
+              {birthdayAlert && (
+                <span
+                  style={{
+                    width: "10px",
+                    height: "10px",
+                    background: "red",
+                    borderRadius: "50%",
+                    marginLeft: "10px"
+                  }}
+                ></span>
+              )}
+            </li>
+
+
             <li onClick={() => { setView("historiaClinica"); setIsMenuOpen(false); }}>
               <Icon icon="mdi:book-open-page-variant" /> Historia Clínica
             </li>
             <li onClick={() => { setView("turnos"); setIsMenuOpen(false); }}>
               <Icon icon="mdi:calendar-clock" /> Turnos
             </li>
-            {/* <li onClick={() => { setView("pagos"); setIsMenuOpen(false); }}>
-              <Icon icon="mdi:currency-usd" /> Pagos
-            </li> */}
-            {/* <li onClick={() => { setView("tratamientos"); setIsMenuOpen(false); }}>
-              <Icon icon="mdi:tooth-outline" /> Tratamientos
-            </li> */}
             <li onClick={() => { setView("blog"); setIsMenuOpen(false); }}>
               <Icon icon="mdi:blogger" /> Blogs
             </li>
@@ -122,6 +143,9 @@ function DashboardAdmin() {
         <section className="admin-panel-content">
           {view === "empleados" && <EmpleadoManager />}
           {view === "pacientes" && <PacienteManager />}
+
+          {view === "cumpleaños" && <BirthdayAlertManager setBirthdayAlert={setBirthdayAlert} />}
+
           {view === "historiaClinica" && <HistoriaClinicaManager />}
           {view === "turnos" && <TurnosManager />}
           {/* {view === "pagos" && <PagosManager />} */}

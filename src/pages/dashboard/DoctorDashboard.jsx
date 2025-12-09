@@ -8,17 +8,20 @@ import PacienteManager from "../doctores/pacientes/PacienteManager";
 import HistoriaClinicaManager from "../doctores/fichaClinica/HistoriaClinicaManager";
 import TurnosManager from "../doctores/turnos/TurnoManager";
 import BlogManager from "../doctores/blog/BlogManager";
+import BirthdayAlertManager from "../doctores/birthday/BirthdayAlertManager";
 
 function DoctorDashboard() {
   const [view, setView] = useState("turnos");
   const [user, setUser] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [birthdayAlert, setBirthdayAlert] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     // console.log(storedUser);
-    
+
     setUser(storedUser);
   }, []);
 
@@ -34,7 +37,7 @@ function DoctorDashboard() {
   };
 
   return (
-  <div className="admin-panel-container">
+    <div className="admin-panel-container">
       <aside className={`admin-aside ${isMenuOpen ? "open" : ""}`}>
         <button
           className="admin-close-btn"
@@ -65,9 +68,33 @@ function DoctorDashboard() {
             <li onClick={() => { setView("historiaClinica"); setIsMenuOpen(false); }}>
               <Icon icon="mdi:book-open-page-variant" /> Historia Clínica
             </li>
+
+            <li
+              onClick={() => { setView("cumpleaños"); setIsMenuOpen(false); }}
+              style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
+            >
+              <span>
+                <Icon icon="mdi:party-popper" /> Cumpleaños
+              </span>
+
+              {birthdayAlert && (
+                <span
+                  style={{
+                    width: "10px",
+                    height: "10px",
+                    background: "red",
+                    borderRadius: "50%",
+                    marginLeft: "10px"
+                  }}
+                ></span>
+              )}
+            </li>
+
             <li onClick={() => { setView("turnos"); setIsMenuOpen(false); }}>
               <Icon icon="mdi:calendar-clock" /> Turnos
             </li>
+
+
             {/* <li onClick={() => { setView("pagos"); setIsMenuOpen(false); }}>
               <Icon icon="mdi:currency-usd" /> Pagos
             </li> */}
@@ -109,6 +136,10 @@ function DoctorDashboard() {
         <section className="admin-panel-content">
           {/* {view === "empleados" && <EmpleadoManager />} */}
           {view === "pacientes" && <PacienteManager />}
+
+          {view === "cumpleaños" && <BirthdayAlertManager setBirthdayAlert={setBirthdayAlert} />}
+
+
           {view === "historiaClinica" && <HistoriaClinicaManager />}
           {view === "turnos" && <TurnosManager />}
           {/* {view === "pagos" && <PagosManager />} */}
