@@ -22,17 +22,16 @@ const BirthdayAlertManager = ({ setBirthdayAlert }) => {
         pacientes.forEach(p => {
           if (!p.fechaNacimiento) return;
 
-          const fecha = new Date(p.fechaNacimiento);
-          const diaNac = fecha.getDate();
-          const mesNac = fecha.getMonth() + 1;
+          // Evitar errores de zona horaria
+          const [anioStr, mesStr, diaStr] = p.fechaNacimiento.split("T")[0].split("-");
+          const diaNac = parseInt(diaStr);
+          const mesNac = parseInt(mesStr);
+          const anioNac = parseInt(anioStr);
 
-          // Cumpleaños HOY
           const esHoy = hoy.getDate() === diaNac && hoy.getMonth() + 1 === mesNac;
 
-          // Edad que cumple
-          const años = hoy.getFullYear() - fecha.getFullYear();
+          const años = hoy.getFullYear() - anioNac;
 
-          // Para próximos 7 días
           const cumpleEsteAño = new Date(hoy.getFullYear(), mesNac - 1, diaNac);
           const diff = (cumpleEsteAño - hoy) / (1000 * 60 * 60 * 24);
 
@@ -48,6 +47,7 @@ const BirthdayAlertManager = ({ setBirthdayAlert }) => {
             });
           }
         });
+
 
         setPacientesCumple(proximos);
 
@@ -107,9 +107,9 @@ const BirthdayAlertManager = ({ setBirthdayAlert }) => {
               `Hola que tal ${p.nombre} ${p.apellido}, de parte del Consultorio San Marcos te queremos desear un feliz cumpleaños!!!`
             )}`}
               target="_blank"
-              rel="noopener noreferrer" 
-              style={{textDecoration:"none"}}
-              >📞 {p.telefono ? p.telefono : "Sin teléfono registrado"}</a>
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >📞 {p.telefono ? p.telefono : "Sin teléfono registrado"}</a>
 
           </div>
         </div>

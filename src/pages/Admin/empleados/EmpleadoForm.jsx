@@ -16,7 +16,13 @@ const especialidades = [
   "Endoscopia",
   "Oftamologia Infantil",
   "Oftamologia General",
-  "Nutricionista"
+  "Nutricionista",
+  "Neurologia",
+  "Neurologia Infantil",
+  "Analisis Clinico",
+  "Ecografias",
+  "Radiografia",
+  "Otorrinolaringologia Infantil"
 ];
 
 const EmpleadoForm = ({ initialData, onSuccess, onCancel }) => {
