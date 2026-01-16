@@ -12,6 +12,7 @@ const AsignarTurno = () => {
   const [odontologoId, setOdontologoId] = useState("");
   const [fecha, setFecha] = useState("");
   const [categoria, setCategoria] = useState("");
+  const [motivoDeConsulta, setMotivoDeConsulta] = useState("")
 
   const [nombreNuevo, setNombreNuevo] = useState("");
   const [apellidoNuevo, setApellidoNuevo] = useState("");
@@ -108,7 +109,10 @@ const AsignarTurno = () => {
         consultorio: turnoSeleccionado.consultorio,
         dia: turnoSeleccionado.dia,
         horario: turnoSeleccionado.horario,
-        categoria // ✅ Enviar categoría
+        categoria, // ✅ Enviar categoría
+        
+        // Nuevo campo "Motivo de Consulta"
+        motivoDeConsulta
       }),
     });
 
@@ -227,6 +231,10 @@ const AsignarTurno = () => {
               <option className="ui-option" value="Convenio">Convenio</option>
             </select>
 
+            {/* motivo de la consulta  */}
+            <h4 className="poppins-regular">Motivo de la consulta</h4>
+            <input type="text" className="ui-input" placeholder="Ej: Control niños" value={motivoDeConsulta} onChange={((e) => setMotivoDeConsulta(e.target.value))}/>
+
             <h4 className="poppins-regular">Seleccione una fecha</h4>
             <input
               className="ui-input"
@@ -251,7 +259,7 @@ const AsignarTurno = () => {
             <br />
             <button
               onClick={asignar}
-              disabled={!pacienteId || !turnoId || !odontologoId || !categoria}
+              disabled={!pacienteId || !turnoId || !odontologoId || !categoria || !motivoDeConsulta}
               style={{ marginTop: "10px", padding: "5px 10px" }}
             >
               Asignar Turno
