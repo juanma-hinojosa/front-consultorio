@@ -22,7 +22,9 @@ const especialidades = [
   "Analisis Clinico",
   "Ecografias",
   "Radiografia",
-  "Otorrinolaringologia Infantil"
+  "Otorrinolaringologia Infantil",
+  "Ginecologia",
+  "Obstetricia"
 ];
 
 const EmpleadoForm = ({ initialData, onSuccess, onCancel }) => {
