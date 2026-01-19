@@ -78,7 +78,9 @@ const EmpleadoForm = ({ initialData, onSuccess, onCancel }) => {
         ? `/api/users/${initialData._id}`
         : form.role === 'doctor'
           ? '/api/users/crear-doctor'
-          : '/api/users/crear-recepcionista';
+          : form.role === 'marketing'
+            ? '/api/users/crear-marketing'
+            : '/api/users/crear-recepcionista';
 
       const method = editing ? 'PUT' : 'POST';
 
@@ -131,6 +133,7 @@ const EmpleadoForm = ({ initialData, onSuccess, onCancel }) => {
       <select name="role" value={form.role} onChange={handleChange}>
         <option value="doctor">Doctor</option>
         <option value="recepcionista">Recepcionista</option>
+        <option value="marketing">Marketing</option>
       </select>
 
       {form.role === 'doctor' && (

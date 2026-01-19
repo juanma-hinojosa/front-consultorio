@@ -39,16 +39,16 @@ const BlogList = ({ onEdit }) => {
           // padding: "2rem"
         }}>
 
-        {blogs.map((blog) => (
+        {/* {blogs.map((blog) => (
           <BlogCardAdmin
             key={blog._id}
             blog={blog}
             onEdit={onEdit}
             onDelete={handleDelete}
           />
-        ))}
+        ))} */}
 
-        {/* {blogs.map((blog) => (
+        {blogs.map((blog) => (
           <div key={blog._id} className="blog-card poppins-regular">
             <br />
             <h4>{blog.titulo}</h4>
@@ -57,7 +57,7 @@ const BlogList = ({ onEdit }) => {
             <p><strong>Autor:</strong> {blog.autor?.nombre || "Sin autor"}</p>
             <p><strong>Aprobado:</strong> {blog.aprobado ? "Sí" : "No"}</p>
 
-            <div>
+            {/* <div>
               <h5>Contenido:</h5>
               {blog.parrafos && blog.parrafos.length > 0 ? (
                 blog.parrafos.map((parrafo, idx) => (
@@ -80,14 +80,14 @@ const BlogList = ({ onEdit }) => {
               ) : (
                 <p>Sin contenido</p>
               )}
-            </div>
+            </div> */}
 
             <button style={{ padding: "5px", marginRight: "10px" }} onClick={() => onEdit(blog._id)}>Editar</button>
             <button style={{ padding: "5px", marginRight: "10px" }} onClick={() => handleDelete(blog._id)}>Eliminar</button>
             <br /><br />
             <hr />
           </div>
-        ))} */}
+        ))}
 
       </div>
       {/* {blogs.map((blog) => (

@@ -14,7 +14,7 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-// viejo login 
+  // viejo login 
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -54,6 +54,10 @@ const LoginPage = () => {
           break;
         case 'recepcionista':
           navigate('/recepcion/dashboard');
+          break;
+
+        case 'marketing':
+          navigate('/marketing/dashboard');
           break;
         default:
           navigate('/login');

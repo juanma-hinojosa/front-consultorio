@@ -27,13 +27,14 @@ import DashboardRecepcion from './pages/dashboard/RecepcionDashboard';
 import BlogDetailPage from './pages/BlogDetailPage';
 // import { HelmetProvider } from "react-helmet-async";
 import { HelmetProvider } from 'react-helmet-async';
+import MarketingDashboard from './pages/dashboard/MarketingDashboard';
 
 
 function AppContent() {
   const location = useLocation();
   const hideHome = ["/"];
 
-  const hideNavbarRoutes = ["/login", "/admin/dashboard", "/recepcion/dashboard", "/doctor/dashboard"];
+  const hideNavbarRoutes = ["/login", "/admin/dashboard", "/recepcion/dashboard", "/doctor/dashboard", "/marketing/dashboard"];
   const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname);
   const shouldHideHome = hideHome.includes(location.pathname);
 
@@ -79,6 +80,13 @@ function AppContent() {
         <Route path="/recepcion/dashboard" element={
           <PrivateRoute allowedRoles={["recepcionista"]}>
             <DashboardRecepcion />
+          </PrivateRoute>
+        }
+        />  
+
+        <Route path="/marketing/dashboard" element={
+          <PrivateRoute allowedRoles={["marketing"]}>
+            <MarketingDashboard />
           </PrivateRoute>
         }
         />

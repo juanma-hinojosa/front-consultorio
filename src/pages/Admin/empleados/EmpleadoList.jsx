@@ -22,7 +22,12 @@ const EmpleadoList = ({ empleados, onEditar, onEliminar }) => (
               <td>{emp.apellido}</td>
               <td>{emp.email}</td>
               <td>
-                <span className={`badge ${emp.role === 'doctor' ? 'badge-doctor' : 'badge-recepcionista'}`}>
+                <span className={`badge 
+  ${emp.role === 'doctor' ? 'badge-doctor' :
+                    emp.role === 'marketing' ? 'badge-marketing' :
+                      'badge-recepcionista'}`}
+                >
+
                   {emp.role}
                 </span>
               </td>

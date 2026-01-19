@@ -55,9 +55,9 @@ function MarketingDashboard() {
 
 
 
-            {/* <li onClick={() => { setView("blog"); setIsMenuOpen(false); }}>
+            <li onClick={() => { setView("blog"); setIsMenuOpen(false); }}>
               <Icon icon="mdi:blogger" /> Blogs
-            </li> */}
+            </li>
             <li onClick={() => { setView("flyers"); setIsMenuOpen(false); }}>
               <Icon icon="lets-icons:img-out-box-fill" /> Flyers
             </li>
@@ -94,7 +94,7 @@ function MarketingDashboard() {
         </header>
 
         <section className="admin-panel-content">
-          {/* {view === "blog" && <BlogManager userRole={user?.role} />} */}
+          {view === "blog" && <BlogManager userRole={user?.role} />}
           {view === "flyers" && <FlyerManager />}
           {view === "reels" && <VideoManager />}
 
