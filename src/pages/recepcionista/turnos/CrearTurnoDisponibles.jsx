@@ -103,6 +103,7 @@ const CrearTurnosDisponibles = () => {
             <option className="ui-option" value="2">Consultorio 2</option>
             <option className="ui-option" value="3">Consultorio 3</option>
             <option className="ui-option" value="Consulta a domicilio">Consulta a Domicilio</option>
+            <option className="ui-option" value="Consulta Virtual">Consulta Virtual</option>
 
           </select>
 

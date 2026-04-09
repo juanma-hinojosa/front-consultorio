@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import  { useState } from "react";
 import DatePicker from "react-multi-date-picker";
 // import es from "react-multi-date-picker/locales/es";
 // import { spanish } from "react-multi-date-picker/locales";
@@ -72,6 +72,7 @@ const CrearTurnosDisponibles = () => {
             <option className="ui-option" value="3">Consultorio 3</option>
 
             <option className="ui-option" value="Consulta a domicilio">Consulta a Domicilio</option>
+            <option className="ui-option" value="Consulta Virtual">Consulta Virtual</option>
           </select>
 
           <label className="ui-label">Horarios (ej: 09:00, 10:00, 11:00):</label>

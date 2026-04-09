@@ -55,6 +55,18 @@ const BirthdayAlertManager = ({ setBirthdayAlert }) => {
         const hayCumplesHoy = proximos.some(p => p.hoy);
         setBirthdayAlert(hayCumplesHoy);
 
+
+        if (hayCumplesHoy) {
+          const todayKey = new Date().toISOString().split("T")[0];
+          const lastPlayed = localStorage.getItem("birthdaySoundPlayed");
+
+          if (lastPlayed !== todayKey) {
+            const audio = new Audio('/sonido.mp3')
+            audio.play().catch(() => { });
+            localStorage.setItem('birthdaySoundPlayed', todayKey)
+          }
+        }
+
       } catch (error) {
         console.error("Error obteniendo cumpleaños:", error);
       } finally {

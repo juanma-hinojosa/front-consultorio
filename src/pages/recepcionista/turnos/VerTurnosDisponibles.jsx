@@ -4,13 +4,13 @@ const ListaTurnosAsignados = () => {
   const [turnos, setTurnos] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/turnos")
+    fetch(`${import.meta.env.VITE_API_URL}/api/turnos`)
       .then(res => res.json())
       .then(data => setTurnos(data));
   }, []);
 
   const cancelarTurno = async (id) => {
-    await fetch(`http://localhost:5000/api/turnos/cancelar/${id}`, { method: "PUT" });
+    await fetch(`${import.meta.env.VITE_API_URL}/api/turnos/cancelar/${id}`, { method: "PUT" });
     setTurnos(turnos.filter(t => t._id !== id));
   };
 
