@@ -9,6 +9,7 @@ import PacienteManager from '../doctores/pacientes/PacienteManager';
 import LogoutButton from '../../components/hooks/Logout';
 import TurnosManager from '../recepcionista/turnos/TurnoManager';
 import BirthdayAlertManager from '../recepcionista/birthday/BirthdayAlertManager';
+import ConsultaVirtualManager from '../Admin/conferencia/ConsultaVirtualManager';
 // import FlyerManager from '../Admin/flyer/FlyerManager';
 // import TurnosManager from './turnos/TurnoManager';
 
@@ -93,6 +94,9 @@ function DashboardRecepcion() {
             <li onClick={() => { setView("turnos"); setIsMenuOpen(false); }}>
               <Icon icon="mdi:calendar-clock" /> Turnos
             </li>
+            <li onClick={() => { setView('consulta'); setIsMenuOpen(false) }} >
+              <Icon icon="mdi:teleconference" /> Consulta Virtual
+            </li>
             {/* <li onClick={() => { setView("pagos"); setIsMenuOpen(false); }}>
               <Icon icon="mdi:currency-usd" /> Pagos
             </li> */}
@@ -145,6 +149,8 @@ function DashboardRecepcion() {
 
           {/* {view === "historiaClinica" && <HistoriaClinicaManager />} */}
           {view === "turnos" && <TurnosManager />}
+          {view === 'consulta' && <ConsultaVirtualManager />}
+
           {/* {view === "pagos" && <PagosManager />} */}
 
           {/* {view === "tratamientos" && <TratamientosManager />} */}

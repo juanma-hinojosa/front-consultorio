@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import CrearPaciente from './CrearPaciente';
 import ListaPacientes from './ListaPacientes';
 import FichaPaciente from './FichaPaciente';

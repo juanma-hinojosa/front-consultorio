@@ -9,6 +9,7 @@ import HistoriaClinicaManager from "../doctores/fichaClinica/HistoriaClinicaMana
 import TurnosManager from "../doctores/turnos/TurnoManager";
 import BlogManager from "../doctores/blog/BlogManager";
 import BirthdayAlertManager from "../doctores/birthday/BirthdayAlertManager";
+import ConsultaVirtualManager from "../Admin/conferencia/ConsultaVirtualManager";
 
 function DoctorDashboard() {
   const [view, setView] = useState("turnos");
@@ -93,6 +94,9 @@ function DoctorDashboard() {
             <li onClick={() => { setView("turnos"); setIsMenuOpen(false); }}>
               <Icon icon="mdi:calendar-clock" /> Turnos
             </li>
+            <li onClick={() => { setView('consulta'); setIsMenuOpen(false) }} >
+              <Icon icon="mdi:teleconference" /> Consulta Virtual
+            </li>
 
 
             {/* <li onClick={() => { setView("pagos"); setIsMenuOpen(false); }}>
@@ -142,6 +146,7 @@ function DoctorDashboard() {
 
           {view === "historiaClinica" && <HistoriaClinicaManager />}
           {view === "turnos" && <TurnosManager />}
+          {view === 'consulta' && <ConsultaVirtualManager />}
           {/* {view === "pagos" && <PagosManager />} */}
 
           {/* {view === "tratamientos" && <TratamientosManager />} */}
