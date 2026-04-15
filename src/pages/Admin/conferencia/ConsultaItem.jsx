@@ -9,7 +9,8 @@ export default function ConsultaItem({ consulta, onDelete, onEdit, user }) {
     fecha,
     hora,
     telefono,
-    linkMeet
+    linkMeet,
+    estado
   } = consulta;
 
   const isAdminOrRecep =
@@ -20,9 +21,16 @@ export default function ConsultaItem({ consulta, onDelete, onEdit, user }) {
   // 🛠️ SOLUCIÓN AL DESFASE VISUAL:
   // Extraemos año, mes y día del string que viene de la base de datos (YYYY-MM-DD)
   const [year, month, day] = fecha.substring(0, 10).split('-');
-  
+
   // Creamos la fecha local forzando los números exactos (mes empieza en 0)
   const fechaLocal = new Date(year, month - 1, day);
+
+  const coloresEstado = {
+    pendiente: "#F59E0B",   // Naranja
+    confirmado: "#10B981",  // Verde
+    cancelado: "#EF4444",   // Rojo
+    finalizado: "#6B7280"   // Gris
+  };
 
   return (
     <div
@@ -41,15 +49,21 @@ export default function ConsultaItem({ consulta, onDelete, onEdit, user }) {
           {pacienteId?.nombre} {pacienteId?.apellido}
         </p>
 
+        {/* 👈 Badge de Estado */}
+          <span style={{
+            backgroundColor: coloresEstado[estado] || coloresEstado.pendiente,
+            color: "#fff",
+            padding: "2px 8px",
+            borderRadius: "12px",
+            fontSize: "12px",
+            fontWeight: "bold"
+          }}>
+            {estado ? estado.toUpperCase() : "PENDIENTE"}
+          </span>
+
         <p style={{ fontSize: "14px", color: "#9CA3AF" }}>
           Dr: {doctorId?.nombre} {doctorId?.apellido}
         </p>
-
-        {/* <p>
-          {new Date(fecha).toLocaleDateString()} - {hora}
-
-          {new Date(fecha + "T00:00:00").toLocaleDateString("es-AR")}
-        </p> */}
 
         <p>
           {/* Mostramos la fecha corregida */}
@@ -134,7 +148,7 @@ export default function ConsultaItem({ consulta, onDelete, onEdit, user }) {
             </a>
 
             <a
-              href={`https://wa.me/${telefono}?text=Hola ${pacienteId?.nombre} te recordamos que tu turno es hoy ${fechaLocal} a las ${hora}. La consulta va ser por Google Meet con el link: ${linkMeet}`}
+              href={`https://wa.me/${telefono}?text=Hola ${pacienteId?.nombre} te recordamos que tu turno es hoy ${fechaLocal.toLocaleDateString("es-AR")} - ${hora}. La consulta va ser por Google Meet con el link: ${linkMeet}`}
               target="_blank"
               rel="noreferrer"
             >

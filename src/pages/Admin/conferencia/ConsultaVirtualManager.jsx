@@ -1,9 +1,17 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import ConsultaForm from "./ConsultaForm";
 import ConsultaList from "./ConsultaList";
 import ConsultaEditModal from "./ConsultaEditModal";
 
+
 const API = `${import.meta.env.VITE_API_URL}/api/consultas-virtuales`;
+
+// Cosas Pendientes para realizar:
+// - 1. Panel Doctor Renderizar consulta Virtuales asignadas a ese Profesional
+// - 2. Toast de Turno Eliminado y Toast de turno alterado
+// - 3. Estado de llamada, "pendiente", "confirmado", "cancelado", "finalizado"
+// - 4. Setear Formulario al asignar consulta virtual a paciente
 
 export default function ConsultaVirtualManager() {
   const [consultas, setConsultas] = useState([]);
@@ -58,7 +66,9 @@ export default function ConsultaVirtualManager() {
         body: JSON.stringify(data),
       });
 
+      // toast.success("Consulta asignada con éxito");
       fetchConsultas();
+      setVista('listar');
     } catch (error) {
       console.error("Error al crear consulta:", error);
     }
@@ -73,6 +83,7 @@ export default function ConsultaVirtualManager() {
         headers: getHeaders(),
       });
 
+      toast.error("Turno Eliminado");
       fetchConsultas();
     } catch (error) {
       console.error("Error al eliminar:", error);
@@ -89,6 +100,8 @@ export default function ConsultaVirtualManager() {
         body: JSON.stringify(data),
       });
 
+
+      toast.success("Turno alterado");
       setEditando(null);
       fetchConsultas();
     } catch (error) {
@@ -121,13 +134,84 @@ export default function ConsultaVirtualManager() {
     return dias;
   };
 
+  // const filtrarConsultas = () => {
+  //   // if (!diaSeleccionado) return consultas;
+
+  //   if (!diaSeleccionado) {
+  //     const ahora = new Date();
+
+  //     return consultas
+  //       .filter((c) => {
+  //         const [year, month, day] = c.fecha.substring(0, 10).split('-');
+  //         const fechaConsulta = new Date(year, month - 1, day);
+
+  //         const [h, m] = c.hora.split(":");
+  //         const fechaHoraConsulta = new Date(fechaConsulta);
+  //         fechaHoraConsulta.setHours(parseInt(h, 10), parseInt(m, 10), 0, 0);
+
+  //         return fechaHoraConsulta >= ahora; // 👈 solo futuros
+  //       })
+  //       .sort((a, b) => {
+  //         const fechaA = new Date(`${a.fecha.substring(0, 10)}T${a.hora}`);
+  //         const fechaB = new Date(`${b.fecha.substring(0, 10)}T${b.hora}`);
+  //         return fechaA - fechaB; // más próximo primero
+  //       });
+  //   }
+
+  //   const ahora = new Date();
+
+  //   return consultas.filter((c) => {
+  //     // 🛠️ SOLUCIÓN AL DESFASE DE DÍA:
+  //     // Cortamos los primeros 10 caracteres (YYYY-MM-DD) y los separamos
+  //     const [year, month, day] = c.fecha.substring(0, 10).split('-');
+
+  //     // Armamos la fecha forzando la zona horaria local. 
+  //     // Nota: El mes en JavaScript empieza en 0, por eso month - 1.
+  //     const fechaConsulta = new Date(year, month - 1, day);
+
+  //     const mismaFecha =
+  //       fechaConsulta.toDateString() ===
+  //       new Date(diaSeleccionado).toDateString();
+
+  //     if (!mismaFecha) return false;
+
+  //     // Si es hoy, filtrar por hora actual
+  //     const esHoy =
+  //       fechaConsulta.toDateString() === ahora.toDateString();
+
+  //     if (esHoy) {
+  //       const [h, m] = c.hora.split(":");
+  //       const fechaHoraConsulta = new Date(fechaConsulta);
+  //       fechaHoraConsulta.setHours(parseInt(h, 10), parseInt(m, 10), 0, 0);
+
+  //       return fechaHoraConsulta >= ahora;
+  //     }
+
+  //     return true;
+  //   });
+
+  // };
+
+
   const filtrarConsultas = () => {
-    // if (!diaSeleccionado) return consultas;
+    // 👈 PUNTO 1: Condicionar listado si es Doctor
+    let consultasBase = consultas;
+    if (user?.role === "doctor") {
+      consultasBase = consultas.filter((c) => {
+        // Obtenemos el ID del doctor en la consulta (soporta si está populado o no)
+        const idDoctorConsulta = String(c.doctorId?._id || c.doctorId);
+        
+        // Obtenemos el ID del usuario logueado (soporta si tu auth manda _id o id)
+        const idLogueado = String(user?._id || user?.id);
+
+        return idDoctorConsulta === idLogueado;
+      });
+    }
 
     if (!diaSeleccionado) {
       const ahora = new Date();
 
-      return consultas
+      return consultasBase // 👈 Usar consultasBase en lugar de consultas
         .filter((c) => {
           const [year, month, day] = c.fecha.substring(0, 10).split('-');
           const fechaConsulta = new Date(year, month - 1, day);
@@ -136,24 +220,19 @@ export default function ConsultaVirtualManager() {
           const fechaHoraConsulta = new Date(fechaConsulta);
           fechaHoraConsulta.setHours(parseInt(h, 10), parseInt(m, 10), 0, 0);
 
-          return fechaHoraConsulta >= ahora; // 👈 solo futuros
+          return fechaHoraConsulta >= ahora;
         })
         .sort((a, b) => {
           const fechaA = new Date(`${a.fecha.substring(0, 10)}T${a.hora}`);
           const fechaB = new Date(`${b.fecha.substring(0, 10)}T${b.hora}`);
-          return fechaA - fechaB; // más próximo primero
+          return fechaA - fechaB;
         });
     }
 
     const ahora = new Date();
 
-    return consultas.filter((c) => {
-      // 🛠️ SOLUCIÓN AL DESFASE DE DÍA:
-      // Cortamos los primeros 10 caracteres (YYYY-MM-DD) y los separamos
+    return consultasBase.filter((c) => { // 👈 Usar consultasBase en lugar de consultas
       const [year, month, day] = c.fecha.substring(0, 10).split('-');
-
-      // Armamos la fecha forzando la zona horaria local. 
-      // Nota: El mes en JavaScript empieza en 0, por eso month - 1.
       const fechaConsulta = new Date(year, month - 1, day);
 
       const mismaFecha =
@@ -162,7 +241,6 @@ export default function ConsultaVirtualManager() {
 
       if (!mismaFecha) return false;
 
-      // Si es hoy, filtrar por hora actual
       const esHoy =
         fechaConsulta.toDateString() === ahora.toDateString();
 
@@ -176,7 +254,6 @@ export default function ConsultaVirtualManager() {
 
       return true;
     });
-
   };
 
   return (
@@ -256,10 +333,9 @@ export default function ConsultaVirtualManager() {
           {loading ? (
             <p>Cargando...</p>
           ) : (
+            // La lista debe renderizar unicamente los turnos de el doctor asignado, no de todos los profesionales
             <ConsultaList
-              // consultas={consultas}
               consultas={filtrarConsultas()}
-              // consultas={[...filtrarConsultas()].reverse()}
               onDelete={eliminar}
               onEdit={setEditando}
               user={user}

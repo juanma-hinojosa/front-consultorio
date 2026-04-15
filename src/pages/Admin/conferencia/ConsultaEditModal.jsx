@@ -33,6 +33,17 @@ export default function ConsultaEditModal({ consulta, onClose, onSave }) {
         <div style={{ display: "grid", gap: "8px" }}>
           <input name="fecha" type="date" onChange={handleChange} />
           <input name="hora" placeholder="14:00" onChange={handleChange} />
+          <select 
+            name="estado" 
+            value={form.estado || "pendiente"} 
+            onChange={handleChange}
+            style={{ padding: "4px" }}
+          >
+            <option value="pendiente">Pendiente</option>
+            <option value="confirmado">Confirmado</option>
+            <option value="cancelado">Cancelado</option>
+            <option value="finalizado">Finalizado</option>
+          </select>
           {/* <input name="telefono" onChange={handleChange} /> */}
         </div>
 
