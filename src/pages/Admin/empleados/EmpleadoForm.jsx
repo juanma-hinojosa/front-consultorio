@@ -85,7 +85,12 @@ const EmpleadoForm = ({ initialData, onSuccess, onCancel }) => {
       const method = editing ? 'PUT' : 'POST';
 
       const payload = { ...form };
-      if (editing) delete payload.contraseña;
+      // if (editing) delete payload.contraseña;
+
+      // Si estamos editando y el campo está vacío, lo borramos para no modificarla
+      if (editing && !payload.contraseña.trim()) {
+        delete payload.contraseña;
+      }
 
       const res = await fetch(`${import.meta.env.VITE_API_URL}${endpoint}`, {
         method,
@@ -127,9 +132,21 @@ const EmpleadoForm = ({ initialData, onSuccess, onCancel }) => {
       <input type="text" name="nombre" value={form.nombre} onChange={handleChange} placeholder="Nombre" required />
       <input type="text" name="apellido" value={form.apellido} onChange={handleChange} placeholder="Apellido" required />
       <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="Email" required />
-      {!initialData && (
+
+      {/* {!initialData && (
         <input type="password" name="contraseña" value={form.contraseña} onChange={handleChange} placeholder="Contraseña" required />
-      )}
+      )} */}
+
+      {/* CÓDIGO CORREGIDO */}
+      <input
+        type="password"
+        name="contraseña"
+        value={form.contraseña}
+        onChange={handleChange}
+        placeholder={initialData ? "Nueva contraseña (dejar en blanco para mantener actual)" : "Contraseña"}
+        required={!initialData}
+      />
+
       <select name="role" value={form.role} onChange={handleChange}>
         <option value="doctor">Doctor</option>
         <option value="recepcionista">Recepcionista</option>
