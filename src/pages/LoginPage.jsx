@@ -17,6 +17,7 @@ const LoginPage = () => {
   // viejo login 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true)
 
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
@@ -68,6 +69,8 @@ const LoginPage = () => {
         toast.error(error.message || 'Error del servidor');
         setError("Error del servidor");
       }
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -111,8 +114,8 @@ const LoginPage = () => {
             className="admin-login-input_765584"
             required
           />
-          <button type="submit" className="admin-login-button_765584">
-            Iniciar Sesión
+          <button type="submit" className="admin-login-button_765584" disabled={loading}>
+            {loading ? "Iniciando sesión..." : "Iniciar Sesión"}
           </button>
           {error && <p className="admin-login-error_765584">{error}</p>}
         </form>

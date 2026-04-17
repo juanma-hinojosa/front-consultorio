@@ -50,16 +50,16 @@ export default function ConsultaItem({ consulta, onDelete, onEdit, user }) {
         </p>
 
         {/* 👈 Badge de Estado */}
-          <span style={{
-            backgroundColor: coloresEstado[estado] || coloresEstado.pendiente,
-            color: "#fff",
-            padding: "2px 8px",
-            borderRadius: "12px",
-            fontSize: "12px",
-            fontWeight: "bold"
-          }}>
-            {estado ? estado.toUpperCase() : "PENDIENTE"}
-          </span>
+        <span style={{
+          backgroundColor: coloresEstado[estado] || coloresEstado.pendiente,
+          color: "#fff",
+          padding: "2px 8px",
+          borderRadius: "12px",
+          fontSize: "12px",
+          fontWeight: "bold"
+        }}>
+          {estado ? estado.toUpperCase() : "PENDIENTE"}
+        </span>
 
         <p style={{ fontSize: "14px", color: "#9CA3AF" }}>
           Dr: {doctorId?.nombre} {doctorId?.apellido}
@@ -128,7 +128,7 @@ export default function ConsultaItem({ consulta, onDelete, onEdit, user }) {
         {/* 🟢 ADMIN / RECEPCIONISTA */}
         {isAdminOrRecep && (
           <>
-            <a href={linkMeet} target="_blank" rel="noreferrer">
+            <a href={linkMeet} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
               <button
                 style={{
                   backgroundColor: "#22C55E",
@@ -151,6 +151,7 @@ export default function ConsultaItem({ consulta, onDelete, onEdit, user }) {
               href={`https://wa.me/${telefono}?text=Hola ${pacienteId?.nombre} te recordamos que tu turno es hoy ${fechaLocal.toLocaleDateString("es-AR")} - ${hora}. La consulta va ser por Google Meet con el link: ${linkMeet}`}
               target="_blank"
               rel="noreferrer"
+              style={{ textDecoration: 'none' }}
             >
               <button
                 style={{
@@ -162,7 +163,8 @@ export default function ConsultaItem({ consulta, onDelete, onEdit, user }) {
                   cursor: "pointer",
                   display: "flex",
                   alignItems: "center",
-                  gap: "6px"
+                  gap: "6px",
+                  textDecoration: 'none'
                 }}
               >
                 <Icon icon="logos:whatsapp-icon" />
@@ -203,7 +205,7 @@ export default function ConsultaItem({ consulta, onDelete, onEdit, user }) {
               }}
             >
               <Icon icon="fluent:calendar-cancel-16-filled" />
-              Cancelar
+              Eliminar
             </button>
           </>
         )}

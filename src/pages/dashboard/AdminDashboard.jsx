@@ -19,9 +19,14 @@ function DashboardAdmin() {
   const [view, setView] = useState("turnos");
   const [user, setUser] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Estados para los cumpleaños movidos aquí
   const [birthdayAlert, setBirthdayAlert] = useState(false);
+  const [pacientesCumple, setPacientesCumple] = useState([]);
+  const [loadingCumple, setLoadingCumple] = useState(true);
 
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -29,6 +34,70 @@ function DashboardAdmin() {
 
     setUser(storedUser);
   }, []);
+
+  useEffect(() => {
+    const fetchCumpleaños = async () => {
+      try {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/patients`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+
+        const pacientes = await res.json();
+        const hoy = new Date();
+        const proximos = [];
+
+        pacientes.forEach(p => {
+          if (!p.fechaNacimiento) return;
+
+          const [anioStr, mesStr, diaStr] = p.fechaNacimiento.split("T")[0].split("-");
+          const diaNac = parseInt(diaStr);
+          const mesNac = parseInt(mesStr);
+          const anioNac = parseInt(anioStr);
+
+          const esHoy = hoy.getDate() === diaNac && hoy.getMonth() + 1 === mesNac;
+          const años = hoy.getFullYear() - anioNac;
+          const cumpleEsteAño = new Date(hoy.getFullYear(), mesNac - 1, diaNac);
+          const diff = (cumpleEsteAño - hoy) / (1000 * 60 * 60 * 24);
+
+          if (esHoy || (diff >= 0 && diff <= 7)) {
+            proximos.push({
+              nombre: p.nombre,
+              apellido: p.apellido,
+              telefono: p.telefono,
+              dia: diaNac,
+              mes: mesNac,
+              cumpleAnios: años,
+              hoy: esHoy
+            });
+          }
+        });
+
+        setPacientesCumple(proximos);
+
+        const hayCumplesHoy = proximos.some(p => p.hoy);
+        setBirthdayAlert(hayCumplesHoy);
+
+        if (hayCumplesHoy) {
+          const todayKey = new Date().toISOString().split("T")[0];
+          const lastPlayed = localStorage.getItem("birthdaySoundPlayed");
+
+          if (lastPlayed !== todayKey) {
+            const audio = new Audio('/sonido.mp3');
+            audio.play().catch(() => { });
+            localStorage.setItem('birthdaySoundPlayed', todayKey);
+          }
+        }
+      } catch (error) {
+        console.error("Error obteniendo cumpleaños:", error);
+      } finally {
+        setLoadingCumple(false);
+      }
+    };
+
+    if (token) {
+      fetchCumpleaños();
+    }
+  }, [token]);
 
 
 
@@ -72,6 +141,28 @@ function DashboardAdmin() {
             </li>
 
 
+            {/* <li
+              onClick={() => { setView("cumpleaños"); setIsMenuOpen(false); }}
+              style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
+            >
+              <span>
+                <Icon icon="mdi:party-popper" /> Cumpleaños
+              </span>
+
+              {birthdayAlert && (
+                <span
+                  style={{
+                    width: "10px",
+                    height: "10px",
+                    background: "red",
+                    borderRadius: "50%",
+                    marginLeft: "10px"
+                  }}
+                ></span>
+              )}
+            </li> */}
+
+
             <li
               onClick={() => { setView("cumpleaños"); setIsMenuOpen(false); }}
               style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
@@ -92,7 +183,6 @@ function DashboardAdmin() {
                 ></span>
               )}
             </li>
-
 
             <li onClick={() => { setView("historiaClinica"); setIsMenuOpen(false); }}>
               <Icon icon="mdi:book-open-page-variant" /> Historia Clínica
@@ -151,7 +241,15 @@ function DashboardAdmin() {
           {view === "empleados" && <EmpleadoManager />}
           {view === "pacientes" && <PacienteManager />}
 
-          {view === "cumpleaños" && <BirthdayAlertManager setBirthdayAlert={setBirthdayAlert} />}
+          {/* {view === "cumpleaños" && <BirthdayAlertManager setBirthdayAlert={setBirthdayAlert} />} */}
+
+          {/* Pasamos los datos como props en lugar del setter de la alerta */}
+          {view === "cumpleaños" && (
+            <BirthdayAlertManager
+              pacientesCumple={pacientesCumple}
+              loading={loadingCumple}
+            />
+          )}
 
           {view === "historiaClinica" && <HistoriaClinicaManager />}
           {view === "turnos" && <TurnosManager />}
