@@ -77,15 +77,6 @@ const ListaTurnosAsignados = () => {
     })
     : turnos;
 
-  // const formatearFechaLarga = (fechaStr) => {
-  //   const fecha = new Date(fechaStr);
-  //   return fecha.toLocaleDateString('es-AR', {
-  //     weekday: 'long',
-  //     day: 'numeric',
-  //     month: 'long',
-  //   });
-  // };
-
   const formatearFechaLarga = (fechaStr) => {
     const [anio, mes, dia] = fechaStr.split("-").map(Number);
     const fecha = new Date(anio, mes - 1, dia); // el mes es 0-based
@@ -180,7 +171,20 @@ const ListaTurnosAsignados = () => {
             <strong>Doctora/o:</strong> {t.doctor?.nombre} {t.doctor?.apellido}<br />
             <strong>Especialidad:</strong> {Array.isArray(t.doctor?.especialidad) ? t.doctor?.especialidad.join(', ') : '-'}<br />
             <strong>Motivo de la consulta:</strong> {t.motivoDeConsulta}<br />
-            <strong>Día:</strong> {t.dia} | <strong>Hora:</strong> {t.horario} | <strong>Consultorio:</strong> {t.consultorio}<br />
+            {/* <strong>Día:</strong> {t.dia} | <strong>Hora:</strong> {t.horario} | <strong>Consultorio:</strong> {t.consultorio} {t.paciente?.direccion}<br /> */}
+            {/* <strong>Día:</strong> {t.dia} | <strong>Hora:</strong> {t.horario} | <strong>Consultorio:</strong> {t.consultorio}{" "} */}
+            {/* {t.consultorio === "Consulta a domicilio" && (
+              t.paciente?.direccion ? t.paciente.direccion : " | Sin dirección registrada"
+            )}
+            <br /> */}
+
+
+            <strong>Día:</strong> {t.dia} | <strong>Hora:</strong> {t.horario} | <strong>Consultorio:</strong> {t.consultorio}
+            {t.consultorio === "Consulta a domicilio" && (
+              <> | <strong>Dirección:</strong> {t.paciente?.direccion || "Sin dirección registrada"}</>
+            )}
+            <br />
+
             <strong>Categoría:</strong> {t.categoria}<br />
             <strong>Estado:</strong>{" "}
             <span style={{

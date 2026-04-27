@@ -21,7 +21,7 @@ async function generateSitemap() {
     // '/blog',
     // `/especialidades-externas/...especialidades`, // Ruta estática
   ];
-
+  
   let specialties = [];
   let blogs = [];
 

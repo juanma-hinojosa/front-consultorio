@@ -37,7 +37,7 @@ const BirthdayAlertManager = ({ pacientesCumple, loading }) => {
                 ? `🎂 ¡Hoy cumple ${p.cumpleAnios} años!`
                 : `Cumple el ${p.dia}/${p.mes} y cumple ${p.cumpleAnios} años`
               }
-            </p>
+            </p> 
 
             <a
               href={`https://wa.me/54${p.telefono.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(

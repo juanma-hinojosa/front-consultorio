@@ -11,6 +11,7 @@ export default function ConsultaForm({ onSubmit }) {
     pacienteId: "",
     doctorId: "",
     fecha: "",
+    motivoConsulta: "",
     hora: "",
     telefono: ""
   });
@@ -29,6 +30,7 @@ export default function ConsultaForm({ onSubmit }) {
         pacienteId: "",
         doctorId: "",
         fecha: "",
+        motivoConsulta: "",
         hora: "",
         telefono: ""
       });
@@ -104,6 +106,17 @@ export default function ConsultaForm({ onSubmit }) {
 
       <DoctorSelect
         onSelect={(d) => setForm({ ...form, doctorId: d._id })}
+      />
+
+      <input
+        style={{
+          width:'100%',
+          borderRadius:'4px',
+          padding:'8px',
+          marginTop:'8px'
+        }}
+        placeholder="Motivo de la consulta"
+        onChange={(e) => setForm({ ...form, motivoConsulta: e.target.value })}
       />
 
       <div

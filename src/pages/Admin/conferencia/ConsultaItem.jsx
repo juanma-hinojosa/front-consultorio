@@ -8,6 +8,7 @@ export default function ConsultaItem({ consulta, onDelete, onEdit, user }) {
     doctorId,
     fecha,
     hora,
+    motivoConsulta,
     telefono,
     linkMeet,
     estado
@@ -65,6 +66,10 @@ export default function ConsultaItem({ consulta, onDelete, onEdit, user }) {
           Dr: {doctorId?.nombre} {doctorId?.apellido}
         </p>
 
+        <p style={{ fontSize: "16px", color: "#2f3030" }}>
+          {motivoConsulta}
+        </p>
+
         <p>
           {/* Mostramos la fecha corregida */}
           {fechaLocal.toLocaleDateString("es-AR")} - {hora}
@@ -101,7 +106,7 @@ export default function ConsultaItem({ consulta, onDelete, onEdit, user }) {
             </a>
 
             <a
-              href={`https://wa.me/${telefono}?text=Hola ${pacienteId?.nombre} te recordamos que tu turno es hoy ${fechaLocal} a las ${hora}. La consulta va ser por Google Meet con el link: ${linkMeet}`}
+              href={`https://wa.me/54${telefono}?text=Hola ${pacienteId?.nombre} te recordamos que tu turno es hoy ${fechaLocal} a las ${hora}. La consulta va ser por Google Meet con el link: ${linkMeet}`}
               target="_blank"
               rel="noreferrer"
             >
@@ -148,7 +153,7 @@ export default function ConsultaItem({ consulta, onDelete, onEdit, user }) {
             </a>
 
             <a
-              href={`https://wa.me/${telefono}?text=Hola ${pacienteId?.nombre} te recordamos que tu turno es hoy ${fechaLocal.toLocaleDateString("es-AR")} - ${hora}. La consulta va ser por Google Meet con el link: ${linkMeet}`}
+              href={`https://wa.me/54${telefono}?text=Hola ${pacienteId?.nombre} te recordamos que tu turno es hoy ${fechaLocal.toLocaleDateString("es-AR")} - ${hora}. La consulta va ser por Google Meet con el link: ${linkMeet}`}
               target="_blank"
               rel="noreferrer"
               style={{ textDecoration: 'none' }}

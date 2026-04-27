@@ -3,6 +3,7 @@ import ListaTurnosDisponibles from "./ListaTurnosDisponibles";
 import AsignarTurno from "./AsignarTurno";
 import ListaTurnosAsignados from "./ListarTurnosAsignados";
 import CrearTurnosDisponibles from "./CrearTurnoDisponibles";
+import TurnosPorDia from "./HistorialComponent";
 
 const TurnosManager = () => {
   const [vista, setVista] = useState("asignados");
@@ -20,6 +21,7 @@ const TurnosManager = () => {
         <button style={{ padding: "5px 10px", }} className='poppins-light' onClick={() => setVista("disponibles")}>Ver/Editar Turnos Disponibles</button>
         <button style={{ padding: "5px 10px", }} className='poppins-light' onClick={() => setVista("asignar")}>Asignar Turno a Paciente</button>
         <button style={{ padding: "5px 10px", }} className='poppins-light' onClick={() => setVista("asignados")}>Turnos Asignados</button>
+        <button style={{ padding: "5px 10px", }} className='poppins-light' onClick={() => setVista("historial")}>Historial de Turnos</button>
       </div>
       <br />
       <hr />
@@ -28,6 +30,7 @@ const TurnosManager = () => {
       {vista === "disponibles" && <ListaTurnosDisponibles />}
       {vista === "asignar" && <AsignarTurno />}
       {vista === "asignados" && <ListaTurnosAsignados />}
+      {vista === 'historial' && <TurnosPorDia />}
     </div>
   );
 };
