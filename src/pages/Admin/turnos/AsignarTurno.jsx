@@ -17,6 +17,7 @@ const AsignarTurno = () => {
   const [nombreNuevo, setNombreNuevo] = useState("");
   const [apellidoNuevo, setApellidoNuevo] = useState("");
   const [telefonoNuevo, setTelefonoNuevo] = useState("");
+  const [dniNuevo, setDniNuevo] = useState(""); // <-- NUEVO ESTADO
 
   const [modoNuevoPaciente, setModoNuevoPaciente] = useState(null); // null, "nuevo", "existente"
 
@@ -71,7 +72,8 @@ const AsignarTurno = () => {
         body: JSON.stringify({
           nombre: nombreNuevo,
           apellido: apellidoNuevo,
-          telefono: telefonoNuevo
+          telefono: telefonoNuevo,
+          dni: dniNuevo
         }),
       });
 
@@ -80,7 +82,7 @@ const AsignarTurno = () => {
         toast.success("Paciente creado");
         setPacienteId(data._id);
         setPacienteSeleccionado(data);
-        setNombreNuevo(""); setApellidoNuevo(""); setTelefonoNuevo("");
+        setNombreNuevo(""); setApellidoNuevo(""); setTelefonoNuevo("");setDniNuevo("");
       } else {
         toast.error("Error: " + (data.mensaje || "No se pudo crear paciente"));
       }
@@ -166,6 +168,14 @@ const AsignarTurno = () => {
               placeholder="Apellido"
               value={apellidoNuevo}
               onChange={(e) => setApellidoNuevo(e.target.value)}
+            />
+            {/* NUEVO INPUT PARA EL DNI */}
+            <input
+              className="ui-input"
+              placeholder="DNI"
+              type="number"
+              value={dniNuevo}
+              onChange={(e) => setDniNuevo(e.target.value)}
             />
             <input
               className="ui-input"
