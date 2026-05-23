@@ -18,6 +18,18 @@ export default function ConsultaForm({ onSubmit }) {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
+    // 🔴 VALIDACIÓN
+    if (
+      !form.pacienteId ||
+      !form.doctorId ||
+      !form.fecha ||
+      !form.hora ||
+      !form.motivoConsulta
+    ) {
+      toast.error("Completa todos los campos antes de continuar");
+      return; // 🚫 corta ejecución
+    }
+    
     try {
       setLoading(true);
 
@@ -110,10 +122,10 @@ export default function ConsultaForm({ onSubmit }) {
 
       <input
         style={{
-          width:'100%',
-          borderRadius:'4px',
-          padding:'8px',
-          marginTop:'8px'
+          width: '100%',
+          borderRadius: '4px',
+          padding: '8px',
+          marginTop: '8px'
         }}
         placeholder="Motivo de la consulta"
         onChange={(e) => setForm({ ...form, motivoConsulta: e.target.value })}

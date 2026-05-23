@@ -36,7 +36,7 @@ const ListaHistoriaClinica = () => {
 
 
       const data = await res.json();
-      // console.log(data);
+      console.log(data);
 
       toast.success('Registros obtenidos con éxito');
       setRegistros(data);
