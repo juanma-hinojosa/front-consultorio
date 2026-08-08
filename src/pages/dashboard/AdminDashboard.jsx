@@ -14,6 +14,7 @@ import BlogManager from '../Admin/blog/BlogManager';
 import VideoManager from '../Admin/video/VideoManager';
 import BirthdayAlertManager from '../Admin/birthday/BirthdayAlertManager';
 import ConsultaVirtualManager from '../Admin/conferencia/ConsultaVirtualManager';
+import BirthdayEmployeeManager from '../Admin/birthday/BirthdayEmployeeManager';
 
 function DashboardAdmin() {
   const [view, setView] = useState("turnos");
@@ -25,13 +26,17 @@ function DashboardAdmin() {
   const [pacientesCumple, setPacientesCumple] = useState([]);
   const [loadingCumple, setLoadingCumple] = useState(true);
 
+  // ESTADOS PARA EMPLEADOS MOVIDOS AQUÍ (Para que carguen globalmente de inmediato)
+  const [employeeBirthdayAlert, setEmployeeBirthdayAlert] = useState(false);
+  const [empleadosCumple, setEmpleadosCumple] = useState([]);
+  const [loadingEmpleadosCumple, setLoadingEmpleadosCumple] = useState(true);
+
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     // console.log(storedUser);
-
     setUser(storedUser);
   }, []);
 
@@ -99,6 +104,65 @@ function DashboardAdmin() {
     }
   }, [token]);
 
+  useEffect(() => {
+    const fetchCumpleañosEmpleados = async () => {
+      try {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/empleados`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        const empleados = await res.json();
+
+        const hoy = new Date();
+        const diaHoy = hoy.getDate();
+        const mesHoy = hoy.getMonth() + 1;
+        const anioHoy = hoy.getFullYear();
+
+        const hoyLimpio = new Date(anioHoy, hoy.getMonth(), diaHoy);
+        const proximosEmpleados = [];
+
+        empleados.forEach(emp => {
+          if (!emp.fechaNacimiento || !emp.fechaNacimiento.includes('/')) return;
+
+          const [diaStr, mesStr, anioStr] = emp.fechaNacimiento.split("/");
+          const diaNac = parseInt(diaStr, 10);
+          const mesNac = parseInt(mesStr, 10);
+          const anioNac = parseInt(anioStr, 10);
+
+          const esHoy = diaHoy === diaNac && mesHoy === mesNac;
+          const años = anioHoy - anioNac;
+
+          const cumpleEsteAño = new Date(anioHoy, mesNac - 1, diaNac);
+          const diff = Math.round((cumpleEsteAño - hoyLimpio) / (1000 * 60 * 60 * 24));
+
+          if (esHoy || (diff >= 0 && diff <= 7)) {
+            proximosEmpleados.push({
+              nombre: emp.nombre,
+              apellido: emp.apellido,
+              role: emp.role,
+              dia: diaNac,
+              mes: mesNac,
+              cumpleAnios: años,
+              hoy: esHoy,
+              diasFaltantes: diff
+            });
+          }
+        });
+
+        proximosEmpleados.sort((a, b) => b.hoy - a.hoy || a.diasFaltantes - b.diasFaltantes);
+
+        setEmpleadosCumple(proximosEmpleados);
+        // La alerta roja se activa inmediatamente si alguien cumple HOY
+        setEmployeeBirthdayAlert(proximosEmpleados.some(e => e.hoy));
+
+      } catch (error) {
+        console.error("Error obteniendo cumpleaños de empleados:", error);
+      } finally {
+        setLoadingEmpleadosCumple(false);
+      }
+    };
+
+    if (token) fetchCumpleañosEmpleados();
+  }, [token]);
 
 
   const handleLogout = () => {
@@ -140,29 +204,6 @@ function DashboardAdmin() {
               <Icon icon="mdi:account-heart" /> Pacientes
             </li>
 
-
-            {/* <li
-              onClick={() => { setView("cumpleaños"); setIsMenuOpen(false); }}
-              style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
-            >
-              <span>
-                <Icon icon="mdi:party-popper" /> Cumpleaños
-              </span>
-
-              {birthdayAlert && (
-                <span
-                  style={{
-                    width: "10px",
-                    height: "10px",
-                    background: "red",
-                    borderRadius: "50%",
-                    marginLeft: "10px"
-                  }}
-                ></span>
-              )}
-            </li> */}
-
-
             <li
               onClick={() => { setView("cumpleaños"); setIsMenuOpen(false); }}
               style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
@@ -181,6 +222,14 @@ function DashboardAdmin() {
                     marginLeft: "10px"
                   }}
                 ></span>
+              )}
+            </li>
+
+           {/* Menú de Cumpleaños Empleados con Alerta Roja en tiempo real */}
+            <li onClick={() => { setView("cumpleañosEmpleados"); setIsMenuOpen(false); }} style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <span><Icon icon="mdi:cake-variant" /> Cumpleaños Personal</span>
+              {employeeBirthdayAlert && (
+                <span style={{ width: "10px", height: "10px", background: "red", borderRadius: "50%", marginLeft: "10px" }}></span>
               )}
             </li>
 
@@ -250,6 +299,18 @@ function DashboardAdmin() {
               loading={loadingCumple}
             />
           )}
+
+
+
+          {/* RENDERIZADO DEL NUEVO MANAGER DE EMPLEADOS PASANDO ESTADOS DEL PARENT */}
+          {view === "cumpleañosEmpleados" && (
+            <BirthdayEmployeeManager 
+              empleadosCumple={empleadosCumple} 
+              loading={loadingEmpleadosCumple} 
+            />
+          )}
+
+          
 
           {view === "historiaClinica" && <HistoriaClinicaManager />}
           {view === "turnos" && <TurnosManager />}

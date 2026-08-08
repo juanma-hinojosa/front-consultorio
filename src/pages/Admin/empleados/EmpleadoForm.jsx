@@ -26,7 +26,9 @@ const especialidades = [
   "Ginecologia",
   "Obstetricia",
   "Psicologia Adultos",
-      "Psicologia Pediatrica"
+  "Psicologia Pediatrica",
+  "Radiografia",
+  "Ecografia"
 ];
 
 const EmpleadoForm = ({ initialData, onSuccess, onCancel }) => {
@@ -35,6 +37,7 @@ const EmpleadoForm = ({ initialData, onSuccess, onCancel }) => {
     apellido: '',
     email: '',
     contraseña: '',
+    fechaNacimiento: '', // Almacenará YYYY-MM-DD localmente para el input HTML
     role: 'doctor',
     especialidad: []
   });
@@ -43,11 +46,19 @@ const EmpleadoForm = ({ initialData, onSuccess, onCancel }) => {
 
   useEffect(() => {
     if (initialData) {
+      // Convertir de DD/MM/YYYY (DB) a YYYY-MM-DD (HTML Input) si existe
+      let fechaFormatoInput = '';
+      if (initialData.fechaNacimiento && initialData.fechaNacimiento.includes('/')) {
+        const [d, m, a] = initialData.fechaNacimiento.split('/');
+        fechaFormatoInput = `${a}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`;
+      }
+
       setForm({
         nombre: initialData.nombre,
         apellido: initialData.apellido,
         email: initialData.email,
         contraseña: '',
+        fechaNacimiento: fechaFormatoInput,
         role: initialData.role,
         especialidad: Array.isArray(initialData.especialidad)
           ? initialData.especialidad
@@ -87,7 +98,13 @@ const EmpleadoForm = ({ initialData, onSuccess, onCancel }) => {
       const method = editing ? 'PUT' : 'POST';
 
       const payload = { ...form };
-      // if (editing) delete payload.contraseña;
+      
+      if (form.fechaNacimiento) {
+        const [anio, mes, dia] = form.fechaNacimiento.split('-');
+        payload.fechaNacimiento = `${dia}/${mes}/${anio}`; // Formato Guardado final
+      } else {
+        payload.fechaNacimiento = ''; 
+      }
 
       // Si estamos editando y el campo está vacío, lo borramos para no modificarla
       if (editing && !payload.contraseña.trim()) {
@@ -119,6 +136,7 @@ const EmpleadoForm = ({ initialData, onSuccess, onCancel }) => {
         apellido: '',
         email: '',
         contraseña: '',
+        fechaNacimiento: '',
         role: 'doctor',
         especialidad: []
       });
@@ -148,6 +166,16 @@ const EmpleadoForm = ({ initialData, onSuccess, onCancel }) => {
         placeholder={initialData ? "Nueva contraseña (dejar en blanco para mantener actual)" : "Contraseña"}
         required={!initialData}
       />
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', marginBottom: '10px' }}>
+        <label style={{ fontSize: '14px', color: '#666', textAlign: 'left' }}>Fecha de Nacimiento (Opcional)</label>
+        <input 
+          type="date" 
+          name="fechaNacimiento" 
+          value={form.fechaNacimiento} 
+          onChange={handleChange} 
+        />
+      </div>
 
       <select name="role" value={form.role} onChange={handleChange}>
         <option value="doctor">Doctor</option>

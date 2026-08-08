@@ -38,11 +38,36 @@ const EmpleadoManager = () => {
     setVista('editar');
   };
 
-  const handleEliminar = async (id) => {
-    if (!confirm('¿Eliminar este empleado?')) return;
+  // const handleEliminar = async (id) => {
+  //   if (!confirm('¿Eliminar este empleado?')) return;
+  //   try {
+  //     const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/${id}`, {
+  //       method: 'DELETE',
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //         'Content-Type': 'application/json',
+  //       },
+  //     });
+
+  //     const data = await res.json();
+  //     if (!res.ok) throw new Error(data.message);
+
+  //     toast.success('Empleado eliminado correctamente');
+  //     fetchEmpleados();
+  //   } catch (err) {
+  //     toast.error(err.message || 'Error al eliminar');
+  //   }
+  // };
+
+  // Reemplaza la función handleEliminar con esta:
+  const handleToggleEstado = async (empleado) => {
+    const accion = empleado.activo === false ? 'activar' : 'desactivar';
+
+    if (!confirm(`¿Estás seguro de que deseas ${accion} a este empleado?`)) return;
+
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/${id}`, {
-        method: 'DELETE',
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/${empleado._id}/estado`, {
+        method: 'PATCH',
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -52,10 +77,10 @@ const EmpleadoManager = () => {
       const data = await res.json();
       if (!res.ok) throw new Error(data.message);
 
-      toast.success('Empleado eliminado correctamente');
-      fetchEmpleados();
+      toast.success(`Empleado ${accion}do correctamente`);
+      fetchEmpleados(); // Recarga la lista para reflejar el cambio
     } catch (err) {
-      toast.error(err.message || 'Error al eliminar');
+      toast.error(err.message || `Error al ${accion}`);
     }
   };
 
@@ -78,7 +103,7 @@ const EmpleadoManager = () => {
         </button>
       </div>
 
-<br />
+      <br />
 
       {/* Renderizado dinámico según la vista */}
       {vista === 'crear' && (
@@ -101,11 +126,19 @@ const EmpleadoManager = () => {
         />
       )}
 
-      {vista === 'lista' && (
+      {/* {vista === 'lista' && (
         <EmpleadoList
           empleados={empleados}
           onEditar={handleEditar}
           onEliminar={handleEliminar}
+        />
+      )} */}
+
+      {vista === 'lista' && (
+        <EmpleadoList
+          empleados={empleados}
+          onEditar={handleEditar}
+          onToggleEstado={handleToggleEstado} // 👈 Cambiamos el prop
         />
       )}
     </div>
