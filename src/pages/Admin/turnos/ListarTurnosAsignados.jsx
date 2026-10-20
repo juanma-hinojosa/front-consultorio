@@ -85,6 +85,44 @@ const ListaTurnosAsignados = () => {
     return fechaFormateada.charAt(0).toUpperCase() + fechaFormateada.slice(1);
   };
 
+  const cambiarEstadoTurno = async (id, nuevoEstado, mensajeExito) => {
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/turnos/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({ estadoAtencion: nuevoEstado }),
+      });
+
+      const actualizado = await res.json();
+
+      if (res.ok) {
+        setTurnos(prevTurnos =>
+          prevTurnos.map(turno => {
+            if (turno._id === id) {
+              // Mantenemos la información original de paciente y doctor
+              return {
+                ...turno,
+                ...actualizado,
+                paciente: turno.paciente,
+                doctor: turno.doctor
+              };
+            }
+            return turno;
+          })
+        );
+        toast.success(mensajeExito);
+      } else {
+        toast.error(actualizado.error || "Error al actualizar el turno.");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("No se pudo actualizar el estado del turno.");
+    }
+  };
+
 
   return (
     <div className="poppins-semibold">
@@ -96,12 +134,13 @@ const ListaTurnosAsignados = () => {
       </div>
 
       {/* Fechas próximas */}
-      <div style={{
-        marginBottom: "15px",
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(100px, 1fr))",
-        gap: "1rem",
-      }}>
+      <div
+        style={{
+          marginBottom: "15px",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(100px, 1fr))",
+          gap: "1rem",
+        }}>
         {getNext15Weekdays().map((fecha, idx) => {
           const fechaStr = formatearFecha(fecha);
           return (
@@ -171,12 +210,6 @@ const ListaTurnosAsignados = () => {
             <strong>Doctora/o:</strong> {t.doctor?.nombre} {t.doctor?.apellido}<br />
             <strong>Especialidad:</strong> {Array.isArray(t.doctor?.especialidad) ? t.doctor?.especialidad.join(', ') : '-'}<br />
             <strong>Motivo de la consulta:</strong> {t.motivoDeConsulta}<br />
-            {/* <strong>Día:</strong> {t.dia} | <strong>Hora:</strong> {t.horario} | <strong>Consultorio:</strong> {t.consultorio} {t.paciente?.direccion}<br /> */}
-            {/* <strong>Día:</strong> {t.dia} | <strong>Hora:</strong> {t.horario} | <strong>Consultorio:</strong> {t.consultorio}{" "} */}
-            {/* {t.consultorio === "Consulta a domicilio" && (
-              t.paciente?.direccion ? t.paciente.direccion : " | Sin dirección registrada"
-            )}
-            <br /> */}
 
 
             <strong>Día:</strong> {t.dia} | <strong>Hora:</strong> {t.horario} | <strong>Consultorio:</strong> {t.consultorio}
@@ -185,7 +218,9 @@ const ListaTurnosAsignados = () => {
             )}
             <br />
 
-            <strong>Categoría:</strong> {t.categoria}<br />
+
+            {/* Logica de cambio de estado de paciente */}
+            {/* <strong>Categoría:</strong> {t.categoria}<br />
             <strong>Estado:</strong>{" "}
             <span style={{
               color: t.estadoAtencion === "atendido" ? "green" : "orange",
@@ -193,32 +228,113 @@ const ListaTurnosAsignados = () => {
             }}>
               {t.estadoAtencion === "atendido" ? "Atendido" : "Pendiente"}
             </span>
+            <br /> */}
+
+            {/* Nueva logica */}
+            <strong>Categoría:</strong> {t.categoria}<br />
+            <strong>Estado:</strong>{" "}
+            <span style={{
+              color: t.estadoAtencion === "atendido" ? "green" : t.estadoAtencion === "sala de espera" ? "#ff9800" : "orange",
+              fontWeight: "bold"
+            }}>
+              {t.estadoAtencion === "atendido"
+                ? "Atendido"
+                : t.estadoAtencion === "sala de espera"
+                  ? "Sala de espera"
+                  : "Pendiente"}
+            </span>
             <br />
 
+            {/* Botón para pasar de Pendiente a Sala de Espera */}
             {t.estadoAtencion === "pendiente" && (
               <button
-                onClick={async () => {
-                  try {
-                    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/turnos/${t._id}`, {
-                      method: "PUT",
-                      headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${localStorage.getItem("token")}`
-                      },
-                      body: JSON.stringify({ estadoAtencion: "atendido" }),
-                    });
-                    const actualizado = await res.json();
-                    if (res.ok) {
-                      setTurnos(turnos.map(turno => turno._id === t._id ? actualizado : turno));
-                      toast.success("El paciente fue marcado como atendido.");
-                    } else {
-                      toast.error(actualizado.error || "Error al actualizar el turno.");
-                    }
-                  } catch (err) {
-                    console.error(err);
-                    toast.error("No se pudo actualizar el estado del turno.");
-                  }
+
+                // onClick={async () => {
+                //   try {
+                //     const res = await fetch(`${import.meta.env.VITE_API_URL}/api/turnos/${t._id}`, {
+                //       method: "PUT",
+                //       headers: {
+                //         "Content-Type": "application/json",
+                //         Authorization: `Bearer ${localStorage.getItem("token")}`
+                //       },
+                //       body: JSON.stringify({ estadoAtencion: "sala de espera" }),
+                //     });
+                //     const actualizado = await res.json();
+                //     if (res.ok) {
+                //       setTurnos(turnos.map(turno => turno._id === t._id ? actualizado : turno));
+                //       toast.success("El paciente fue ingresado a la sala de espera.");
+                //     } else {
+                //       toast.error(actualizado.error || "Error al actualizar el turno.");
+                //     }
+                //   } catch (err) {
+                //     console.error(err);
+                //     toast.error("No se pudo actualizar el estado del turno.");
+                //   }
+                // }}
+                // style={{
+                //   marginTop: "5px",
+                //   padding: "5px 10px",
+                //   backgroundColor: "#ff9800",
+                //   color: "#fff",
+                //   border: "none",
+                //   borderRadius: "4px",
+                //   cursor: "pointer",
+                //   marginRight: "10px"
+                // }}
+
+                onClick={() => cambiarEstadoTurno(t._id, "sala de espera", "El paciente fue ingresado a la sala de espera.")}
+                style={{
+                  marginTop: "5px",
+                  padding: "5px 10px",
+                  backgroundColor: "#ff9800",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                  marginRight: "10px"
                 }}
+
+              >
+                Pasar a la Sala de Espera
+              </button>
+            )}
+
+            {/* Botón para marcar como Atendido (disponible si está pendiente o en sala de espera) */}
+            {t.estadoAtencion !== "atendido" && (
+              <button
+                // onClick={async () => {
+                //   try {
+                //     const res = await fetch(`${import.meta.env.VITE_API_URL}/api/turnos/${t._id}`, {
+                //       method: "PUT",
+                //       headers: {
+                //         "Content-Type": "application/json",
+                //         Authorization: `Bearer ${localStorage.getItem("token")}`
+                //       },
+                //       body: JSON.stringify({ estadoAtencion: "atendido" }),
+                //     });
+                //     const actualizado = await res.json();
+                //     if (res.ok) {
+                //       setTurnos(turnos.map(turno => turno._id === t._id ? actualizado : turno));
+                //       toast.success("El paciente fue marcado como atendido.");
+                //     } else {
+                //       toast.error(actualizado.error || "Error al actualizar el turno.");
+                //     }
+                //   } catch (err) {
+                //     console.error(err);
+                //     toast.error("No se pudo actualizar el estado del turno.");
+                //   }
+                // }}
+                // style={{
+                //   marginTop: "5px",
+                //   padding: "5px 10px",
+                //   backgroundColor: "#4caf50",
+                //   color: "#fff",
+                //   border: "none",
+                //   borderRadius: "4px",
+                //   cursor: "pointer",
+                //   marginRight: "10px"
+                // }}
+                onClick={() => cambiarEstadoTurno(t._id, "atendido", "El paciente fue marcado como atendido.")}
                 style={{
                   marginTop: "5px",
                   padding: "5px 10px",
@@ -229,6 +345,7 @@ const ListaTurnosAsignados = () => {
                   cursor: "pointer",
                   marginRight: "10px"
                 }}
+
               >
                 Marcar como Atendido
               </button>

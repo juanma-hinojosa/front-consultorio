@@ -17,6 +17,7 @@ import { Helmet } from 'react-helmet-async';
 import especialidadesData from '../assets/js/list';
 import UltimoVideo from '../components/VideoSectionComponent';
 import MarqueeComponent from '../components/marquee.jsx/MarqueeComponent';
+import GrillaTurnosRapida from '../components/proximosturnos/proximoturnos';
 
 function HomePage() {
   const [blogs, setBlogs] = useState([]);
@@ -70,6 +71,8 @@ function HomePage() {
       />
       <FlyerPopup />
 
+      {/* <GrillaTurnosRapida /> */}
+
       <CallToAction
         titulo='Especialistas comprometidos con tu bienestar'
         parrafo="En nuestro consultorio encontrarás atención médica personalizada, disponibilidad inmediata de turnos, cobertura de obras sociales y facilidades de pago. Queremos verte bien."
@@ -114,7 +117,7 @@ function HomePage() {
       </section>
 
 
-      <BenefitsSection
+      {/* <BenefitsSection
         titulo='MEDICINA PRIVADA'
         texto='Contar con un médico privado y atención en clínicas privadas ofrece múltiples ventajas.
                   Recibís un trato personalizado, con seguimiento continuo y mayor confianza en tu cuidado.
@@ -125,7 +128,8 @@ function HomePage() {
                   comprometidos en brindarte el mejor servicio.'
         imgDos='https://images.unsplash.com/photo-1590611936760-eeb9bc598548?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
         imgUno='https://images.unsplash.com/photo-1607746882042-944635dfe10e'
-      />
+      /> */}
+      
       {/* <!-- Elfsight Google Reviews | Untitled Google Reviews --> */}
       <div style={{ padding: '50px 0' }} className="elfsight-app-2ad46362-2c63-4b57-b3cf-c25d5ac6651a" data-elfsight-app-lazy></div>
       {/* <ConsultaForm /> */}

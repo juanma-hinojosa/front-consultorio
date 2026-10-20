@@ -4,13 +4,16 @@ import "./marquee.css";
 function MarqueeComponent() {
   const osFotos = [
     { path: "./img/obra-social/os-1.png", name: "osde" },
-    { path: "./img/obra-social/os-2.png", name: "swiss medical" },
-    { path: "./img/obra-social/os-3.jpg", name: "medife" },
-    { path: "./img/obra-social/os-4.png", name: "pami" },
-    { path: "./img/obra-social/os-5.png", name: "sancor salud" },
-    { path: "./img/obra-social/os-6.png", name: "medicus" },
-    { path: "./img/obra-social/os-7.png", name: "omint" },
-    { path: "./img/obra-social/os-8.jpg", name: "galeno" },
+    { path: "./img/obra-social/os-1.png", name: "osde" },
+    { path: "./img/obra-social/os-1.png", name: "osde" },
+    { path: "./img/obra-social/os-1.png", name: "osde" },
+    // { path: "./img/obra-social/os-2.png", name: "swiss medical" },
+    // { path: "./img/obra-social/os-3.jpg", name: "medife" },
+    // { path: "./img/obra-social/os-4.png", name: "pami" },
+    // { path: "./img/obra-social/os-5.png", name: "sancor salud" },
+    // { path: "./img/obra-social/os-6.png", name: "medicus" },
+    // { path: "./img/obra-social/os-7.png", name: "omint" },
+    // { path: "./img/obra-social/os-8.jpg", name: "galeno" },
 
   ]
   return (

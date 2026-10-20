@@ -28,7 +28,9 @@ const especialidades = [
   "Psicologia Adultos",
   "Psicologia Pediatrica",
   "Radiografia",
-  "Ecografia"
+  "Ecografia",
+  "Electroensefalograma",
+  "Audiometria"
 ];
 
 const EmpleadoForm = ({ initialData, onSuccess, onCancel }) => {
@@ -98,12 +100,12 @@ const EmpleadoForm = ({ initialData, onSuccess, onCancel }) => {
       const method = editing ? 'PUT' : 'POST';
 
       const payload = { ...form };
-      
+
       if (form.fechaNacimiento) {
         const [anio, mes, dia] = form.fechaNacimiento.split('-');
         payload.fechaNacimiento = `${dia}/${mes}/${anio}`; // Formato Guardado final
       } else {
-        payload.fechaNacimiento = ''; 
+        payload.fechaNacimiento = '';
       }
 
       // Si estamos editando y el campo está vacío, lo borramos para no modificarla
@@ -169,11 +171,11 @@ const EmpleadoForm = ({ initialData, onSuccess, onCancel }) => {
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', marginBottom: '10px' }}>
         <label style={{ fontSize: '14px', color: '#666', textAlign: 'left' }}>Fecha de Nacimiento (Opcional)</label>
-        <input 
-          type="date" 
-          name="fechaNacimiento" 
-          value={form.fechaNacimiento} 
-          onChange={handleChange} 
+        <input
+          type="date"
+          name="fechaNacimiento"
+          value={form.fechaNacimiento}
+          onChange={handleChange}
         />
       </div>
 
