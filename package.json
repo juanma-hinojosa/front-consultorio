@@ -14,6 +14,8 @@
     "@types/moment-timezone": "^0.5.13",
     "aos": "^2.3.4",
     "axios": "^1.8.4",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.9",
     "lightgallery": "^2.8.3",
     "lucide-react": "^0.487.0",
     "moment-timezone": "^0.6.0",

@@ -3,10 +3,6 @@ import CrearHistoriaClinica from './CrearHistoriaClinica';
 import ListaHistoriaClinica from './ListaHistoriaClinica';
 import EditarHistoriaClinica from './EditarHistoriaClinica';
 import EliminarHistoriaClinica from './EliminarHistoriaClinica';
-// import CrearHistoriaClinica from './CrearHistoriaClinica';
-// import ListaHistoriaClinica from './ListaHistoriaClinica';
-// import BuscarPaciente from './BuscarPaciente';
-// import EditarHistoriaClinica from './EditarHistoriaClinica';
 
 const HistoriaClinicaManager = () => {
   const [vista, setVista] = useState("listar");

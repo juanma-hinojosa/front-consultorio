@@ -15,6 +15,7 @@ import VideoManager from '../Admin/video/VideoManager';
 import BirthdayAlertManager from '../Admin/birthday/BirthdayAlertManager';
 import ConsultaVirtualManager from '../Admin/conferencia/ConsultaVirtualManager';
 import BirthdayEmployeeManager from '../Admin/birthday/BirthdayEmployeeManager';
+import FinanzasDashboard from '../Admin/pagos/FinanzasDashboard';
 
 function DashboardAdmin() {
   const [view, setView] = useState("turnos");
@@ -245,6 +246,10 @@ function DashboardAdmin() {
               <Icon icon="mdi:teleconference" /> Consulta Virtual
             </li>
 
+            <li onClick={() => { setView('pagos'); setIsMenuOpen(false) }} >
+              <Icon icon="lucide:hand-coins" /> Pagos y Tratamientos
+            </li>
+
             <li onClick={() => { setView("blog"); setIsMenuOpen(false); }}>
               <Icon icon="mdi:blogger" /> Blogs
             </li>
@@ -315,7 +320,7 @@ function DashboardAdmin() {
           {view === "historiaClinica" && <HistoriaClinicaManager />}
           {view === "turnos" && <TurnosManager />}
           {view === 'consulta' && <ConsultaVirtualManager />}
-          {/* {view === "pagos" && <PagosManager />} */}
+          {view === "pagos" && <FinanzasDashboard />}
 
           {/* {view === "tratamientos" && <TratamientosManager />} */}
           {view === "blog" && <BlogManager userRole={user?.role} />}

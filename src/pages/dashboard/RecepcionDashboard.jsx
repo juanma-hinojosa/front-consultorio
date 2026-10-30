@@ -11,6 +11,7 @@ import TurnosManager from '../recepcionista/turnos/TurnoManager';
 import BirthdayAlertManager from '../recepcionista/birthday/BirthdayAlertManager';
 import ConsultaVirtualManager from '../Admin/conferencia/ConsultaVirtualManager';
 import BirthdayEmployeeManager from '../Admin/birthday/BirthdayEmployeeManager';
+import FinanzasDashboard from '../Admin/pagos/FinanzasDashboard';
 // import FlyerManager from '../Admin/flyer/FlyerManager';
 // import TurnosManager from './turnos/TurnoManager';
 
@@ -23,7 +24,7 @@ function DashboardRecepcion() {
   const [pacientesCumple, setPacientesCumple] = useState([]);
   const [loadingCumple, setLoadingCumple] = useState(true);
 
-    // ESTADOS PARA EMPLEADOS MOVIDOS AQUÍ (Para que carguen globalmente de inmediato)
+  // ESTADOS PARA EMPLEADOS MOVIDOS AQUÍ (Para que carguen globalmente de inmediato)
   const [employeeBirthdayAlert, setEmployeeBirthdayAlert] = useState(false);
   const [empleadosCumple, setEmpleadosCumple] = useState([]);
   const [loadingEmpleadosCumple, setLoadingEmpleadosCumple] = useState(true);
@@ -104,7 +105,7 @@ function DashboardRecepcion() {
     }
   }, [token]);
 
-useEffect(() => {
+  useEffect(() => {
     const fetchCumpleañosEmpleados = async () => {
       try {
         const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/empleados`, {
@@ -224,7 +225,7 @@ useEffect(() => {
               )}
             </li>
 
-             <li onClick={() => { setView("cumpleañosEmpleados"); setIsMenuOpen(false); }} style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <li onClick={() => { setView("cumpleañosEmpleados"); setIsMenuOpen(false); }} style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <span><Icon icon="mdi:cake-variant" /> Cumpleaños Personal</span>
               {employeeBirthdayAlert && (
                 <span style={{ width: "10px", height: "10px", background: "red", borderRadius: "50%", marginLeft: "10px" }}></span>
@@ -237,6 +238,12 @@ useEffect(() => {
             <li onClick={() => { setView('consulta'); setIsMenuOpen(false) }} >
               <Icon icon="mdi:teleconference" /> Consulta Virtual
             </li>
+
+            <li onClick={() => { setView('pagos'); setIsMenuOpen(false) }} >
+              <Icon icon="lucide:hand-coins" /> Pagos y Tratamientos
+            </li>
+
+
             {/* <li onClick={() => { setView("pagos"); setIsMenuOpen(false); }}>
               <Icon icon="mdi:currency-usd" /> Pagos
             </li> */}
@@ -291,12 +298,12 @@ useEffect(() => {
             />
           )}
 
-          
+
           {/* RENDERIZADO DEL NUEVO MANAGER DE EMPLEADOS PASANDO ESTADOS DEL PARENT */}
           {view === "cumpleañosEmpleados" && (
-            <BirthdayEmployeeManager 
-              empleadosCumple={empleadosCumple} 
-              loading={loadingEmpleadosCumple} 
+            <BirthdayEmployeeManager
+              empleadosCumple={empleadosCumple}
+              loading={loadingEmpleadosCumple}
             />
           )}
 
@@ -304,6 +311,9 @@ useEffect(() => {
           {/* {view === "historiaClinica" && <HistoriaClinicaManager />} */}
           {view === "turnos" && <TurnosManager />}
           {view === 'consulta' && <ConsultaVirtualManager />}
+
+          {view === "pagos" && <FinanzasDashboard />}
+
 
           {/* {view === "pagos" && <PagosManager />} */}
 
